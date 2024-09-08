@@ -1,0 +1,85 @@
+body.light-mode {
+  --body-bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --main-text: #212529;
+  --secondary-text: #6c757d;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --body-bg: #35155D;
+  --card-bg: #512B81;
+  --main-text: #dde6ed;
+  --secondary-text: #9db2bf;
+}
+
+/* frame work */
+.btn {
+  border-radius: 0 !important;
+  box-sizing: none !important;
+}
+
+body {
+  background-color: var(--body-bg);
+  color: var(--main-text);
+}
+
+body a {
+  color: var(--text-color) !important;
+  text-decoration: none !important;
+}
+
+/* navbar */
+body.dark-mode .logo img {
+  filter: invert(1);
+}
+
+.typing-text {
+  overflow: hidden;
+  font-size: 14px;
+  animation: typing 10s steps(10000, end) 1s normal both infinite;
+}
+
+.ltr .typing-text {
+  border-right: 2px solid var(--text-color);
+}
+
+.rtl .typing-text {
+  border-left: 2px solid var(--text-color);
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  background-color: var(--main-bg) !important;
+  box-shadow: 0 0px 2px var(--secondary-text);
+}
+
+.navbar .btn {
+  background-color: var(--card-bg);
+  color: var(--main-text);
+}
+
+.navbar .navbar-toggler {
+  background-color: var(--card-bg);
+}
+
+.navbar .navbar-toggler svg {
+  font-size: 14px;
+  color: var(--main-text) !important;
+}
+
+@keyframes typing {
+  0% {
+    width: 0;
+  }
+  50% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+
+/* home */
