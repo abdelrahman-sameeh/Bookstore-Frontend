@@ -1,7 +1,36 @@
 {
-  "navbar": "-------------------",
-  "logo": "iqraa platform"
-
+  "_navbar": "-------------------",
+  "logo": "iqraa platform",
+  "register": "register",
+  "login": "have an account?",
+  "_home": "----------hero section---------",
+  "heroH1": "consume & create",
+  "heroP": "Welcome to our online bookstore, where the worlds of print and digital books come together. Explore a wide selection of titles available both online and offline, and enjoy a seamless shopping experience that caters to all your reading needs.",
+  "heroBtn": "Explore now",
+  "_register": "---------- register page ----------",
+  "registerLabel": "Register new account",
+  "registerInputName": "Name",
+  "registerInputEmail": "Email",
+  "registerInputPassword": "Password",
+  "registerSelectPlaceholder": "select account role",
+  "registerSelectOpt1": "user",
+  "registerSelectOpt2": "library owner",
+  "registerSelectOpt3": "delivery",
+  "registerBtn": "register",
+  "registerSuccessMessage": "account created successfully",
+  "registerEmailAlreadyUsedMessage": "This email address already used",
+  "registerFailedMessage": "account created successfully",
+  "_login": "---------- login page ----------",
+  "loginLabel": "Login",
+  "loginInputEmail": "email",
+  "loginInputPassword": "Password",
+  "loginBtn": "login",
+  "loginSuccessMessage": "Logged in successfully",
+  "loginEmailOrPasswordIncorrectMessage": "Email or password incorrect",
+  "loginFailedMessage": "something went wrong",
+  "_validation": "----------------------",
+  "isRequired": "is required",
+  "isInvalid": "is invalid",
+  "isTooShort": "is too short"
 
 }
-  

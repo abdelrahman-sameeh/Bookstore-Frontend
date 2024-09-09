@@ -1,6 +1,35 @@
 {
-  "navbar": "-------------------",
-  "logo": "منصة اقرأ"
-
-  }
-  
+  "_navbar": "-------------------",
+  "logo": "منصة اقرأ",
+  "register": "انشاء حساب",
+  "login": "لديك حساب؟",
+  "_home": "----------hero section---------",
+  "heroH1": "استهلاك وإنشاء",
+  "heroP": "مرحبًا بك في متجر الكتب الإلكتروني الذي يجمع بين عالم الكتب الورقية والرقمية. اكتشف مجموعة متنوعة من الكتب التي يمكنك شراؤها أونلاين أو أوفلاين، واستمتع بتجربة تسوق مميزة وسهلة تلبي احتياجاتك.",
+  "heroBtn": "استكشف الان",
+  "_register": "---------- register page ----------",
+  "registerLabel": "تسجيل حساب جديد",
+  "registerInputName": "الاسم",
+  "registerInputEmail": "البريد الالكترونى",
+  "registerInputPassword": "كلمة المرور",
+  "registerSelectPlaceholder": "اختر نوع الحساب",
+  "registerSelectOpt1": "مستخدم",
+  "registerSelectOpt2": "صاحب مكتبة",
+  "registerSelectOpt3": "رجل توصيل",
+  "registerBtn": "تسجيل",
+  "registerSuccessMessage": "تم انشاء الحساب بنجاح",
+  "registerEmailAlreadyUsedMessage": "البريد الالكترونى مستخدم بالفعل",
+  "registerFailedMessage": "حدث خطأ حاول مجددا",
+  "_login": "---------- login page ----------",
+  "loginLabel": "تسجيل الدخول",
+  "loginInputEmail": "البريد الالكترونى",
+  "loginInputPassword": "كلمة المرور",
+  "loginBtn": "دخول",
+  "loginSuccessMessage": "تم تسجيل الدخول بنجاح",
+  "loginEmailOrPasswordIncorrectMessage": "كلمة المرور او البريد الالكترونى خطأ",
+  "loginFailedMessage": "حدث خطأ حاول مجددا",
+  "_validation": "----------------------",
+  "isRequired": "مطلوب",
+  "isInvalid": "غير صالح",
+  "isTooShort": "قصير"
+}

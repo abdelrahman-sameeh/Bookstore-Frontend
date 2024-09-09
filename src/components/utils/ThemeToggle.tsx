@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { themeState } from "../recoil/atoms";
+import { themeState } from "../../recoil/atoms";
 import Icon from "./Icon";
 
 const ThemeToggle: React.FC = () => {

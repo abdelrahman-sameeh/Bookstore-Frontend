@@ -1,25 +1,10 @@
 import React, { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { themeState } from "./recoil/atoms";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/Home";
-import Navbar from "./components/Navbar";
-
-
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/register",
-    element: <div>Hello world!</div>,
-  },
-]);
-
+import Navbar from "./components/utils/Navbar";
+import RegisterLoginPage from "./pages/Auth/RegisterLoginPage";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -29,10 +14,14 @@ const App: React.FC = () => {
   }, [theme]);
 
   return (
-    <>
+    <Router>
       <Navbar />
-      <RouterProvider router={router} />
-    </>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/auth" element={<RegisterLoginPage />} />
+        
+      </Routes>
+    </Router>
   );
 };
 
