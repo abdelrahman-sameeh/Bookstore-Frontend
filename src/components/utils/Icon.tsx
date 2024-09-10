@@ -3,7 +3,7 @@ import { Icon as Ic } from "@iconify/react";
 type iconProps = {
   icon: string;
   style?: React.CSSProperties;
-  className?: string
+  className?: string;
 };
 
 const Icon = ({ icon, style, className }: iconProps) => {

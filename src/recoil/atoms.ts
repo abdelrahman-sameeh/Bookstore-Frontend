@@ -1,15 +1,15 @@
 import { atom } from 'recoil';
 
 export const themeState = atom({
-    key: 'themeState',
-    default: 'light',
+  key: 'themeState',
+  default: 'light',
 });
 
-const savedLanguage = localStorage.getItem('language') || 'en'; 
+const savedLanguage = localStorage.getItem('language') || 'en';
 
 export const languageState = atom({
-  key: 'languageState', 
-  default: savedLanguage, 
+  key: 'languageState',
+  default: savedLanguage,
 });
 
 

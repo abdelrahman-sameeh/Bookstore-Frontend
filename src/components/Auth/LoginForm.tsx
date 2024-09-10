@@ -7,7 +7,7 @@ import Icon from "../utils/Icon";
 import notify from "../utils/Notify";
 import authAxios from "../../api/authAxios";
 import { ApiEndpoints } from "../../api/ApiEndpoints";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LoadingButton from "../utils/LoadingButton";
 
 const LoginForm = () => {
@@ -109,7 +109,7 @@ const LoginForm = () => {
       ) {
         notify(t("loginEmailOrPasswordIncorrectMessage"), "error");
       } else {
-        notify(t("loginFailedMessage"), "error");
+        notify(t("failedMessage"), "error");
       }
     }
   };
@@ -121,7 +121,7 @@ const LoginForm = () => {
 
   return (
     <div className="login">
-      <form onSubmit={handleSubmit} noValidate>
+      <form className="auth-form" onSubmit={handleSubmit} noValidate>
         <label
           onClick={() => {
             setIsLoginPage(true);
@@ -188,11 +188,15 @@ const LoginForm = () => {
                 <Icon style={{ color: "green" }} icon="ep:success-filled" />
               ))}
           </div>
+          <div className="d-flex flex-column align-items-center">
+
           <LoadingButton
             children={t("loginBtn")}
             loading={loading}
             type="submit"
-          />
+            />
+          <Link className='text-dark mt-2' to={'/reset-code'}> {t('forgetPasswordLink')} </Link>
+            </div>
         </div>
       </form>
     </div>

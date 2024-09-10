@@ -3,10 +3,12 @@
   "logo": "منصة اقرأ",
   "register": "انشاء حساب",
   "login": "لديك حساب؟",
+
   "_home": "----------hero section---------",
   "heroH1": "استهلاك وإنشاء",
   "heroP": "مرحبًا بك في متجر الكتب الإلكتروني الذي يجمع بين عالم الكتب الورقية والرقمية. اكتشف مجموعة متنوعة من الكتب التي يمكنك شراؤها أونلاين أو أوفلاين، واستمتع بتجربة تسوق مميزة وسهلة تلبي احتياجاتك.",
   "heroBtn": "استكشف الان",
+
   "_register": "---------- register page ----------",
   "registerLabel": "تسجيل حساب جديد",
   "registerInputName": "الاسم",
@@ -19,7 +21,7 @@
   "registerBtn": "تسجيل",
   "registerSuccessMessage": "تم انشاء الحساب بنجاح",
   "registerEmailAlreadyUsedMessage": "البريد الالكترونى مستخدم بالفعل",
-  "registerFailedMessage": "حدث خطأ حاول مجددا",
+
   "_login": "---------- login page ----------",
   "loginLabel": "تسجيل الدخول",
   "loginInputEmail": "البريد الالكترونى",
@@ -27,9 +29,28 @@
   "loginBtn": "دخول",
   "loginSuccessMessage": "تم تسجيل الدخول بنجاح",
   "loginEmailOrPasswordIncorrectMessage": "كلمة المرور او البريد الالكترونى خطأ",
-  "loginFailedMessage": "حدث خطأ حاول مجددا",
+  "forgetPasswordLink": "نسيت كلمة المرور",
+
   "_validation": "----------------------",
   "isRequired": "مطلوب",
   "isInvalid": "غير صالح",
-  "isTooShort": "قصير"
+  "isTooShort": "قصيرة",
+  "failedMessage": "حدث خطأ حاول مجددا",
+
+  "_send reset code": "---------- send reset code ----------",
+  "resetCodeLabel": "ارسال رمز التأكيد",
+  "resetCodeInputEmail": "البريد الالكترونى",
+  "resetCodeBtn": "ارسل الرمز",
+  "resetCodeSuccessMessage": "تم ارسال الرمز على البريد الالكترونى, الرمز صالح لمدة 10 دقائق",
+  "resetCodeEmailNotFound": "البريد الالكترونى غير موجود",
+
+  "_verify reset code": "---------- verify reset code ----------",
+  "verifyResetCodeLabel": "تغير كلمة المرور",
+  "verifyResetCodeInputCode": "الرمز",
+  "verifyResetCodeInputPassword": "كلمة المرور الجديدة",
+  "verifyResetCodeBtn": "حفظ",
+  "verifyResetCodeSuccessMessage": "تم تغير كلمة المرور بنجاح",
+  "ResetCodeIsWrong": "خطأ فى الرمز",
+  "ResetCodeHasExpired": "الرمز منتهى الصلاحيه",
+  "resetCodeValidationMessage": "يجب ان يكون الرمز مكون من 6 ارقام"
 }

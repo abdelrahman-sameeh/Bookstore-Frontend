@@ -119,7 +119,7 @@ const RegisterForm = () => {
       if (response?.data?.message === "Email already exist") {
         notify(t("registerEmailAlreadyUsedMessage"), "error");
       } else {
-        notify(t("registerFailedMessage"), "error");
+        notify(t("failedMessage"), "error");
       }
     }
   };
@@ -130,7 +130,7 @@ const RegisterForm = () => {
 
   return (
     <div className="signup">
-      <form onSubmit={handleSubmit} noValidate>
+      <form className="auth-form" onSubmit={handleSubmit} noValidate>
         <label
           onClick={() => {
             setIsLogin(false);
@@ -263,11 +263,13 @@ const RegisterForm = () => {
               ))}
           </div>
 
+          <div className="d-flex flex-column align-items-center">
           <LoadingButton
             children={t("registerBtn")}
             loading={loading}
             type="submit"
-          />
+            />
+            </div>
         </div>
       </form>
     </div>

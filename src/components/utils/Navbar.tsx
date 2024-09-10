@@ -42,16 +42,16 @@ function BasicExample() {
             <div className="links d-flex justify-content-center align-items-center">
               <Link
                 onClick={() => {
-                  setIsLoginPage(false)
+                  setIsLoginPage(false);
                 }}
                 className="main-text text-center mx-2 text-capitalize"
                 to="/auth?signup=true"
-                >
+              >
                 {t("register")}
               </Link>
               <Link
                 onClick={() => {
-                  setIsLoginPage(true)
+                  setIsLoginPage(true);
                 }}
                 className="main-text text-center mx-1 text-capitalize"
                 to="/auth?login=true"

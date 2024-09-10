@@ -3,10 +3,12 @@
   "logo": "iqraa platform",
   "register": "register",
   "login": "have an account?",
+
   "_home": "----------hero section---------",
   "heroH1": "consume & create",
   "heroP": "Welcome to our online bookstore, where the worlds of print and digital books come together. Explore a wide selection of titles available both online and offline, and enjoy a seamless shopping experience that caters to all your reading needs.",
   "heroBtn": "Explore now",
+
   "_register": "---------- register page ----------",
   "registerLabel": "Register new account",
   "registerInputName": "Name",
@@ -19,7 +21,7 @@
   "registerBtn": "register",
   "registerSuccessMessage": "account created successfully",
   "registerEmailAlreadyUsedMessage": "This email address already used",
-  "registerFailedMessage": "account created successfully",
+
   "_login": "---------- login page ----------",
   "loginLabel": "Login",
   "loginInputEmail": "email",
@@ -27,10 +29,28 @@
   "loginBtn": "login",
   "loginSuccessMessage": "Logged in successfully",
   "loginEmailOrPasswordIncorrectMessage": "Email or password incorrect",
-  "loginFailedMessage": "something went wrong",
+  "forgetPasswordLink": "Forget password",
+
   "_validation": "----------------------",
   "isRequired": "is required",
   "isInvalid": "is invalid",
-  "isTooShort": "is too short"
+  "isTooShort": "is too short",
+  "failedMessage": "something went wrong",
 
+  "_send reset code": "---------- send reset code ----------",
+  "resetCodeLabel": "Send reset code",
+  "resetCodeInputEmail": "Email",
+  "resetCodeBtn": "send code",
+  "resetCodeSuccessMessage": "reset code is sent to email, reset code is valid for 10 minutes",
+  "resetCodeEmailNotFound": "not found this email",
+
+  "_verify reset code": "---------- verify reset code ----------",
+  "verifyResetCodeLabel": "change password",
+  "verifyResetCodeInputCode": "reset code",
+  "verifyResetCodeInputPassword": "new password",
+  "verifyResetCodeBtn": "save",
+  "verifyResetCodeSuccessMessage": "password has been changed successfully",
+  "ResetCodeIsWrong": "reset code is wrong",
+  "ResetCodeHasExpired": "Reset code has expired",
+  "resetCodeValidationMessage": "reset code must be 6 numbers"
 }

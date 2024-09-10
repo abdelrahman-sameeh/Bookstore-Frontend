@@ -57,6 +57,35 @@ body a {
   text-decoration: none !important;
 }
 
+/* reset */
+.page {
+  padding-top: calc(71px + 20px);
+}
+
+input,
+select {
+  padding: 12px;
+  border-radius: 5px;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+form.auth-form button {
+  width: 60%;
+  height: 40px;
+  font-weight: bold;
+  margin-top: 30px;
+  transition: 0.2s ease-in;
+  cursor: pointer;
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.672) !important;
+}
+
+.dark-mode form.auth-form button {
+  background-color: var(--alt-bg) !important;
+}
+
 /* navbar */
 .logo {
   color: var(--text-color) !important;
@@ -169,41 +198,9 @@ section.home .hero .btn::before {
   cursor: pointer;
   transition: 0.5s ease-in-out;
 }
-.register-login input,
-.register-login select {
-  justify-content: center;
-  display: flex;
-  padding: 12px;
-  border: none !important;
-  outline: none !important;
-  border-radius: 5px;
-  box-shadow: none !important;
-}
 
 .light-mode .login input {
   background: #eff1f3;
-}
-
-.register-login button {
-  width: 60%;
-  height: 40px;
-  margin: 10px auto;
-  justify-content: center;
-  display: block;
-  font-size: 1em;
-  font-weight: bold;
-  margin-top: 30px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-  transition: 0.2s ease-in;
-  cursor: pointer;
-  background-color: var(--alt-bg) !important;
-  color: white;
-}
-
-.light-mode .register-login button {
-  background-color: rgba(0, 0, 0, 0.672) !important;
 }
 
 .register-login .login {
@@ -213,6 +210,7 @@ section.home .hero .btn::before {
   transform: translateY(-180px);
   transition: 0.8s ease-in-out;
 }
+
 .light-mode .register-login .login {
   background: white;
 }
@@ -234,6 +232,19 @@ section.home .hero .btn::before {
 }
 .register-login #chk:checked ~ .signup label {
   transform: scale(0.6);
+}
+
+/* forget password */
+.auth-page main {
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: auto;
+  box-shadow: 5px 20px 50px #0000005e;
+  margin-top: 20px;
+  padding-top: 70px;
+  padding-bottom: 50px;
 }
 
 /* media query */
@@ -261,7 +272,6 @@ section.home .hero .btn::before {
   .register-login .main label {
     font-size: 1.7em;
   }
-
 }
 
 /* Extra Small Devices (Phones, less than 576px) */

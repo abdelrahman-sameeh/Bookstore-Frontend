@@ -9,11 +9,11 @@ const RegisterLoginPage = () => {
   const checkboxInput = useRef<HTMLInputElement>(null);
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search);
-  const [, setIsLoginPage] = useRecoilState(isLoginPageAtom)
+  const [, setIsLoginPage] = useRecoilState(isLoginPageAtom);
 
   useEffect(() => {
     const isLoginQuery = searchQuery.get("login") === "true";
-    setIsLoginPage(isLoginQuery)
+    setIsLoginPage(isLoginQuery);
   }, []);
 
   useEffect(() => {
