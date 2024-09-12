@@ -5,4 +5,5 @@ export const ApiEndpoints = {
   login: `${mainPath}/login`,
   sendResetCode: `${mainPath}/resetCode`,
   forgetPassword: `${mainPath}/forgetPassword`,
+  getUpdateLoggedUser: `${mainPath}/auth`,
 }

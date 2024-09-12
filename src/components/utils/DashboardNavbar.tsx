@@ -7,12 +7,9 @@ import logo from "../../static/images/logo.png";
 import { useTranslation } from "react-i18next";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
-import { isLoginPageAtom } from "../../recoil/atoms";
 
-function BasicExample() {
+function DashboardNavbarApp() {
   const { t } = useTranslation();
-  const [, setIsLoginPage] = useRecoilState(isLoginPageAtom);
 
   return (
     <Navbar style={{ zIndex: 10 }} expand="md" className="bg-body-tertiary">
@@ -39,26 +36,6 @@ function BasicExample() {
           <Nav>
             <ThemeToggle />
             <LanguageSwitcher />
-            <div className="links d-flex justify-content-center align-items-center">
-              <Link
-                onClick={() => {
-                  setIsLoginPage(false);
-                }}
-                className="main-text text-center mx-2 text-capitalize"
-                to="/auth?signup=true"
-              >
-                {t("register")}
-              </Link>
-              <Link
-                onClick={() => {
-                  setIsLoginPage(true);
-                }}
-                className="main-text text-center mx-1 text-capitalize"
-                to="/auth?login=true"
-              >
-                {t("login")}
-              </Link>
-            </div>
           </Nav>
         </Navbar.Collapse>
       </Container>
@@ -66,4 +43,4 @@ function BasicExample() {
   );
 }
 
-export default BasicExample;
+export default DashboardNavbarApp;

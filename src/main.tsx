@@ -3,6 +3,7 @@ import { RecoilRoot } from "recoil";
 import App from "./App";
 import "./i18n/i18n";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.min.js";
 import "./static/styles/index.css";
 import { ToastContainer } from "react-toastify";
 

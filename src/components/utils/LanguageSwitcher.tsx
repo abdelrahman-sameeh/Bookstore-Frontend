@@ -7,13 +7,14 @@ const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();
   const [lang, setLang] = useRecoilState(languageState); // Get language state from Recoil
 
-  // When the language state changes, update i18next and document settings
   useEffect(() => {
     i18n.changeLanguage(lang);
-    document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr"); // Set text direction
-    document.body.classList.toggle("ltr", lang === "en");
-    document.body.classList.toggle("rtl", lang === "ar");
-    localStorage.setItem("language", lang); // Save the selected language to localStorage
+    document.documentElement.setAttribute("dir", lang === "ar" ? "rtl" : "ltr");
+    setTimeout(() => {
+      document.body.classList.toggle("ltr", lang === "en");
+      document.body.classList.toggle("rtl", lang === "ar");
+    }, 10);
+    localStorage.setItem("language", lang);
   }, [lang, i18n]);
 
   // Function to handle language change

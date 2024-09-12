@@ -2,11 +2,13 @@ import React, { useEffect } from "react";
 import { useRecoilValue } from "recoil";
 import { themeState } from "./recoil/atoms";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Home } from "./pages/Home";
-import Navbar from "./components/utils/Navbar";
-import RegisterLoginPage from "./pages/Auth/RegisterLoginPage";
-import ForgetPasswordResetCode from "./pages/Auth/ForgetPasswordResetCode";
-import VerifyResetCode from "./pages/Auth/VerifyResetCode";
+import { Home } from "./pages/MainLayout/Home";
+import MainLayout from "./layout/MainLayout";
+import DashboardLayout from "./layout/DashboardLayout";
+import RegisterLoginPage from "./pages/MainLayout/Auth/RegisterLoginPage";
+import ForgetPasswordResetCode from "./pages/MainLayout/Auth/ForgetPasswordResetCode";
+import VerifyResetCode from "./pages/MainLayout/Auth/VerifyResetCode";
+import ChangePassword  from "./pages/DashboardLayout/Auth/ChangePassword";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -17,12 +19,19 @@ const App: React.FC = () => {
 
   return (
     <Router>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/auth" element={<RegisterLoginPage />} />
-        <Route path="/reset-code" element={<ForgetPasswordResetCode />} />
-        <Route path="/verify-reset-code" element={<VerifyResetCode />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="auth" element={<RegisterLoginPage />} />
+          <Route path="reset-code" element={<ForgetPasswordResetCode />} />
+          <Route path="verify-reset-code" element={<VerifyResetCode />} />
+        </Route>
+
+        <Route path="/dashboard" element={<DashboardLayout />}>
+          <Route path="change-password" element={<ChangePassword />} />
+
+        </Route>
+
       </Routes>
     </Router>
   );

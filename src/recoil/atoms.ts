@@ -17,3 +17,4 @@ export const isLoginPageAtom = atom<boolean>({
   key: 'isLoginPage',
   default: false,
 });
+

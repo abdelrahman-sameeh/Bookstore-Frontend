@@ -101,7 +101,7 @@ const LoginForm = () => {
       localStorage.user = JSON.stringify(response?.data?.data?.user);
       setErrors({ email: "", password: "" });
       setFormData({ email: "", password: "" });
-      navigate("/");
+      window.location.href = "/"
     } else {
       setIsClickedToSubmit(false);
       if (

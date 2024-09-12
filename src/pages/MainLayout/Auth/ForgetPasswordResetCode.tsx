@@ -3,13 +3,13 @@ import { useTranslation } from "react-i18next";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap is imported
 import { useRecoilState } from "recoil";
-import { languageState } from "../../recoil/atoms";
-import authAxios from "../../api/authAxios";
-import { ApiEndpoints } from "../../api/ApiEndpoints";
+import { languageState } from "../../../recoil/atoms";
+import authAxios from "../../../api/authAxios";
+import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import { useNavigate } from "react-router-dom";
-import notify from "../../components/utils/Notify";
-import Icon from "../../components/utils/Icon";
-import LoadingButton from "../../components/utils/LoadingButton";
+import notify from "../../../components/utils/Notify";
+import Icon from "../../../components/utils/Icon";
+import LoadingButton from "../../../components/utils/LoadingButton";
 
 const ForgetPasswordForm = () => {
   const { t } = useTranslation();

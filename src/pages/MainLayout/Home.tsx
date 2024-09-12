@@ -1,12 +1,12 @@
 import { Col, Container, Row } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import landingImage from "../static/images/landing-page.png";
+import landingImage from "../../static/images/landing-page.png";
 import { Link } from "react-router-dom";
 
 export const Home = () => {
   const { t } = useTranslation();
   return (
-    <section className="home alt-bg p-5">
+    <section style={{marginTop: "calc(71px + 20px)"}} className="home page alt-bg">
       <div className="p-5"></div>
 
       {/* hero section */}
