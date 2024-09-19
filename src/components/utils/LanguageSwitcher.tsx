@@ -26,13 +26,13 @@ const LanguageSwitcher: React.FC = () => {
     <div className="btn-group">
       <button
         onClick={() => changeLanguage("en")}
-        className="btn btn-secondary border"
+        className="btn btn-secondary main-btn border"
       >
         En
       </button>
       <button
         onClick={() => changeLanguage("ar")}
-        className="btn btn-secondary border"
+        className="btn btn-secondary main-btn border"
       >
         ع
       </button>

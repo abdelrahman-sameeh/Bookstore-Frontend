@@ -8,7 +8,11 @@ import DashboardLayout from "./layout/DashboardLayout";
 import RegisterLoginPage from "./pages/MainLayout/Auth/RegisterLoginPage";
 import ForgetPasswordResetCode from "./pages/MainLayout/Auth/ForgetPasswordResetCode";
 import VerifyResetCode from "./pages/MainLayout/Auth/VerifyResetCode";
-import ChangePassword  from "./pages/DashboardLayout/Auth/ChangePassword";
+import ChangePassword from "./pages/DashboardLayout/Auth/ChangePassword";
+import Onboarding from "./pages/DashboardLayout/Owner/Onboarding";
+import ProtectedRoutes from "./auth/guards/ProtectedRoute";
+import IsAuth from "./auth/guards/IsAuth";
+import NoPermission from "./auth/utils/NoPermission";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -22,16 +26,30 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
+          <Route path="no-permissions" element={<NoPermission />} />
           <Route path="auth" element={<RegisterLoginPage />} />
           <Route path="reset-code" element={<ForgetPasswordResetCode />} />
           <Route path="verify-reset-code" element={<VerifyResetCode />} />
         </Route>
 
-        <Route path="/dashboard" element={<DashboardLayout />}>
-          <Route path="change-password" element={<ChangePassword />} />
+        <Route element={<IsAuth />}>
+          <Route path="/dashboard" element={<DashboardLayout />}>
+            <Route path="change-password" element={<ChangePassword />} />
 
+            {/* owner routes */}
+            <Route
+              path="owner"
+              element={<ProtectedRoutes allowto={["owner"]} />}
+            >
+              <Route path="onboarding" element={<Onboarding />} />
+            </Route>
+            {/* user routes */}
+            <Route
+              path="user"
+              element={<ProtectedRoutes allowto={["user"]} />}
+            ></Route>
+          </Route>
         </Route>
-
       </Routes>
     </Router>
   );

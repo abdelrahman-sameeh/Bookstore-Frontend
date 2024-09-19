@@ -38,7 +38,7 @@ const ThemeToggle: React.FC = () => {
   }, [setTheme]);
 
   return (
-    <button onClick={toggleTheme} className="btn btn-secondary border">
+    <button onClick={toggleTheme} className="btn main-btn btn-secondary border">
       {theme === "light" ? (
         <Icon icon="circum:dark" className={"fs-3"} />
       ) : (

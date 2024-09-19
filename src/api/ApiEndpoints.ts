@@ -6,4 +6,5 @@ export const ApiEndpoints = {
   sendResetCode: `${mainPath}/resetCode`,
   forgetPassword: `${mainPath}/forgetPassword`,
   getUpdateLoggedUser: `${mainPath}/auth`,
+  onboarding: `${mainPath}/stripe/onboard`
 }

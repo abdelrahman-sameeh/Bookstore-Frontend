@@ -52,5 +52,44 @@
   "verifyResetCodeSuccessMessage": "تم تغير كلمة المرور بنجاح",
   "ResetCodeIsWrong": "خطأ فى الرمز",
   "ResetCodeHasExpired": "الرمز منتهى الصلاحيه",
-  "resetCodeValidationMessage": "يجب ان يكون الرمز مكون من 6 ارقام"
+  "resetCodeValidationMessage": "يجب ان يكون الرمز مكون من 6 ارقام",
+
+  "_noPermission": "-------------- NO permission page ----------------",
+  "noPermission": {
+    "title": "ليس لديك إذن للوصول إلى هذا المسار",
+    "message": "هذا المسار غير مسموح لك أو ليس لديك الصلاحيات اللازمة.",
+    "backHome": "العودة إلى الصفحة الرئيسية"
+  },
+  "owner": {
+    "onboarding": {
+      "welcome": "مرحباً بك في صفحة التسجيل",
+      "registerStripeOnboarding": "سجل باستخدام Stripe",
+      "updateStripeOnboarding": "عدل بيانات حساب stripe الخاص بك",
+      "libraryOwner": "صاحب المكتبة",
+      "intro": "يمكنك هنا تسجيل مكتبتك والبدء في بيع الكتب.",
+      "steps": "اتبع هذه الخطوات:",
+      "step1": "الخطوة 1: ادخل معلومات مكتبتك.",
+      "step2": "الخطوة 2: ربط حساب Stripe للمدفوعات.",
+      "step3": "الخطوة 3: إعداد المكتبة وإضافة الكتب.",
+      "startNow": "ابدأ الآن",
+      "failedMessage": "حدث خطأ حاول مجددا",
+      "completeOnboard": "حساب Stripe نشط",
+      "uncompletedOnboard": "الإجراء المطلوب لم يكتمل حساب Stripe"
+    }
+  },
+  "___dashboard links": "_____",
+  "dashboard": {
+    "shared": {
+      "links": {
+        "home": "صفحة البداية",
+        "changePassword": "تغير كلمة المرور"
+      }
+    },
+    "owner": {
+      "links": {
+        "stripe": "stripe حساب",
+        "viewBooks": "كُتُبك"
+      }
+    }
+  }
 }

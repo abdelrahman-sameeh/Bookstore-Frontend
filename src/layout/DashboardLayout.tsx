@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
-import DashboardNavbarApp from "../components/utils/DashboardNavbar";
 import DashboardSidebar from "../components/layout/DashboardSidebar";
+import MainNavbarApp from "../components/utils/MainNavbar";
 
 const DashboardLayout = () => {
   return (
     <div className="dashboard-layout page">
-      <DashboardNavbarApp />
+      <MainNavbarApp />
       <Container fluid>
         <Row>
           {/* Sidebar */}

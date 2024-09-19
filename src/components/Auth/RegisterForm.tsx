@@ -113,7 +113,7 @@ const RegisterForm = () => {
       localStorage.token = response?.data?.data?.token;
       setErrors({ email: "", name: "", password: "", role: "" });
       setFormData({ email: "", name: "", password: "", role: "" });
-      navigate("/");
+      window.location.href = '/'
     } else {
       setIsClickedToSubmit(false);
       if (response?.data?.message === "Email already exist") {

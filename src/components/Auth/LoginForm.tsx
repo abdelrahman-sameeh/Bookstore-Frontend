@@ -98,14 +98,15 @@ const LoginForm = () => {
     if (response?.status == 200) {
       notify(t("loginSuccessMessage"), "success");
       localStorage.token = response?.data?.data?.token;
-      localStorage.user = JSON.stringify(response?.data?.data?.user);
+      sessionStorage.user = JSON.stringify(response?.data?.data?.user);
       setErrors({ email: "", password: "" });
       setFormData({ email: "", password: "" });
-      window.location.href = "/"
+      window.location.href = "/";
     } else {
       setIsClickedToSubmit(false);
       if (
-        response?.data?.errors[0]?.msg === "email or password are incorrect"
+        response?.data?.errors[0]?.msg === "email or password are incorrect" ||
+        response?.data?.message === "email or password are incorrect"
       ) {
         notify(t("loginEmailOrPasswordIncorrectMessage"), "error");
       } else {
@@ -189,14 +190,16 @@ const LoginForm = () => {
               ))}
           </div>
           <div className="d-flex flex-column align-items-center">
-
-          <LoadingButton
-            children={t("loginBtn")}
-            loading={loading}
-            type="submit"
+            <LoadingButton
+              children={t("loginBtn")}
+              loading={loading}
+              type="submit"
             />
-          <Link className='text-dark mt-2' to={'/reset-code'}> {t('forgetPasswordLink')} </Link>
-            </div>
+            <Link className="text-dark mt-2" to={"/reset-code"}>
+              {" "}
+              {t("forgetPasswordLink")}{" "}
+            </Link>
+          </div>
         </div>
       </form>
     </div>

@@ -42,21 +42,20 @@ function MainNavbarApp() {
           <Nav>
             <ThemeToggle />
             <LanguageSwitcher />
-
-            {user?._id ? (
+            {user && user?._id ? (
               <Dropdown>
                 <Dropdown.Toggle
                   id="user-menu"
-                  className="d-flex align-items-center border"
+                  className="d-flex btn main-btn w-100 justify-content-center align-items-center border"
                 >
                   <div
                     className="user-avatar rounded-circle d-flex align-items-center justify-content-center me-2"
                     style={{ width: "40px", height: "40px" }}
                   >
                     {user?.name[0]}
-                    {user?.name.split(" ")[1]?.[0]}
+                    {user?.name?.split(" ")[1]?.[0]}
                   </div>
-                  {user?.name?.split(" ")[0]}
+                  <span>{user?.name?.split(" ")[0]}</span>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
@@ -66,14 +65,14 @@ function MainNavbarApp() {
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
-                    <Link className="w-100 d-block" to={"/dashboard"}>
+                    <Link className="w-100 d-block" to={"/dashboard/change-password"}>
                       Dashboard{" "}
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item
                     onClick={() => {
-                      localStorage.removeItem("user");
+                      sessionStorage.removeItem("user");
                       localStorage.removeItem("token");
                       window.location.href = "/";
                     }}

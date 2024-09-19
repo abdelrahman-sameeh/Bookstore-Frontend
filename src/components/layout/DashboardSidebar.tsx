@@ -4,37 +4,80 @@ import Icon from "../utils/Icon";
 import { useRecoilValue } from "recoil";
 import { languageState } from "../../recoil/atoms";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 type Role = "user" | "admin" | "owner" | "delivery";
 type Link = {
   title: string;
   to: string;
+  icon: string;
 };
 
 type LinksType = {
-  [key in "user" | "admin" | "owner" | "delivery"]: Link[];
+  [key in Role]: Link[];
 };
 
-const links: LinksType = {
+const getUserLinks = (t: any): LinksType => ({
   user: [
     {
-      title: "home",
+      title: t("dashboard.shared.links.home"),
       to: "/",
+      icon: "iconamoon:home-bold",
     },
     {
-      title: "change password",
+      title: t("dashboard.shared.links.changePassword"),
       to: "change-password",
-    },
-    {
-      title: "carts",
-      to: "carts",
+      icon: "solar:password-outline",
     },
   ],
-  admin: [],
-  owner: [],
-  delivery: [],
-};
+  admin: [
+    {
+      title: t("dashboard.shared.links.home"),
+      to: "/",
+      icon: "iconamoon:home-bold",
+    },
+    {
+      title: t("dashboard.shared.links.changePassword"),
+      to: "change-password",
+      icon: "solar:password-outline",
+    },
+  ],
+  owner: [
+    {
+      title: t("dashboard.shared.links.home"),
+      to: "/",
+      icon: "iconamoon:home-bold",
+    },
+    {
+      title: t("dashboard.shared.links.changePassword"),
+      to: "change-password",
+      icon: "solar:password-outline",
+    },
+    {
+      title: t("dashboard.owner.links.stripe"),
+      to: "owner/onboarding",
+      icon: "formkit:stripe",
+    },
+    {
+      title: t("dashboard.owner.links.viewBooks"),
+      to: "owner/books",
+      icon: "bi:book",
+    },
+  ],
+  delivery: [
+    {
+      title: t("dashboard.shared.links.home"),
+      to: "/",
+      icon: "iconamoon:home-bold",
+    },
+    {
+      title: t("dashboard.shared.links.changePassword"),
+      to: "change-password",
+      icon: "solar:password-outline",
+    },
+  ],
+});
 
 const DashboardSidebar = () => {
   const [iconName, setIconName] = useState<
@@ -44,21 +87,26 @@ const DashboardSidebar = () => {
   const lang = useRecoilValue(languageState);
   const { user } = useLoggedInUser();
 
+  const { t } = useTranslation();
+
   const renderUserLinks = () => {
     if (!user || !user.role) {
       return null;
     }
 
-    const userLinks = links[user.role as Role] || [];
+    const userLinks = getUserLinks(t)[user.role as Role];
 
     return (
       <ul className="nav flex-column">
         {userLinks.map((link, index) => (
-          <li className="nav-item" key={link.title + link.to + index}>
-            <Link className="nav-link" to={link.to}>
-              {link.title}
-            </Link>
-          </li>
+          <NavLink
+            className="nav-link text-capitalize d-flex gap-1 align-items-center"
+            to={link.to}
+            key={link.title + link.to + index}
+          >
+            <Icon className="fs-4" icon={link.icon} />
+            <span>{link.title}</span>
+          </NavLink>
         ))}
       </ul>
     );
@@ -85,7 +133,7 @@ const DashboardSidebar = () => {
 
   return (
     <>
-      <span ref={iconRef} onClick={handleClick} className="arrow w-fit">
+      <span ref={iconRef} onClick={handleClick} className="arrow w-fit alt-btn">
         <Icon icon={iconName}></Icon>
       </span>
       <Col lg={3} className={`alt-bg p-3 sidebar ${isShowClass ? "show" : ""}`}>

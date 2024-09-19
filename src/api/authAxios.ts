@@ -11,19 +11,18 @@ export const authAxios = async <T = any>(
   needAuth: boolean,
   endpoint: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' = 'GET',
-  data: any = null,
+  data: any = {},
   headersType: 'application/json' | 'multipart/form-data' = 'application/json'
 ): Promise<any> => {
   const token = localStorage.getItem('token'); // Retrieve token from localStorage
-
   try {
     const response: AxiosResponse<T> = await axiosInstance({
-      url: endpoint, // Provide the endpoint directly
+      url: endpoint, 
       method: method,
-      data: data,
+      data,
       headers: {
         'Content-Type': headersType,
-        ...(needAuth && token ? { Authorization: `Bearer ${token}` } : {}), // Add Authorization header if needed
+        ...(needAuth && token ? { Authorization: `Bearer ${token}` } : {}), 
       },
     });
     return response; // Return the response data

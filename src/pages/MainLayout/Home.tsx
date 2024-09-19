@@ -15,7 +15,7 @@ export const Home = () => {
           <Col sm={"12"} md={6} lg={6}>
             <h1 className="text-capitalize">{t("heroH1")}</h1>
             <p className="alt-text">{t("heroP")}</p>
-            <Link to="/books" className="btn text-capitalize main-bg pt-3">
+            <Link to="/books" className="btn main-btn text-capitalize main-bg pt-3">
               {t("heroBtn")}
             </Link>
           </Col>

@@ -52,5 +52,45 @@
   "verifyResetCodeSuccessMessage": "password has been changed successfully",
   "ResetCodeIsWrong": "reset code is wrong",
   "ResetCodeHasExpired": "Reset code has expired",
-  "resetCodeValidationMessage": "reset code must be 6 numbers"
+  "resetCodeValidationMessage": "reset code must be 6 numbers",
+  "_noPermission": "-------------- NO permission page ----------------",
+  "noPermission": {
+    "title": "You do not have permission to access this route",
+    "message": "This route is not allowed to you or you have no permission for this route.",
+    "backHome": "Back to Home"
+  },
+
+  "___owner": "Owner pages",
+  "owner": {
+    "onboarding": {
+      "welcome": "Welcome to the Onboarding",
+      "registerStripeOnboarding": "Register with Stripe",
+      "updateStripeOnboarding": "Update information for your Stripe account",
+      "libraryOwner": "Library Owner",
+      "intro": "Here you can register your library and start selling books.",
+      "steps": "Follow these steps:",
+      "step1": "Step 1: Fill in your library information.",
+      "step2": "Step 2: Connect your Stripe account for payments.",
+      "step3": "Step 3: Set up your library and add books.",
+      "startNow": "Start Now",
+      "failedMessage": "something went wrong",
+      "completeOnboard": "Boarding complete and Stripe account is active",
+      "uncompletedOnboard": "Action needed: Boarding not completed or Stripe account missing"
+    }
+  },
+  "___dashboard links": "_____",
+  "dashboard": {
+    "shared": {
+      "links": {
+        "home": "home",
+        "changePassword": "change password"
+      }
+    },
+    "owner": {
+      "links": {
+        "stripe": "stripe account",
+        "viewBooks": "Your books"
+      }
+    }
+  }
 }
