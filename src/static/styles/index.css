@@ -99,7 +99,7 @@ body a {
 
 /* reset */
 .page {
-  margin-top: calc(71px + 16px);
+  margin-top: calc(71px + 30px);
 }
 
 input,
@@ -120,6 +120,23 @@ form.auth-form button {
   cursor: pointer;
   color: white !important;
 }
+
+/* pagination */
+.dark-mode .pagination .page-item .page-link{
+  color: black !important;
+}
+.pagination .page-item .page-link{
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  background-color: #eee;
+}
+
+.pagination .page-item.active .page-link{
+  background-color: var(--main-btn-bg) !important;
+  color: white !important;
+}
+
 
 /* navbar */
 .logo {
@@ -184,11 +201,11 @@ body.dark-mode .logo img {
   text-transform: uppercase;
 }
 
-.dropdown button  {
+.dropdown button {
   color: var(--main-text) !important;
 }
 .dropdown button span {
-  transform: .3s;
+  transform: 0.3s;
 }
 .dropdown button:hover span {
   color: white;
@@ -317,12 +334,55 @@ section.home .hero .btn::before {
   height: 87.9vh;
 }
 
-.sidebar .nav-link.active{
+.sidebar .nav-link.active {
   border-right: 5px solid var(--main-text);
   border-top: 1px solid var(--main-text);
   border-bottom: 1px solid var(--main-text);
   border-left: 5px solid var(--main-text);
 }
+
+/* explore books page */
+.explore-books input[type="search"]::placeholder,
+.explore-books input[type="search"] {
+  color: var(--main-text);
+}
+
+.explore-books .filters {
+  transition: 0.5s;
+  height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.explore-books .filters.active {
+  border-bottom: 5px solid var(--main-bg);
+  height: 250px;
+}
+
+.rtl .explore-books .filters .form-check {
+  gap: 27px !important;
+}
+
+.explore-books .accordion-button:focus{
+  box-shadow: none !important;
+}
+
+
+/* dialog */
+.dark-mode .delete-book-dialog{
+  color: black !important;
+}
+
+.delete-book-dialog .modal-header{
+  justify-content: space-between;
+}
+
+.delete-book-dialog .modal-header button{
+  margin: 0 !important;
+
+}
+
+
 
 
 /* media query */

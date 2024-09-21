@@ -6,5 +6,9 @@ export const ApiEndpoints = {
   sendResetCode: `${mainPath}/resetCode`,
   forgetPassword: `${mainPath}/forgetPassword`,
   getUpdateLoggedUser: `${mainPath}/auth`,
-  onboarding: `${mainPath}/stripe/onboard`
+  onboarding: `${mainPath}/stripe/onboard`,
+  getCategories: `${mainPath}/category`,
+  getBooks: (queryString: string='') => `${mainPath}/books${queryString}`,
+  geOwnerBooks: (queryString: string='') => `${mainPath}/owner/books${queryString}`,
+  updateDeleteBook: (bookId: string) => `${mainPath}/books/${bookId}`
 }

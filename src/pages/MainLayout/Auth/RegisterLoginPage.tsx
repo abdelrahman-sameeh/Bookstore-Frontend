@@ -25,7 +25,6 @@ const RegisterLoginPage = () => {
 
   return (
     <section className="register-login d-flex justify-content-center flex-column align-items-center gap-3">
-      <div className="p-5"></div>
       <div className="container d-flex justify-content-center">
         <div className="main">
           <input

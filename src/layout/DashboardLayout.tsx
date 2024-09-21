@@ -5,7 +5,7 @@ import MainNavbarApp from "../components/utils/MainNavbar";
 
 const DashboardLayout = () => {
   return (
-    <div className="dashboard-layout page">
+    <div style={{marginTop: "calc(71px + 16px)"}} className="dashboard-layout">
       <MainNavbarApp />
       <Container fluid>
         <Row>

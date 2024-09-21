@@ -78,6 +78,34 @@
       "uncompletedOnboard": "Action needed: Boarding not completed or Stripe account missing"
     }
   },
+  "exploreBooks": {
+    "searchBooks": "Search for books using name or author name",
+    "price": "Price",
+    "mostExpensive": "Most Expensive",
+    "leastExpensive": "Least Expensive",
+    "removeSelected": "Remove selected",
+    "sales": "Sales",
+    "mostSold": "Most Sold",
+    "leastSold": "Least Sold",
+    "booksPerPage": "Books Per Page",
+    "categories": "Categories",
+    "sold": "number of sold",
+    "noBooksMatchFilter": "No Books Match This Filter",
+    "books": "Books",
+    "addToCart": "Add to cart",
+    "seller": "seller",
+    "category": "category",
+    "author": "author"
+  },
+  "deleteBookDialog": {
+    "title": "Delete Book",
+    "confirmation": "Are you sure to delete this book?",
+    "close": "Close",
+    "delete": "Delete",
+        "success": "The book has been successfully deleted.",
+    "error": "An error occurred while deleting the book."
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {

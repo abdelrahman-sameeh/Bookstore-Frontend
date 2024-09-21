@@ -106,7 +106,7 @@ const ForgetPasswordForm = () => {
   );
 
   return (
-    <section className="page auth-page forget-password">
+    <section className="auth-page forget-password">
       <main className="main">
         <form className="auth-form" onSubmit={handleSubmit} noValidate>
           <h2 className="text-capitalize text-center fw-bold pb-3">

@@ -103,10 +103,12 @@ const LoginForm = () => {
       setFormData({ email: "", password: "" });
       window.location.href = "/";
     } else {
+      console.log(response);
+      
       setIsClickedToSubmit(false);
       if (
-        response?.data?.errors[0]?.msg === "email or password are incorrect" ||
-        response?.data?.message === "email or password are incorrect"
+        response?.data?.message === "email or password are incorrect"||
+        response?.data?.errors[0]?.msg === "email or password are incorrect" 
       ) {
         notify(t("loginEmailOrPasswordIncorrectMessage"), "error");
       } else {

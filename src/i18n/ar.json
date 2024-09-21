@@ -77,6 +77,35 @@
       "uncompletedOnboard": "الإجراء المطلوب لم يكتمل حساب Stripe"
     }
   },
+  "exploreBooks": {
+    "searchBooks": "ابحث عن الكتاب بالاسم او اسم المؤلف",
+    "price": "السعر",
+    "mostExpensive": "الأكثر تكلفة",
+    "leastExpensive": "الأرخص",
+    "removeSelected": "إزالة المحدد",
+    "sales": "المبيعات",
+    "mostSold": "الأكثر مبيعًا",
+    "leastSold": "الأقل مبيعًا",
+    "booksPerPage": "كتب لكل صفحة",
+    "categories": "الفئات",
+    "sold": "عدد المبيعات",
+    "books": "كتب",
+    "noBooksMatchFilter": "لا توجد كتب تطابق هذا الفلتر",
+    "addToCart": "اضف الى السلة",
+    "seller": "البائع",
+    "category": "الفئة",
+    "author": "المؤلف"
+  },
+
+  "deleteBookDialog": {
+    "title": "حذف الكتاب",
+    "confirmation": "هل أنت متأكد من حذف هذا الكتاب؟",
+    "close": "إغلاق",
+    "delete": "حذف",
+    "success": "تم حذف الكتاب بنجاح.",
+    "error": "حدث خطأ أثناء حذف الكتاب."
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {

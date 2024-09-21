@@ -3,7 +3,7 @@ import MainNavbarApp from "../components/utils/MainNavbar";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="page">
       <MainNavbarApp />
       <main>
         <Outlet />

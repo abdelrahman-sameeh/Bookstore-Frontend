@@ -1,12 +1,11 @@
-import React from "react";
-
 interface LoadingButtonProps {
   loading?: boolean;
   type?: "button" | "submit" | "reset";
-  variant?: "main" | "alt" | "error";  
+  variant?: "main" | "alt" | "error";
   className?: string;
   style?: React.CSSProperties;
   children: React.ReactNode;
+  onClick?: () => void | Promise<void>;  
 }
 
 const LoadingButton: React.FC<LoadingButtonProps> = ({
@@ -16,15 +15,17 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({
   className = "",
   style,
   children,
+  onClick,  
 }) => {
   const variantClass = variant === "alt" ? "alt-btn" : variant === "error" ? "btn-danger" : "main-btn";
 
   return (
     <button
-    type={type}
+      type={type}
       className={`${className} ${variantClass} btn text-capitalize text-light fw-bold`}
-      style={{...style, minWidth: '170px'}}
+      style={{ ...style, minWidth: '170px' }}
       disabled={loading}
+      onClick={onClick}
     >
       {loading ? (
         <span

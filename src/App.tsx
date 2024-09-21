@@ -13,6 +13,8 @@ import Onboarding from "./pages/DashboardLayout/Owner/Onboarding";
 import ProtectedRoutes from "./auth/guards/ProtectedRoute";
 import IsAuth from "./auth/guards/IsAuth";
 import NoPermission from "./auth/utils/NoPermission";
+import ExploreBooks from "./pages/MainLayout/ExploreBooks";
+import OwnerBooks from "./pages/DashboardLayout/Owner/OwnerBooks";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -30,6 +32,8 @@ const App: React.FC = () => {
           <Route path="auth" element={<RegisterLoginPage />} />
           <Route path="reset-code" element={<ForgetPasswordResetCode />} />
           <Route path="verify-reset-code" element={<VerifyResetCode />} />
+          <Route path="books" element={<ExploreBooks />} />
+
         </Route>
 
         <Route element={<IsAuth />}>
@@ -42,6 +46,7 @@ const App: React.FC = () => {
               element={<ProtectedRoutes allowto={["owner"]} />}
             >
               <Route path="onboarding" element={<Onboarding />} />
+              <Route path="books" element={<OwnerBooks />} />
             </Route>
             {/* user routes */}
             <Route

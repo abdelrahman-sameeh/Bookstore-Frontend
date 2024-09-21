@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export const Home = () => {
   const { t } = useTranslation();
   return (
-    <section style={{marginTop: "calc(71px + 20px)"}} className="home page alt-bg">
+    <section style={{marginTop: "-13px"}} className="home alt-bg">
       <div className="p-5"></div>
 
       {/* hero section */}

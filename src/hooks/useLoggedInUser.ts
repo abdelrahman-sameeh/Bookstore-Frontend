@@ -1,16 +1,8 @@
 import { useState, useEffect } from 'react';
 import authAxios from '../api/authAxios';
 import { ApiEndpoints } from '../api/ApiEndpoints';
+import { UserInterface } from '../interfaces/interfaces';
 
-interface UserInterface {
-  _id?: any;
-  name?: any;
-  email?: any;
-  role?: any;
-  picture?: any;
-  stripeAccountId?: any;
-  completedBoarding?: any;
-}
 
 const useLoggedInUser = (ignoreCache: boolean = false) => {
   const [user, setUser] = useState<UserInterface>({});
