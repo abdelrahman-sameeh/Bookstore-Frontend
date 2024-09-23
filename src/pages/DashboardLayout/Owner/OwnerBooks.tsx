@@ -6,7 +6,8 @@ import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import Icon from "../../../components/utils/Icon";
 import BookCartComp from "../../../components/utils/BookCartComp";
 import { Book, Category, PaginationData } from "../../../interfaces/interfaces";
-
+import LoadingButton from "../../../components/utils/LoadingButton";
+import CreateUpdateBook from "../../../components/dashboard/owner/CreateUpdateBook";
 
 const OwnerBooks = () => {
   const { t } = useTranslation();
@@ -16,6 +17,10 @@ const OwnerBooks = () => {
   const [showFilters, setShowFilters] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const [showCreateUpdateDialog, setShowCreateUpdateDialog] = useState(true);
+  const [createUpdateDialogMethod, setCreateUpdateDialogMethod] = useState<
+    "create" | "update"
+  >("create");
 
   // States for filters
   const [priceOrder, setPriceOrder] = useState<"asc" | "desc" | null>(null);
@@ -128,6 +133,25 @@ const OwnerBooks = () => {
   return (
     <section className="explore-books">
       <div className="container p-2 alt-bg">
+        <CreateUpdateBook
+          showCreateUpdateDialog={showCreateUpdateDialog}
+          setShowCreateUpdateDialog={setShowCreateUpdateDialog}
+          createUpdateDialogMethod={createUpdateDialogMethod}
+          setCreateUpdateDialogMethod={setCreateUpdateDialogMethod}
+        />
+
+        <div className="d-flex p-2 justify-content-between mb-2">
+          <h4> {t("exploreBooks.yourBooks")} </h4>
+          <LoadingButton
+            onClick={() => {
+              setCreateUpdateDialogMethod("create");
+              setShowCreateUpdateDialog(true);
+            }}
+          >
+            {t("exploreBooks.addBook")}
+          </LoadingButton>
+        </div>
+
         <div className="d-flex gap-1 align-items-center position-relative">
           <input
             className="form-control rounded-0 main-bg"

@@ -37,7 +37,7 @@ function DeleteBookDialog({
 
   return (
     <Modal
-      className="delete-book-dialog"
+      className="custom-dialog"
       show={showDeleteDialog}
       onHide={handleClose}
     >

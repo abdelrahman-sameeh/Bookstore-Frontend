@@ -94,7 +94,9 @@
     "addToCart": "اضف الى السلة",
     "seller": "البائع",
     "category": "الفئة",
-    "author": "المؤلف"
+    "author": "المؤلف",
+    "yourBooks": "كُتُبك",
+    "addBook": "اضافة كتاب"
   },
 
   "deleteBookDialog": {
@@ -104,6 +106,53 @@
     "delete": "حذف",
     "success": "تم حذف الكتاب بنجاح.",
     "error": "حدث خطأ أثناء حذف الكتاب."
+  },
+
+  "createUpdateBookDialog": {
+    "createBook": "إضافة كتاب جديد",
+    "updateBook": "تحديث الكتاب",
+    "title": "اسم الكتاب",
+    "author": "المؤلف",
+    "price": "السعر",
+    "count": "العدد",
+    "category": "الفئة",
+    "status": "الحالة",
+    "statusOptions": {
+      "online": "متاح إلكترونيًا",
+      "offline": "متاح في المكتبة"
+    },
+    "selectCategory": "اختر الفئة",
+    "enterTitle": "أدخل اسم الكتاب",
+    "enterAuthor": "أدخل اسم المؤلف",
+    "enterPrice": "أدخل السعر",
+    "enterCount": "أدخل العدد",
+    "close": "إغلاق",
+
+    "create": {
+      "validation": {
+        "titleRequired": "العنوان مطلوب",
+        "authorRequired": "اسم المؤلف مطلوب",
+        "categoryRequired": "الفئة مطلوبة",
+        "priceRequired": "السعر مطلوب",
+        "countRequired": "العدد مطلوب",
+        "pdfRequired": "ملف PDF مطلوب",
+        "coverRequired": "صورة الغلاف مطلوبة"
+      },
+
+      "book": {
+        "createSuccess": "تم إنشاء الكتاب بنجاح!",
+        "createFail": "فشل في إنشاء الكتاب!"
+      }
+    }
+  },
+
+  "fileUploader": {
+    "uploadImage": "تحميل صورة غلاف الكتاب",
+    "uploadPdf": "تحميل ملف  pdf",
+    "fileTooLarge": "حجم الملف أكبر من 5 ميغابايت",
+    "invalidImageType": "الملف المحدد ليست صورة",
+    "invalidPdfType": "الملف المحدد ليس ملف PDF",
+    "prfUploadedSuccessfully": "تم تحميل ملف ال PDF بنجاح"
   },
 
   "___dashboard links": "_____",

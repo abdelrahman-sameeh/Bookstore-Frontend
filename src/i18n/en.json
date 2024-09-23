@@ -95,15 +95,63 @@
     "addToCart": "Add to cart",
     "seller": "seller",
     "category": "category",
-    "author": "author"
+    "author": "author",
+    "yourBooks": "Your books",
+    "addBook": "Add book"
   },
   "deleteBookDialog": {
     "title": "Delete Book",
     "confirmation": "Are you sure to delete this book?",
     "close": "Close",
     "delete": "Delete",
-        "success": "The book has been successfully deleted.",
+    "success": "The book has been successfully deleted.",
     "error": "An error occurred while deleting the book."
+  },
+  "createUpdateBookDialog": {
+    "createBook": "Add new book",
+    "updateBook": "Update book",
+    "title": "Title",
+    "author": "Author",
+    "price": "Price",
+    "count": "Count",
+    "category": "Category",
+    "status": "Status",
+    "statusOptions": {
+      "online": "Online",
+      "offline": "Offline"
+    },
+    "selectCategory": "Select Category",
+    "enterTitle": "Enter title",
+    "enterAuthor": "Enter author",
+    "enterPrice": "Enter price",
+    "enterCount": "Enter count",
+    "close": "Close",
+    
+    "create": {
+      "validation": {
+        "titleRequired": "Title is required",
+        "authorRequired": "Author is required",
+        "categoryRequired": "Category is required",
+        "priceRequired": "Price is required",
+        "countRequired": "Count is required",
+        "pdfRequired": "PDF is required",
+        "coverRequired": "Cover is required"
+      },
+
+      "book": {
+        "createSuccess": "Book created successfully!",
+        "createFail": "Failed to create book!"
+      }
+    }
+  },
+
+  "fileUploader": {
+    "uploadImage": "upload book image cover",
+    "uploadPdf": "upload pdf",
+    "fileTooLarge": "File too large, select file less than 5mb",
+    "invalidImageType": "invalid image type",
+    "invalidPdfType": "invalid pdf type",
+    "prfUploadedSuccessfully": "uploaded successfully"
   },
 
   "___dashboard links": "_____",

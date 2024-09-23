@@ -8,7 +8,10 @@ export interface Book {
   owner?: Owner;
   category?: any;
   count?: number;
+  // make sure its file
   imageCover?: string;
+  // its book pdf
+  book?: string;
   price?: number;
   reviewStatus?: "pending" | "approved" | "denied";
   sales?: number;
