@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { themeState } from "./recoil/atoms";
+import { themeState } from "./recoil/utils";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Home } from "./pages/MainLayout/Home";
 import MainLayout from "./layout/MainLayout";
@@ -33,7 +33,6 @@ const App: React.FC = () => {
           <Route path="reset-code" element={<ForgetPasswordResetCode />} />
           <Route path="verify-reset-code" element={<VerifyResetCode />} />
           <Route path="books" element={<ExploreBooks />} />
-
         </Route>
 
         <Route element={<IsAuth />}>

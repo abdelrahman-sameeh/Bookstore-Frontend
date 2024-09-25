@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { isLoginPageAtom, languageState } from "../../recoil/atoms";
+import { isLoginPageAtom, languageState } from "../../recoil/utils";
 import Icon from "../utils/Icon";
 import notify from "../utils/Notify";
 import authAxios from "../../api/authAxios";
@@ -104,11 +104,11 @@ const LoginForm = () => {
       window.location.href = "/";
     } else {
       console.log(response);
-      
+
       setIsClickedToSubmit(false);
       if (
-        response?.data?.message === "email or password are incorrect"||
-        response?.data?.errors[0]?.msg === "email or password are incorrect" 
+        response?.data?.message === "email or password are incorrect" ||
+        response?.data?.errors[0]?.msg === "email or password are incorrect"
       ) {
         notify(t("loginEmailOrPasswordIncorrectMessage"), "error");
       } else {

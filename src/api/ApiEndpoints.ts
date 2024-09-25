@@ -12,4 +12,5 @@ export const ApiEndpoints = {
   geOwnerBooks: (queryString: string='') => `${mainPath}/owner/books${queryString}`,
   updateDeleteBook: (bookId: string) => `${mainPath}/books/${bookId}`,
   createBook: `${mainPath}/books`,
+  getUpdateDeleteBook: (bookId: string) =>`${mainPath}/books/${bookId}`,
 }

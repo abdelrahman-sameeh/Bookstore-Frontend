@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import Icon from "./Icon";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { isLoginPageAtom } from "../../recoil/atoms";
+import { isLoginPageAtom } from "../../recoil/utils";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { Dropdown } from "react-bootstrap";
 
@@ -65,7 +65,10 @@ function MainNavbarApp() {
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
-                    <Link className="w-100 d-block" to={"/dashboard/change-password"}>
+                    <Link
+                      className="w-100 d-block"
+                      to={"/dashboard/change-password"}
+                    >
                       Dashboard{" "}
                     </Link>
                   </Dropdown.Item>

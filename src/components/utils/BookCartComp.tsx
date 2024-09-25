@@ -7,26 +7,51 @@ import { Book } from "../../interfaces/interfaces";
 import DeleteBookDialog from "../dashboard/owner/DeleteBookDialog";
 import { useState } from "react";
 
-type BookCartType = { book: Book; showControls?: boolean };
+type BookCartType = {
+  book: Book;
+  showControls?: boolean;
+  setShowCreateUpdateDialog?: any;
+  setCreateUpdateDialogMethod?: any;
+  setTargetBook: any;
+};
 
-const BookCartComp = ({ book, showControls = false }: BookCartType) => {
+const BookCartComp = ({
+  book,
+  showControls = false,
+  setShowCreateUpdateDialog,
+  setCreateUpdateDialogMethod,
+  setTargetBook,
+}: BookCartType) => {
   const { t } = useTranslation();
   const { user } = useLoggedInUser();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  
 
   return (
     <div className="book-card position-relative border">
       {user.role === "owner" && showControls ? (
         <div style={{ top: 0 }} className="d-flex w-100 bg-light p-1">
-          <button onClick={() => {
-            setShowDeleteDialog(true)
-          }} title={"Delete Book"} className="border-0 bg-light">
+          <button
+            onClick={() => {
+              setShowDeleteDialog(true);
+            }}
+            title={"Delete Book"}
+            className="border-0 bg-light"
+          >
             <Icon
               className="fs-4 text-danger"
               icon="material-symbols:delete-outline"
             />
           </button>
-          <button title={"Update Book"} className="border-0 bg-light">
+          <button
+            onClick={() => {
+              setShowCreateUpdateDialog(true);
+              setCreateUpdateDialogMethod("update");
+              setTargetBook(book)
+            }}
+            title={"Update Book"}
+            className="border-0 bg-light"
+          >
             <Icon className="fs-4" icon="carbon:ibm-data-product-exchange" />
           </button>
         </div>
@@ -87,7 +112,6 @@ const BookCartComp = ({ book, showControls = false }: BookCartType) => {
           book={book}
         />
       ) : null}
-
     </div>
   );
 };

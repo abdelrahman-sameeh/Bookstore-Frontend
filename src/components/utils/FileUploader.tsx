@@ -1,20 +1,35 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Button, Form, Image, Alert } from "react-bootstrap";
 import Icon from "./Icon";
 import { useTranslation } from "react-i18next";
 
 type FileUploaderPropsTypes = {
   type: "image" | "pdf";
-  onFileChange: (file: File | null) => void; // New prop to handle file change
+  fileUrl: string | null; // Here, the file is passed as a URL string
+  onFileChange: (file: File | null | "delete") => void;
 };
 
-const FileUploader = ({ type, onFileChange }: FileUploaderPropsTypes) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
-  const [fileType, setFileType] = useState<string>("");
+const FileUploader = ({
+  type,
+  fileUrl,
+  onFileChange,
+}: FileUploaderPropsTypes) => {
+  const [selectedFile, setSelectedFile] = useState<File | null | "delete">(
+    null
+  );
+  const [preview, setPreview] = useState<string | null>(fileUrl);
+  const [fileType] = useState<string>(
+    type === "image" ? "image/*" : "application/pdf"
+  );
   const [error, setError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const { t } = useTranslation();
+
+  useEffect(() => {
+    if (fileUrl) {
+      setPreview(fileUrl);
+    }
+  }, [fileUrl]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -25,7 +40,6 @@ const FileUploader = ({ type, onFileChange }: FileUploaderPropsTypes) => {
         return;
       }
 
-      // Check file type
       if (type === "image" && !file.type.startsWith("image/")) {
         setError(t("fileUploader.invalidImageType"));
         resetFile();
@@ -36,11 +50,9 @@ const FileUploader = ({ type, onFileChange }: FileUploaderPropsTypes) => {
         return;
       }
 
-      // If all validations pass
       setError(null);
       setSelectedFile(file);
-      setFileType(file.type);
-      onFileChange(file); // Call the passed function with the selected file
+      onFileChange(file);
 
       if (file.type.startsWith("image/")) {
         const reader = new FileReader();
@@ -56,14 +68,19 @@ const FileUploader = ({ type, onFileChange }: FileUploaderPropsTypes) => {
 
   const resetFile = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.value = ""; 
+      fileInputRef.current.value = "";
     }
-    setSelectedFile(null);
+    if (fileUrl) {
+      onFileChange("delete");
+      setSelectedFile('delete');
+    } else {
+      setSelectedFile(null);
+      onFileChange(null);
+    }
     setPreview(null);
-    setFileType("");
     setError(null);
-    onFileChange(null);
   };
+
 
   const handleDelete = () => {
     resetFile();
@@ -75,8 +92,8 @@ const FileUploader = ({ type, onFileChange }: FileUploaderPropsTypes) => {
 
   return (
     <div>
-      <Form.Group>
-        {!selectedFile && (
+      <Form.Group className="position-relative" style={{paddingBottom: ((selectedFile && selectedFile!='delete') || preview) ? '30px': '', width: 'fit-content', border: '2px solid var(--main-bg)', minWidth: '200px', borderRadius: '10px'}}>
+        {(!selectedFile || selectedFile=='delete') && !preview && (
           <label
             htmlFor={type}
             style={{
@@ -107,7 +124,7 @@ const FileUploader = ({ type, onFileChange }: FileUploaderPropsTypes) => {
         {error && <Alert variant="danger">{error}</Alert>}
 
         {preview && fileType.startsWith("image/") && (
-          <div style={{ textAlign: "center", margin: "20px 0" }}>
+          <div style={{ textAlign: "center" }}>
             <Image
               src={preview}
               alt="Selected"
@@ -116,20 +133,27 @@ const FileUploader = ({ type, onFileChange }: FileUploaderPropsTypes) => {
           </div>
         )}
 
-        {type === "pdf" && fileType.startsWith("application/pdf") && (
+        {type === "pdf" && preview && (
           <div style={{ textAlign: "center", margin: "20px 0" }}>
-            {t("fileUploader.prfUploadedSuccessfully")}
+            {preview ? <p>{t("fileUploader.pdfExist")}</p> : null}
+            {selectedFile && selectedFile!='delete' ? (
+              <Alert variant="success">
+                {t("fileUploader.pdfUploadedSuccessfully")}
+              </Alert>
+            ) : null}
+
           </div>
         )}
 
-        {selectedFile && (
+        {((selectedFile && selectedFile!='delete') || preview) && (
           <div
-            style={{ display: "flex", justifyContent: "center", gap: "10px" }}
+          className="position-absolute"
+            style={{ display: "flex", bottom: '1px', justifyContent: "center", width: '100%' }}
           >
-            <Button variant="warning" onClick={handleUpdate}>
+            <Button style={{height: '30px', display: 'flex', alignItems: 'center'}} variant="warning" onClick={handleUpdate}>
               <Icon icon="radix-icons:update" />
             </Button>
-            <Button variant="danger" onClick={handleDelete}>
+            <Button style={{height: '30px', display: 'flex', alignItems: 'center'}} variant="danger" onClick={handleDelete}>
               <Icon icon="ph:trash" />
             </Button>
           </div>

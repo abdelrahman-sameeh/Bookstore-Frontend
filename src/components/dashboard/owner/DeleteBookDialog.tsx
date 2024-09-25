@@ -7,6 +7,8 @@ import { useTranslation } from "react-i18next";  // استدعاء useTranslatio
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import notify from "../../utils/Notify";
+import { useRecoilState } from "recoil";
+import { ownerBookState } from "../../../recoil/bookAtom";
 
 type DeleteBookDialogTypes = {
   showDeleteDialog: boolean;
@@ -23,11 +25,17 @@ function DeleteBookDialog({
   const handleClose = () => setShowDeleteDialog(false);
   const [loading, setLoading] = useState(false)
 
+  const [books, setBooks] = useRecoilState(ownerBookState)
+
   const handleDelete = async () => {
     setLoading(true)
     const response = await authAxios(true, ApiEndpoints.updateDeleteBook(book?._id as string), 'DELETE')
     setLoading(false)
     if(response.status===204){
+      // update books state
+      const filteredBooks = books.filter((bookItem: Book) => bookItem._id !== book?._id)
+      setBooks(filteredBooks)
+
       setShowDeleteDialog(false);
       notify(t("deleteBookDialog.success"), "success"); 
     } else {

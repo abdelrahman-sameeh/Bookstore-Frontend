@@ -8,16 +8,18 @@ import BookCartComp from "../../../components/utils/BookCartComp";
 import { Book, Category, PaginationData } from "../../../interfaces/interfaces";
 import LoadingButton from "../../../components/utils/LoadingButton";
 import CreateUpdateBook from "../../../components/dashboard/owner/CreateUpdateBook";
+import { ownerBookState } from "../../../recoil/bookAtom";
+import { useRecoilState } from "recoil";
 
 const OwnerBooks = () => {
   const { t } = useTranslation();
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useRecoilState(ownerBookState);
   const [categories, setCategories] = useState<Category[]>([]);
   const [pagination, setPagination] = useState<PaginationData>({});
   const [showFilters, setShowFilters] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
-  const [showCreateUpdateDialog, setShowCreateUpdateDialog] = useState(true);
+  const [showCreateUpdateDialog, setShowCreateUpdateDialog] = useState(false);
   const [createUpdateDialogMethod, setCreateUpdateDialogMethod] = useState<
     "create" | "update"
   >("create");
@@ -27,6 +29,8 @@ const OwnerBooks = () => {
   const [salesOrder, setSalesOrder] = useState<"asc" | "desc" | null>(null);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [booksPerPage, setBooksPerPage] = useState(8); // Default number of books per page
+  const [targetBook, setTargetBook] = useState<Book>({})
+  
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -138,6 +142,8 @@ const OwnerBooks = () => {
           setShowCreateUpdateDialog={setShowCreateUpdateDialog}
           createUpdateDialogMethod={createUpdateDialogMethod}
           setCreateUpdateDialogMethod={setCreateUpdateDialogMethod}
+          targetBook={targetBook}
+          setTargetBook={setTargetBook}
         />
 
         <div className="d-flex p-2 justify-content-between mb-2">
@@ -283,7 +289,13 @@ const OwnerBooks = () => {
           {books.length ? (
             books.map((book: Book) => (
               <Col key={book._id} lg={3} md={4} sm={6} xs={12}>
-                <BookCartComp book={book} showControls={true} />
+                <BookCartComp
+                  book={book}
+                  showControls={true}
+                  setShowCreateUpdateDialog={setShowCreateUpdateDialog}
+                  setCreateUpdateDialogMethod={setCreateUpdateDialogMethod}
+                  setTargetBook={setTargetBook}
+                />
               </Col>
             ))
           ) : (

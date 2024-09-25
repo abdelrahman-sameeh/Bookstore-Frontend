@@ -118,8 +118,8 @@
     "category": "الفئة",
     "status": "الحالة",
     "statusOptions": {
-      "online": "متاح إلكترونيًا",
-      "offline": "متاح في المكتبة"
+      "online": "متاح إلكترونيًا (online)",
+      "offline": "متاح في المكتبة (offline)"
     },
     "selectCategory": "اختر الفئة",
     "enterTitle": "أدخل اسم الكتاب",
@@ -128,20 +128,24 @@
     "enterCount": "أدخل العدد",
     "close": "إغلاق",
 
-    "create": {
-      "validation": {
-        "titleRequired": "العنوان مطلوب",
-        "authorRequired": "اسم المؤلف مطلوب",
-        "categoryRequired": "الفئة مطلوبة",
-        "priceRequired": "السعر مطلوب",
-        "countRequired": "العدد مطلوب",
-        "pdfRequired": "ملف PDF مطلوب",
-        "coverRequired": "صورة الغلاف مطلوبة"
-      },
+    "validation": {
+      "titleRequired": "العنوان مطلوب",
+      "priceRequired": "السعر مطلوب",
+      "countRequired": "العدد مطلوب",
+      "pdfRequired": "ملف PDF مطلوب",
+      "coverRequired": "صورة الغلاف مطلوبة"
+    },
 
+    "create": {
       "book": {
         "createSuccess": "تم إنشاء الكتاب بنجاح!",
         "createFail": "فشل في إنشاء الكتاب!"
+      }
+    },
+    "update": {
+      "book": {
+        "updateSuccess": "تم تعديل البيانات بنجاح!",
+        "updateFail": "خطأ فى تعديل البيانات!"
       }
     }
   },
@@ -152,7 +156,8 @@
     "fileTooLarge": "حجم الملف أكبر من 5 ميغابايت",
     "invalidImageType": "الملف المحدد ليست صورة",
     "invalidPdfType": "الملف المحدد ليس ملف PDF",
-    "prfUploadedSuccessfully": "تم تحميل ملف ال PDF بنجاح"
+    "prfUploadedSuccessfully": "تم تحميل ملف ال PDF بنجاح",
+    "pdfExist": "ملف ال Pdf موجود"
   },
 
   "___dashboard links": "_____",

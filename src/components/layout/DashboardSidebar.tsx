@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Col } from "react-bootstrap";
 import Icon from "../utils/Icon";
 import { useRecoilValue } from "recoil";
-import { languageState } from "../../recoil/atoms";
+import { languageState } from "../../recoil/utils";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { Link, NavLink } from "react-router-dom";
 import { useTranslation } from "react-i18next";

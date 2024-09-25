@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
-import { languageState } from "../../recoil/atoms";
+import { languageState } from "../../recoil/utils";
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation();

@@ -4,7 +4,7 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap is imported
 import Icon from "../utils/Icon";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { isLoginPageAtom, languageState } from "../../recoil/atoms";
+import { isLoginPageAtom, languageState } from "../../recoil/utils";
 import authAxios from "../../api/authAxios";
 import { ApiEndpoints } from "../../api/ApiEndpoints";
 import LoadingButton from "../utils/LoadingButton";
@@ -113,7 +113,7 @@ const RegisterForm = () => {
       localStorage.token = response?.data?.data?.token;
       setErrors({ email: "", name: "", password: "", role: "" });
       setFormData({ email: "", name: "", password: "", role: "" });
-      window.location.href = '/'
+      window.location.href = "/";
     } else {
       setIsClickedToSubmit(false);
       if (response?.data?.message === "Email already exist") {
@@ -264,12 +264,12 @@ const RegisterForm = () => {
           </div>
 
           <div className="d-flex flex-column align-items-center">
-          <LoadingButton
-            children={t("registerBtn")}
-            loading={loading}
-            type="submit"
+            <LoadingButton
+              children={t("registerBtn")}
+              loading={loading}
+              type="submit"
             />
-            </div>
+          </div>
         </div>
       </form>
     </div>

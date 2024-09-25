@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css"; // Ensure Bootstrap is imported
 import { useRecoilState } from "recoil";
-import { languageState } from "../../../recoil/atoms";
+import { languageState } from "../../../recoil/utils";
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import { useNavigate } from "react-router-dom";

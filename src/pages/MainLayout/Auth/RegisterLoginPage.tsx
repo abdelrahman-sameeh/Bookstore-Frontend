@@ -3,7 +3,7 @@ import LoginForm from "../../../components/Auth/LoginForm";
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { isLoginPageAtom } from "../../../recoil/atoms";
+import { isLoginPageAtom } from "../../../recoil/utils";
 
 const RegisterLoginPage = () => {
   const checkboxInput = useRef<HTMLInputElement>(null);

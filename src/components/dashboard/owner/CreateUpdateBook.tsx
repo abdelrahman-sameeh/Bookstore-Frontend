@@ -5,50 +5,111 @@ import LoadingButton from "../../utils/LoadingButton";
 import FileUploader from "../../utils/FileUploader";
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import { Category } from "../../../interfaces/interfaces";
+import { Book, Category } from "../../../interfaces/interfaces";
 import notify from "../../utils/Notify";
+import { useRecoilState } from "recoil";
+import { ownerBookState } from "../../../recoil/bookAtom";
 
-// Validation function
+const clearedData = {
+  title: "",
+  price: "",
+  author: "",
+  category: "",
+  count: "",
+  status: "online",
+  bookCover: "",
+  bookCoverFile: null as File | null, // Storing file object
+  bookPdf: "",
+  bookPdfFile: null as File | null, // Storing file object for PDF
+};
+
+const canUpdate = (formData: any, targetBook: Book) => {
+  if (
+    formData.title !== targetBook.title ||
+    formData.price !== targetBook.price ||
+    formData.author !== targetBook.author ||
+    formData.category !== targetBook.category?._id ||
+    formData.count !== targetBook.count ||
+    formData.status !== targetBook.status ||
+    formData.bookPdfFile ||
+    formData.bookCoverFile
+  ) {
+    return true;
+  }
+  return false;
+};
+
+const prepareData = (formData: any, targetBook: Book) => {
+  let data: any = {};
+
+  if (formData.title != targetBook.title) {
+    data.title = formData.title;
+  }
+  if (formData.price != targetBook.price) {
+    data.price = formData.price;
+  }
+  if (formData.author != targetBook.author) {
+    data.author = formData.author;
+  }
+  if (formData.category != targetBook.category._id) {
+    data.category = formData.category;
+  }
+  if (formData.count != targetBook.count) {
+    data.count = formData.count;
+  }
+  if (formData.status != targetBook.status) {
+    data.status = formData.status;
+  }
+  if (formData.bookCoverFile && formData.bookCoverFile != "delete") {
+    data.image = formData.bookCoverFile;
+  }
+  if (formData.bookPdfFile && formData.bookPdfFile != "delete") {
+    data.bookFile = formData.bookPdfFile;
+  }
+
+  return data;
+};
+
 const createValidateForm = (formData: any, setErrors: any, t: any) => {
   const newErrors = new Map<string, string>();
-
-  if (!formData.title)
-    newErrors.set(
-      "title",
-      t("createUpdateBookDialog.create.validation.titleRequired")
-    );
-  if (!formData.author)
-    newErrors.set(
-      "author",
-      t("createUpdateBookDialog.create.validation.authorRequired")
-    );
-  if (!formData.category)
-    newErrors.set(
-      "category",
-      t("createUpdateBookDialog.create.validation.categoryRequired")
-    );
-  if (!formData.price || isNaN(Number(formData.price))) {
-    newErrors.set(
-      "price",
-      t("createUpdateBookDialog.create.validation.priceRequired")
-    );
-  }
-  if (!formData.count || isNaN(Number(formData.count))) {
-    newErrors.set(
-      "count",
-      t("createUpdateBookDialog.create.validation.countRequired")
-    );
-  }
   if (formData.status === "online" && !formData.bookPdfFile) {
     newErrors.set(
       "bookPdfFile",
-      t("createUpdateBookDialog.create.validation.pdfRequired")
+      t("createUpdateBookDialog.validation.pdfRequired")
     );
   }
   if (!formData.bookCoverFile) {
     newErrors.set(
       "bookCoverFile",
-      t("createUpdateBookDialog.create.validation.coverRequired")
+      t("createUpdateBookDialog.validation.coverRequired")
+    );
+  }
+
+  setErrors(newErrors);
+  return newErrors.size === 0; // Return true if no errors
+};
+
+const updateValidateForm = (formData: any, setErrors: any, t: any) => {
+  const newErrors = new Map<string, string>();
+  if (
+    formData.status === "online" &&
+    (!formData.bookPdfFile || formData.bookPdfFile === "delete") &&
+    !formData.bookPdf
+  ) {
+    newErrors.set(
+      "bookPdfFile",
+      t("createUpdateBookDialog.validation.pdfRequired")
+    );
+  }
+
+  if (
+    !formData.bookCoverFile &&
+    formData.bookCoverFile === "delete" &&
+    !formData.bookCover
+  ) {
+    newErrors.set(
+      "bookCoverFile",
+      t("createUpdateBookDialog.validation.coverRequired")
     );
   }
 
@@ -61,34 +122,50 @@ type CreateUpdatePropsType = {
   setShowCreateUpdateDialog: Dispatch<SetStateAction<boolean>>;
   createUpdateDialogMethod: "create" | "update";
   setCreateUpdateDialogMethod: Dispatch<SetStateAction<"create" | "update">>;
+  targetBook: Book;
+  setTargetBook: any;
 };
 
 const CreateUpdateBook = ({
   showCreateUpdateDialog,
   setShowCreateUpdateDialog,
   createUpdateDialogMethod,
+  targetBook,
+  setTargetBook,
 }: CreateUpdatePropsType) => {
   const { t } = useTranslation();
 
   const [errors, setErrors] = useState<Map<string, string>>(new Map());
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
+  const [books, setBooks] = useRecoilState<any>(ownerBookState);
 
   // Form data state
-  const [formData, setFormData] = useState({
-    title: "",
-    price: "",
-    author: "",
-    category: "",
-    count: "",
-    status: "online",
-    bookCover: "",
-    bookCoverFile: null as File | null, // Storing file object
-    bookPdf: "",
-    bookPdfFile: null as File | null, // Storing file object for PDF
-  });
+  const [formData, setFormData] = useState<any>(clearedData);
 
-  const handleClose = () => setShowCreateUpdateDialog(false);
+  useEffect(() => {
+    if (targetBook._id) {
+      setFormData({
+        title: targetBook.title,
+        price: targetBook.price,
+        author: targetBook.author,
+        category: targetBook?.category?._id,
+        count: targetBook.count,
+        status: targetBook.status,
+        bookCover: targetBook.imageCover,
+      });
+      if (targetBook.status == "online") {
+        setFormData((prev: any) => ({ ...prev, bookPdf: targetBook.book }));
+      }
+    } else {
+      setFormData(clearedData);
+    }
+  }, [targetBook]);
+
+  const handleClose = () => {
+    setTargetBook({});
+    setShowCreateUpdateDialog(false);
+  };
 
   useEffect(() => {
     authAxios(false, ApiEndpoints.getCategories).then((response) => {
@@ -99,16 +176,23 @@ const CreateUpdateBook = ({
   // Handle form input changes
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
-    setFormData((prevFormData) => ({
+    setFormData((prevFormData: any) => ({
       ...prevFormData,
       [name]: value,
     }));
   };
 
   // Handle file upload for book cover and PDF
-  const handleFileChange = (name: string, file: File | null) => {
+  const handleFileChange = (name: string, file: File | "delete") => {
     errors.has(name) && errors.delete(name);
-    setFormData((prevFormData) => ({
+    if (name === "bookPdfFile" && file === "delete") {
+      setFormData((prev: any) => ({ ...prev, bookPdf: null }));
+    }
+    if (name === "bookCoverFile" && file === "delete") {
+      setFormData((prev: any) => ({ ...prev, bookCover: null }));
+    }
+
+    setFormData((prevFormData: any) => ({
       ...prevFormData,
       [name]: file,
     }));
@@ -159,22 +243,66 @@ const CreateUpdateBook = ({
 
     if (response.status === 201) {
       notify(t("createUpdateBookDialog.create.book.createSuccess"), "success");
-      setFormData({
-        author: "",
-        bookCover: "",
-        bookCoverFile: null as File | null,
-        bookPdf: "",
-        category: "",
-        bookPdfFile: null as File | null,
-        count: "",
-        price: "",
-        status: "online",
-        title: "",
-      });
+      setFormData(clearedData);
       data = {};
       setShowCreateUpdateDialog(false);
+      setBooks((prev: any) => [...prev, response?.data?.data?.book]);
     } else {
       notify(t("createUpdateBookDialog.create.book.createFail"), "error");
+    }
+  };
+
+  const handleUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!canUpdate(formData, targetBook)) {
+      notify("nothing changed to update", "warn");
+      return;
+    }
+
+    // validation
+    const isValid = updateValidateForm(formData, setErrors, t);
+    if (!isValid) {
+      const modal = document?.querySelector(".modal");
+      if (
+        modal &&
+        (errors.has("bookCoverFile") ||
+          (errors.has("bookPdfFile") && formData.status === "online"))
+      ) {
+        modal.scrollTo({ top: 0, behavior: "smooth" });
+      }
+      return false;
+    }
+
+    // prepare data
+    const data = prepareData(formData, targetBook);
+
+    setLoading(true);
+    const response = await authAxios(
+      true,
+      ApiEndpoints.getUpdateDeleteBook(targetBook._id as string),
+      "PUT",
+      data,
+      "multipart/form-data"
+    );
+    setLoading(false);
+
+    if (response.status === 200) {
+      // update books state
+      const updatedBook: Book = response?.data?.data?.book;
+      const updatedBooks = books.map((book: Book) => {
+        if (book._id === updatedBook._id) {
+          return updatedBook;
+        } else {
+          return book;
+        }
+      });
+      notify(t("createUpdateBookDialog.update.book.updateSuccess"), "success");
+      setBooks(updatedBooks);
+      setShowCreateUpdateDialog(false);
+      setFormData(clearedData);
+      setTargetBook({});
+    } else {
+      notify(t("createUpdateBookDialog.update.book.updateFail"), "error");
     }
   };
 
@@ -184,7 +312,11 @@ const CreateUpdateBook = ({
       show={showCreateUpdateDialog}
       onHide={handleClose}
     >
-      <Form onSubmit={handleCreate}>
+      <Form
+        onSubmit={
+          createUpdateDialogMethod === "create" ? handleCreate : handleUpdate
+        }
+      >
         <Modal.Header closeButton>
           <Modal.Title className="text-capitalize">
             {createUpdateDialogMethod === "create"
@@ -194,10 +326,16 @@ const CreateUpdateBook = ({
         </Modal.Header>
         <Modal.Body>
           {/* File Uploader for Book Cover */}
-          <Form.Group controlId="uploadImage">
+          <Form.Group
+            controlId="uploadImage"
+            className="d-flex flex-column align-items-center"
+          >
             <FileUploader
               type="image"
-              onFileChange={(file) => handleFileChange("bookCoverFile", file)}
+              onFileChange={(file: any) =>
+                handleFileChange("bookCoverFile", file)
+              }
+              fileUrl={targetBook.imageCover as string}
             />
             {errors.has("bookCoverFile") && (
               <Form.Control.Feedback
@@ -236,12 +374,16 @@ const CreateUpdateBook = ({
               md={formData.status === "online" ? 6 : 0}
             >
               {formData.status === "online" && (
-                <Form.Group className="flex-1 mt-2" controlId="uploadPdf">
+                <Form.Group
+                  className="d-flex flex-column align-items-center flex-1 mt-2"
+                  controlId="uploadPdf"
+                >
                   <FileUploader
                     type="pdf"
-                    onFileChange={(file) =>
+                    onFileChange={(file: any) =>
                       handleFileChange("bookPdfFile", file)
                     }
+                    fileUrl={(targetBook.book as string) || null}
                   />
                   {errors.has("bookPdfFile") && (
                     <Form.Control.Feedback
@@ -373,15 +515,15 @@ const CreateUpdateBook = ({
             </Col>
           </Row>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            {t("close")}
-          </Button>
+        <Modal.Footer className="">
           <LoadingButton variant="main" type="submit" loading={loading}>
             {createUpdateDialogMethod === "create"
               ? t("createUpdateBookDialog.createBook")
               : t("createUpdateBookDialog.updateBook")}
           </LoadingButton>
+          <Button variant="secondary" onClick={handleClose}>
+            {t("createUpdateBookDialog.close")}
+          </Button>
         </Modal.Footer>
       </Form>
     </Modal>
