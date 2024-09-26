@@ -172,5 +172,17 @@
         "viewBooks": "Your books"
       }
     }
+  },
+
+  "changePassword": {
+    "passwordChangedSuccessfully": "Password changed successfully",
+    "logoutIn5Seconds": "You will be logged out from all sessions in 5 seconds",
+    "failedToChangePassword": "Failed to change password",
+    "newPassword": "New password",
+    "enterNewPassword": "Enter new password",
+    "changePassword": "Change password",
+    "changeOldPassword": "Change your old password"
   }
+
+
 }

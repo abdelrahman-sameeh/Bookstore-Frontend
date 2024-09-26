@@ -13,4 +13,6 @@ export const ApiEndpoints = {
   updateDeleteBook: (bookId: string) => `${mainPath}/books/${bookId}`,
   createBook: `${mainPath}/books`,
   getUpdateDeleteBook: (bookId: string) =>`${mainPath}/books/${bookId}`,
+  changePassword: `${mainPath}/changePassword`,
+
 }

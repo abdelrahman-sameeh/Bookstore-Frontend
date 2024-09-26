@@ -174,5 +174,15 @@
         "viewBooks": "كُتُبك"
       }
     }
+  },
+  "changePassword": {
+    "passwordChangedSuccessfully": "تم تغيير كلمة المرور بنجاح",
+    "logoutIn5Seconds": "سيتم تسجيل الخروج من جميع الجلسات خلال 5 ثوانٍ",
+    "failedToChangePassword": "فشل في تغيير كلمة المرور",
+    "newPassword": "كلمة مرور جديدة",
+    "enterNewPassword": "أدخل كلمة المرور الجديدة",
+    "changePassword": "تغيير كلمة المرور",
+    "changeOldPassword": "تغير كلمة المرور القديمة"
+
   }
 }
