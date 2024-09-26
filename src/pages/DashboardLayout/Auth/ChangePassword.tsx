@@ -25,7 +25,7 @@ const ChangePassword = () => {
       sessionStorage.removeItem('user');
       setTimeout(() => {
         window.location.href = '/auth?login=true';
-      }, 5000);
+      }, 6000);
     } else {
       notify(t('changePassword.failedToChangePassword'), 'error');
     }
