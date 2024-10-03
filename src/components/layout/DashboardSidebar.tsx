@@ -19,7 +19,7 @@ type LinksType = {
 };
 
 const getUserLinks = (t: any): LinksType => ({
-  user: [
+  admin: [
     {
       title: t("dashboard.shared.links.home"),
       to: "/",
@@ -30,8 +30,13 @@ const getUserLinks = (t: any): LinksType => ({
       to: "change-password",
       icon: "solar:password-outline",
     },
+    {
+      title: t("dashboard.admin.links.categories"),
+      to: "admin/categories",
+      icon: "iconamoon:category",
+    },
   ],
-  admin: [
+  user: [
     {
       title: t("dashboard.shared.links.home"),
       to: "/",

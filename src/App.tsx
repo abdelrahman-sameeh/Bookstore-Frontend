@@ -15,6 +15,7 @@ import IsAuth from "./auth/guards/IsAuth";
 import NoPermission from "./auth/utils/NoPermission";
 import ExploreBooks from "./pages/MainLayout/ExploreBooks";
 import OwnerBooks from "./pages/DashboardLayout/Owner/OwnerBooks";
+import Categories from "./pages/DashboardLayout/Admin/Categories";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -39,6 +40,13 @@ const App: React.FC = () => {
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route path="change-password" element={<ChangePassword />} />
 
+            {/* admin routes */}
+            <Route
+              path="admin"
+              element={<ProtectedRoutes allowto={["admin"]} />}
+            >
+              <Route path="categories" element={<Categories />} />
+            </Route>
             {/* owner routes */}
             <Route
               path="owner"

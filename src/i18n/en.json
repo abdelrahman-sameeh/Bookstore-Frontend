@@ -158,6 +158,44 @@
     "pdfExist": "pdf exist"
   },
 
+
+  "changePassword": {
+    "passwordChangedSuccessfully": "Password changed successfully",
+    "logoutIn5Seconds": "You will be logged out from all sessions in 5 seconds",
+    "failedToChangePassword": "Failed to change password",
+    "newPassword": "New password",
+    "enterNewPassword": "Enter new password",
+    "changePassword": "Change password",
+    "changeOldPassword": "Change your old password"
+  },
+
+  "category":{
+    "categories": "the categories",
+    "addCategory": "add new category"
+  },
+
+  "deleteCategoryDialog": {
+    "title": "Delete category",
+    "confirmation": "Are you sure to delete this category?",
+    "close": "Close",
+    "delete": "Delete",
+    "success": "The category has been successfully deleted.",
+    "error": "An error occurred while deleting the category."
+  },
+  "createUpdateCategoryDialog": {
+    "createTitle": "Create New Category",
+    "updateTitle": "Update Category",
+    "titlePlaceholder": "Enter category title",
+    "successCreate": "Category created successfully!",
+    "successUpdate": "Category updated successfully!",
+    "exist": "Category already exists!",
+    "error": "Something went wrong, please try again.",
+    "noChanges": "No changes to update.",
+    "close": "Close",
+    "create": "Create",
+    "update": "Update"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
@@ -171,18 +209,12 @@
         "stripe": "stripe account",
         "viewBooks": "Your books"
       }
+    },
+    "admin": {
+      "links": {
+        "categories": "categories"
+      }
     }
-  },
-
-  "changePassword": {
-    "passwordChangedSuccessfully": "Password changed successfully",
-    "logoutIn5Seconds": "You will be logged out from all sessions in 5 seconds",
-    "failedToChangePassword": "Failed to change password",
-    "newPassword": "New password",
-    "enterNewPassword": "Enter new password",
-    "changePassword": "Change password",
-    "changeOldPassword": "Change your old password"
   }
-
 
 }
