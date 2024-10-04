@@ -1,4 +1,4 @@
-import React, {
+import {
   Dispatch,
   FormEvent,
   SetStateAction,
@@ -13,7 +13,6 @@ import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import notify from "../../utils/Notify";
 import InputError from "../../utils/InputError";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Category } from "../../../interfaces/interfaces";
 import {
   categoriesState,
   categoryState,

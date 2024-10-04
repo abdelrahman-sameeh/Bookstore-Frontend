@@ -1,31 +1,27 @@
-interface LoadingButtonProps {
+interface LoadingButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
-  type?: "button" | "submit" | "reset";
   variant?: "main" | "alt" | "error";
-  className?: string;
-  style?: React.CSSProperties;
-  children: React.ReactNode;
-  onClick?: () => void | Promise<void>;  
+  title?: string;
 }
 
 const LoadingButton: React.FC<LoadingButtonProps> = ({
   loading = false,
-  type = "button",
   variant = "main",
   className = "",
-  style,
+  title,
   children,
-  onClick,  
+  ...props
 }) => {
-  const variantClass = variant === "alt" ? "alt-btn" : variant === "error" ? "btn-danger" : "main-btn";
+  const variantClass =
+    variant === "alt" ? "alt-btn" : variant === "error" ? "btn-danger" : "main-btn";
 
   return (
     <button
-      type={type}
+      title={title}
       className={`${className} ${variantClass} btn text-capitalize text-light fw-bold`}
-      style={{ ...style, minWidth: '170px' }}
-      disabled={loading}
-      onClick={onClick}
+      style={{ minWidth: "170px" }}
+      disabled={loading || props.disabled} // Handle disabled if passed
+      {...props} // Spread any other props like onClick, etc.
     >
       {loading ? (
         <span

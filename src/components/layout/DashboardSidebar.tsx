@@ -35,6 +35,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "admin/categories",
       icon: "iconamoon:category",
     },
+    {
+      title: t("dashboard.admin.links.manageBooks"),
+      to: "admin/books",
+      icon: "bi:book",
+    },
   ],
   user: [
     {

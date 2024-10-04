@@ -16,6 +16,7 @@ import NoPermission from "./auth/utils/NoPermission";
 import ExploreBooks from "./pages/MainLayout/ExploreBooks";
 import OwnerBooks from "./pages/DashboardLayout/Owner/OwnerBooks";
 import Categories from "./pages/DashboardLayout/Admin/Categories";
+import AdminBooks from "./pages/DashboardLayout/Admin/AdminBooks";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -46,6 +47,7 @@ const App: React.FC = () => {
               element={<ProtectedRoutes allowto={["admin"]} />}
             >
               <Route path="categories" element={<Categories />} />
+              <Route path="books" element={<AdminBooks />} />
             </Route>
             {/* owner routes */}
             <Route

@@ -198,6 +198,23 @@
     "update": "تحديث"
   },
 
+  "denyDialog": {
+    "denyBookTitle": "رفض الكتاب",
+    "reasonForDenying": "سبب رفض الكتاب:",
+    "tooShortMessage": "الرسالة قصيرة جدًا",
+    "tooLongMessage": "الرسالة طويلة جدًا",
+    "invalidMessage": "الرسالة غير صالحة",
+    "submit": "إرسال",
+    "close": "إغلاق",
+    "deniedSuccessfully": "تم الرفض بنجاح",
+    "somethingWentWrong": "حدث خطأ ما"
+  },
+
+  "approveDialog": {
+    "approvedSuccessfully": "تمت الموافقة على الكتاب بنجاح",
+    "somethingWentWrong": "حدث خطأ ما"
+  },
+
 
   "___dashboard links": "_____",
   "dashboard": {
@@ -215,7 +232,8 @@
     },
     "admin": {
       "links": {
-        "categories": "الفئات"
+        "categories": "الفئات",
+        "manageBooks": "ادارة الكتب"
       }
     }
   }

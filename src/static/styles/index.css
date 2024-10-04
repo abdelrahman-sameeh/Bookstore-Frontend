@@ -78,9 +78,7 @@ body.dark-mode {
   background-color: #9b2631;
 }
 
-.w-fit {
-  width: fit-content;
-}
+
 .main-bg {
   background-color: var(--main-bg) !important;
 }
@@ -108,13 +106,21 @@ body a {
   text-decoration: none !important;
 }
 
+.w-fit {
+  width: fit-content !important;
+  min-width: fit-content !important;
+}
+
+
+
 /* reset */
 .page {
   margin-top: calc(71px + 30px);
 }
 
 input,
-select {
+select,
+textarea {
   padding: 12px;
   border-radius: 5px;
   border: none !important;

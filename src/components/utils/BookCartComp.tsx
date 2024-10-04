@@ -6,13 +6,17 @@ import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { Book } from "../../interfaces/interfaces";
 import DeleteBookDialog from "../dashboard/owner/DeleteBookDialog";
 import { useState } from "react";
+import authAxios from "../../api/authAxios";
+import { ApiEndpoints } from "../../api/ApiEndpoints";
+import notify from "./Notify";
+import DenyDialog from "../dashboard/admin/DenyDialog";
 
 type BookCartType = {
   book: Book;
   showControls?: boolean;
   setShowCreateUpdateDialog?: any;
   setCreateUpdateDialogMethod?: any;
-  setTargetBook: any;
+  setTargetBook?: any;
 };
 
 const BookCartComp = ({
@@ -25,10 +29,62 @@ const BookCartComp = ({
   const { t } = useTranslation();
   const { user } = useLoggedInUser();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  
+  const [loading, setLoading] = useState(false);
+  const [showDenyDialog, setShowDenyDialog] = useState(false);
+
+  const handleApprovedBook = async () => {
+    setLoading(true);
+    const response = await authAxios(
+      true,
+      ApiEndpoints.reviewBook(book._id as string),
+      "PATCH",
+      { reviewStatus: "approved" }
+    );
+    setLoading(false);
+
+    if (response.status === 200) {
+      notify(t("approveDialog.approvedSuccessfully")); 
+    } else {
+      notify(t("approveDialog.somethingWentWrong"), "error");
+    }
+
+  };
+
+  const handleDeny = () => {
+    setShowDenyDialog(true);
+  };
 
   return (
     <div className="book-card position-relative border">
+      {user.role === "admin" ? (
+        <>
+          <div className="d-flex w-100 bg-light p-1 gap-1">
+            <LoadingButton
+              loading={loading}
+              onClick={handleApprovedBook}
+              title={"approve"}
+              className="border-0 bg-success w-fit"
+            >
+              <Icon className="text-light" icon="mdi:success-bold" />
+            </LoadingButton>
+            <LoadingButton
+              onClick={handleDeny}
+              disabled={loading}
+              title={"deny"}
+              className="border-0 bg-danger w-fit"
+            >
+              <Icon className="text-light" icon="akar-icons:cross" />
+            </LoadingButton>
+          </div>
+
+          <DenyDialog
+            showDenyDialog={showDenyDialog}
+            setShowDenyDialog={setShowDenyDialog}
+            book={book}
+          />
+        </>
+      ) : null}
+
       {user.role === "owner" && showControls ? (
         <div style={{ top: 0 }} className="d-flex w-100 bg-light p-1">
           <button
@@ -47,7 +103,7 @@ const BookCartComp = ({
             onClick={() => {
               setShowCreateUpdateDialog(true);
               setCreateUpdateDialogMethod("update");
-              setTargetBook(book)
+              setTargetBook(book);
             }}
             title={"Update Book"}
             className="border-0 bg-light"

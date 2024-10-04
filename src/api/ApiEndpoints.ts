@@ -9,12 +9,14 @@ export const ApiEndpoints = {
   onboarding: `${mainPath}/stripe/onboard`,
   getCategories: `${mainPath}/category`,
   getBooks: (queryString: string='') => `${mainPath}/books${queryString}`,
-  geOwnerBooks: (queryString: string='') => `${mainPath}/owner/books${queryString}`,
+  getOwnerBooks: (queryString: string='') => `${mainPath}/owner/books${queryString}`,
+  getAdminBooks: (queryString: string='') => `${mainPath}/admin/books${queryString}`,
   updateDeleteBook: (bookId: string) => `${mainPath}/books/${bookId}`,
   createBook: `${mainPath}/books`,
   getUpdateDeleteBook: (bookId: string) =>`${mainPath}/books/${bookId}`,
   changePassword: `${mainPath}/changePassword`,
   listCreateCategory: `${mainPath}/category`,
   getUpdateDeleteCategory: (id: string) => `${mainPath}/category/${id}`,
+  reviewBook: (id: string) => `${mainPath}/books/${id}/reviewBook`,
   
 }

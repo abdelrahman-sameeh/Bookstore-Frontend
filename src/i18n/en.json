@@ -196,6 +196,23 @@
     "update": "Update"
   },
 
+  "denyDialog": {
+    "denyBookTitle": "Deny Book",
+    "reasonForDenying": "Reason for denying the book:",
+    "tooShortMessage": "The message is too short",
+    "tooLongMessage": "The message is too long",
+    "invalidMessage": "The message is invalid",
+    "submit": "Submit",
+    "close": "Close",
+    "deniedSuccessfully": "Denied successfully",
+    "somethingWentWrong": "Something went wrong"
+  },
+
+  "approveDialog": {
+    "approvedSuccessfully": "Approved book successfully",
+    "somethingWentWrong": "Something went wrong"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
@@ -212,7 +229,8 @@
     },
     "admin": {
       "links": {
-        "categories": "categories"
+        "categories": "categories",
+        "manageBooks": "manage books"
       }
     }
   }

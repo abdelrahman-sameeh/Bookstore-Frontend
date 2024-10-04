@@ -74,7 +74,7 @@ const OwnerBooks = () => {
   // Fetch books when filters or search term change
   useEffect(() => {
     const queryString = generateQueryString();
-    authAxios(true, ApiEndpoints.geOwnerBooks(queryString)).then((response) => {
+    authAxios(true, ApiEndpoints.getOwnerBooks(queryString)).then((response) => {
       setBooks(response?.data?.data?.books || []);
       setPagination(response?.data?.pagination || {});
     });
