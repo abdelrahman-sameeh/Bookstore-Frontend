@@ -42,6 +42,7 @@ const ChangePassword = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
+              className="border"
               placeholder={t('changePassword.enterNewPassword')}
             />
           </Form.Group>

@@ -97,7 +97,9 @@
     "category": "category",
     "author": "author",
     "yourBooks": "Your books",
-    "addBook": "Add book"
+    "addBook": "Add book",
+    "deleteBook": "delete book",
+    "updateBook": "update book"
   },
   "deleteBookDialog": {
     "title": "Delete Book",
@@ -126,7 +128,7 @@
     "enterPrice": "Enter price",
     "enterCount": "Enter count",
     "close": "Close",
-    
+
     "validation": {
       "titleRequired": "Title is required",
       "priceRequired": "Price is required",
@@ -158,7 +160,6 @@
     "pdfExist": "pdf exist"
   },
 
-
   "changePassword": {
     "passwordChangedSuccessfully": "Password changed successfully",
     "logoutIn5Seconds": "You will be logged out from all sessions in 5 seconds",
@@ -169,7 +170,7 @@
     "changeOldPassword": "Change your old password"
   },
 
-  "category":{
+  "category": {
     "categories": "the categories",
     "addCategory": "add new category"
   },
@@ -182,6 +183,7 @@
     "success": "The category has been successfully deleted.",
     "error": "An error occurred while deleting the category."
   },
+
   "createUpdateCategoryDialog": {
     "createTitle": "Create New Category",
     "updateTitle": "Update Category",
@@ -213,6 +215,54 @@
     "somethingWentWrong": "Something went wrong"
   },
 
+
+
+  "ownerCoupons": {
+    "availableCoupons": "Available Coupons",
+    "searchCoupons": "Search Coupons",
+    "searchPlaceholder": "Search coupons",
+    "availability": "Availability",
+    "available": "Available",
+    "select": "select",
+    "unavailable": "Unavailable",
+    "itemsPerPage": "Items per Page",
+    "previous": "Previous",
+    "next": "Next",
+    "addCoupon": "create new coupon"
+  },
+
+  "couponMessages": {
+    "createSuccess": "Coupon created successfully",
+    "updateSuccess": "Coupon updated successfully",
+    "alreadyExist": "Coupon with this name already exists",
+    "genericError": "Something went wrong"
+  },
+
+  "createUpdateCouponDialog": {
+    "createTitle": "Create Coupon",
+    "updateTitle": "Update Coupon",
+    "code": "Coupon Code",
+    "codePlaceholder": "Enter coupon code",
+    "discount": "Discount Percentage",
+    "discountPlaceholder": "Enter discount percentage",
+    "expiryDate": "Expiry Date",
+    "close": "Close",
+    "create": "Create Coupon",
+    "update": "Update Coupon",
+    "codeRequired": "code is required",
+    "discountRequired": "discount is required",
+    "discountInvalid": "discount is invalid",
+    "discountRange": "discount range between 1 to 100",
+    "expiryDateRequired": "expiry date required",
+    "expiryDatePast": "expiry date cannot be in the past"
+  },
+
+  "couponComp": {
+    "code": "Code",
+    "discount": "Discount",
+    "expiryDate": "Expiry Date"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
@@ -224,7 +274,8 @@
     "owner": {
       "links": {
         "stripe": "stripe account",
-        "viewBooks": "Your books"
+        "viewBooks": "Your books",
+        "coupons": "coupons"
       }
     },
     "admin": {
@@ -234,5 +285,4 @@
       }
     }
   }
-
 }

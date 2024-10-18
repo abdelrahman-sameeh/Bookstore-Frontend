@@ -1,14 +1,14 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { Book } from "../../../interfaces/interfaces";
-import LoadingButton from "../../utils/LoadingButton";
 import { useTranslation } from "react-i18next";  // استدعاء useTranslation
-import authAxios from "../../../api/authAxios";
-import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import notify from "../../utils/Notify";
 import { useRecoilState } from "recoil";
-import { ownerBookState } from "../../../recoil/bookAtom";
+import { Book } from "../../../../interfaces/interfaces";
+import { ownerBookState } from "../../../../recoil/bookAtom";
+import { ApiEndpoints } from "../../../../api/ApiEndpoints";
+import authAxios from "../../../../api/authAxios";
+import notify from "../../../utils/Notify";
+import LoadingButton from "../../../utils/LoadingButton";
 
 type DeleteBookDialogTypes = {
   showDeleteDialog: boolean;

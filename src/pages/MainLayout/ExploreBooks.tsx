@@ -6,6 +6,7 @@ import { ApiEndpoints } from "../../api/ApiEndpoints";
 import { Col, Row, Form, Pagination } from "react-bootstrap";
 import { Book, Category, PaginationData } from "../../interfaces/interfaces";
 import BookCartComp from "../../components/utils/BookCartComp";
+import useDebounce from "../../hooks/useDebounce";
 
 
 const ExploreBooks = () => {
@@ -16,7 +17,7 @@ const ExploreBooks = () => {
   const [pagination, setPagination] = useState<PaginationData>({});
   const [showFilters, setShowFilters] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const debouncedSearchTerm = useDebounce(searchTerm);
 
   // States for filters
   const [priceOrder, setPriceOrder] = useState<"asc" | "desc" | null>(null);
@@ -34,13 +35,6 @@ const ExploreBooks = () => {
     });
   }, []);
 
-  // Debounce search input
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300);
-    return () => clearTimeout(handler);
-  }, [searchTerm]);
 
   // Generate query string based on filters
   const generateQueryString = () => {

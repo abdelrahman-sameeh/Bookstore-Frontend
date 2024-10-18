@@ -96,7 +96,9 @@
     "category": "الفئة",
     "author": "المؤلف",
     "yourBooks": "كُتُبك",
-    "addBook": "اضافة كتاب"
+    "addBook": "اضافة كتاب",
+    "deleteBook": "حذف الكتاب",
+    "updateBook": "تعديل الكتاب"
   },
 
   "deleteBookDialog": {
@@ -170,7 +172,7 @@
     "changeOldPassword": "تغير كلمة المرور القديمة"
   },
 
-  "category":{
+  "category": {
     "categories": "الفئات",
     "addCategory": "اضافة فئة جديدة"
   },
@@ -215,6 +217,51 @@
     "somethingWentWrong": "حدث خطأ ما"
   },
 
+  "ownerCoupons": {
+    "availableCoupons": "الكوبونات المتاحة",
+    "searchCoupons": "ابحث عن كوبونات",
+    "searchPlaceholder": "ابحث عن الكوبونات",
+    "availability": "التوافر",
+    "available": "متاح",
+    "unavailable": "غير متاح",
+    "select": "اختر",
+    "itemsPerPage": "عدد العناصر في الصفحة",
+    "previous": "السابق",
+    "next": "التالي",
+    "addCoupon": "انشاء كوبون جديد"
+  },
+
+  "couponComp": {
+    "code": "الكود",
+    "discount": "الخصم",
+    "expiryDate": "تاريخ الانتهاء"
+  },
+
+  "createUpdateCouponDialog": {
+    "createTitle": "إنشاء كوبون",
+    "updateTitle": "تحديث الكوبون",
+    "code": "كود الكوبون",
+    "codePlaceholder": "أدخل كود الكوبون",
+    "discount": "نسبة الخصم",
+    "discountPlaceholder": "أدخل نسبة الخصم",
+    "expiryDate": "تاريخ الانتهاء",
+    "close": "إغلاق",
+    "create": "إنشاء الكوبون",
+    "update": "تحديث الكوبون",
+    "codeRequired": "كود الكوبون مطلوب",
+    "discountRequired": "نسبة الخصم مطلوبة",
+    "discountInvalid": "نسبة الخصم غير صالحة",
+    "discountRange": "نسبة الخصم يجب أن تكون بين 0 و 100",
+    "expiryDateRequired": "تاريخ الانتهاء مطلوب",
+    "expiryDatePast": "لا يمكن أن يكون تاريخ انتهاء الصلاحية في الماضي"
+  },
+
+  "couponMessages": {
+    "createSuccess": "تم إنشاء الكوبون بنجاح",
+    "updateSuccess": "تم تحديث الكوبون بنجاح",
+    "alreadyExist": "الكوبون بهذا الاسم موجودة بالفعل",
+    "genericError": "حدث خطأ ما"
+  },
 
   "___dashboard links": "_____",
   "dashboard": {
@@ -227,7 +274,8 @@
     "owner": {
       "links": {
         "stripe": "stripe حساب",
-        "viewBooks": "كُتُبك"
+        "viewBooks": "كُتُبك",
+        "coupons": "الكوبونات"
       }
     },
     "admin": {

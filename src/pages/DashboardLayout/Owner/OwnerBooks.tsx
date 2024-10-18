@@ -7,9 +7,10 @@ import Icon from "../../../components/utils/Icon";
 import BookCartComp from "../../../components/utils/BookCartComp";
 import { Book, Category, PaginationData } from "../../../interfaces/interfaces";
 import LoadingButton from "../../../components/utils/LoadingButton";
-import CreateUpdateBook from "../../../components/dashboard/owner/CreateUpdateBook";
+import CreateUpdateBook from "../../../components/dashboard/owner/book/CreateUpdateBook";
 import { ownerBookState } from "../../../recoil/bookAtom";
 import { useRecoilState } from "recoil";
+import useDebounce from "../../../hooks/useDebounce";
 
 const OwnerBooks = () => {
   const { t } = useTranslation();
@@ -18,7 +19,7 @@ const OwnerBooks = () => {
   const [pagination, setPagination] = useState<PaginationData>({});
   const [showFilters, setShowFilters] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const debouncedSearchTerm = useDebounce(searchTerm);
   const [showCreateUpdateDialog, setShowCreateUpdateDialog] = useState(false);
   const [createUpdateDialogMethod, setCreateUpdateDialogMethod] = useState<
     "create" | "update"
@@ -42,13 +43,6 @@ const OwnerBooks = () => {
     });
   }, []);
 
-  // Debounce search input
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300);
-    return () => clearTimeout(handler);
-  }, [searchTerm]);
 
   // Generate query string based on filters
   const generateQueryString = () => {
@@ -288,7 +282,7 @@ const OwnerBooks = () => {
         <Row className="mt-3 g-2 pb-2">
           {books.length ? (
             books.map((book: Book) => (
-              <Col key={book._id} lg={3} md={4} sm={6} xs={12}>
+              <Col key={book._id} md={4} sm={6} xs={12}>
                 <BookCartComp
                   book={book}
                   showControls={true}

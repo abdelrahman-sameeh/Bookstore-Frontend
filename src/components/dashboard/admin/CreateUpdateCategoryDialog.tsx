@@ -13,10 +13,7 @@ import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import notify from "../../utils/Notify";
 import InputError from "../../utils/InputError";
 import { useRecoilState, useRecoilValue } from "recoil";
-import {
-  categoriesState,
-  categoryState,
-} from "../../../recoil/categories.atom";
+import { categoriesState, categoryState } from "../../../recoil/categoriesAtom";
 
 type CreateUpdateCategoryDialogProps = {
   showCreateUpdateDialog: boolean;
@@ -120,7 +117,7 @@ function CreateUpdateCategoryDialog({
         if (cat._id === category._id) {
           return response?.data?.data?.category;
         }
-      return cat;
+        return cat;
       });
       setCategories(updatedCategories);
       setShowCreateUpdateDialog(false);

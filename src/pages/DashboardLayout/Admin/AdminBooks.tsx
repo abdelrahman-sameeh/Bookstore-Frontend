@@ -8,6 +8,7 @@ import BookCartComp from "../../../components/utils/BookCartComp";
 import { Book, Category, PaginationData } from "../../../interfaces/interfaces";
 import { ownerBookState } from "../../../recoil/bookAtom";
 import { useRecoilState } from "recoil";
+import useDebounce from "../../../hooks/useDebounce";
 
 const AdminBooks = () => {
   const { t } = useTranslation();
@@ -16,7 +17,7 @@ const AdminBooks = () => {
   const [pagination, setPagination] = useState<PaginationData>({});
   const [showFilters, setShowFilters] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+  const debouncedSearchTerm = useDebounce(searchTerm);
 
   // States for filters
   const [priceOrder, setPriceOrder] = useState<"asc" | "desc" | null>(null);
@@ -34,13 +35,6 @@ const AdminBooks = () => {
     });
   }, []);
 
-  // Debounce search input
-  useEffect(() => {
-    const handler = setTimeout(() => {
-      setDebouncedSearchTerm(searchTerm);
-    }, 300);
-    return () => clearTimeout(handler);
-  }, [searchTerm]);
 
   // Generate query string based on filters
   const generateQueryString = () => {

@@ -4,10 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import LoadingButton from "../../utils/LoadingButton";
 import { useTranslation } from "react-i18next"; // Importing useTranslation
 import { useRecoilState } from "recoil";
-import {
-  categoriesState,
-  categoryState,
-} from "../../../recoil/categories.atom";
+import { categoriesState, categoryState } from "../../../recoil/categoriesAtom";
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import notify from "../../utils/Notify";
@@ -23,13 +20,13 @@ function DeleteCategoryDialog({
 }: DeleteCategoryDialogTypes) {
   const { t } = useTranslation(); // Destructure the t function from useTranslation
   const [loading, setLoading] = useState(false);
-  
+
   const [categories, setCategories] = useRecoilState(categoriesState);
   const [category, setCategory] = useRecoilState(categoryState);
-  
+
   const handleClose = () => {
-    setShowDeleteDialog(false)
-    setCategory({})
+    setShowDeleteDialog(false);
+    setCategory({});
   };
   const handleDelete = async () => {
     setLoading(true);
@@ -56,9 +53,11 @@ function DeleteCategoryDialog({
       onHide={handleClose}
     >
       <Modal.Header closeButton>
-        <Modal.Title>{t("deleteCategoryDialog.title")}</Modal.Title> {/* Title translation */}
+        <Modal.Title>{t("deleteCategoryDialog.title")}</Modal.Title>{" "}
+        {/* Title translation */}
       </Modal.Header>
-      <Modal.Body>{t("deleteCategoryDialog.confirmation")}</Modal.Body> {/* Confirmation translation */}
+      <Modal.Body>{t("deleteCategoryDialog.confirmation")}</Modal.Body>{" "}
+      {/* Confirmation translation */}
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>
           {t("deleteCategoryDialog.close")}

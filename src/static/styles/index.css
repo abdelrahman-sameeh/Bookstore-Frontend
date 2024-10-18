@@ -85,12 +85,36 @@ body.dark-mode {
 .main-text {
   color: var(--main-text) !important;
 }
+
+.main-theme{
+  background-color: var(--main-bg) !important;
+  color: var(--main-text) !important;
+}
+
+.main-theme::placeholder{
+  color: var(--main-text) !important;
+}
+
 .alt-bg {
   background-color: var(--alt-bg) !important;
 }
 .alt-text {
   color: var(--alt-text) !important;
 }
+
+.alt-theme{
+  color: var(--alt-text) !important;
+  background-color: var(--alt-bg) !important;
+}
+.alt-theme::placeholder{
+  color: var(--alt-text) !important;
+}
+
+.main-theme .card-body{
+  background-color: var(--alt-bg);
+  border-radius: 0 0 6px 6px;
+}
+
 
 .pointer {
   cursor: pointer;

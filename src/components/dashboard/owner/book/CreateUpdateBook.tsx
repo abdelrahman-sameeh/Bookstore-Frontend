@@ -1,14 +1,15 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Modal, Button, Form, Row, Col } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import LoadingButton from "../../utils/LoadingButton";
-import FileUploader from "../../utils/FileUploader";
-import authAxios from "../../../api/authAxios";
-import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import { Book, Category } from "../../../interfaces/interfaces";
-import notify from "../../utils/Notify";
+
 import { useRecoilState } from "recoil";
-import { ownerBookState } from "../../../recoil/bookAtom";
+import { Book, Category } from "../../../../interfaces/interfaces";
+import { ownerBookState } from "../../../../recoil/bookAtom";
+import authAxios from "../../../../api/authAxios";
+import { ApiEndpoints } from "../../../../api/ApiEndpoints";
+import notify from "../../../utils/Notify";
+import FileUploader from "../../../utils/FileUploader";
+import LoadingButton from "../../../utils/LoadingButton";
 
 const clearedData = {
   title: "",
@@ -311,6 +312,7 @@ const CreateUpdateBook = ({
       className="custom-dialog"
       show={showCreateUpdateDialog}
       onHide={handleClose}
+      centered
     >
       <Form
         onSubmit={

@@ -151,7 +151,7 @@ const FileUploader = ({
             style={{ display: "flex", bottom: '1px', justifyContent: "center", width: '100%' }}
           >
             <Button style={{height: '30px', display: 'flex', alignItems: 'center'}} variant="warning" onClick={handleUpdate}>
-              <Icon icon="radix-icons:update" />
+            <Icon icon="tabler:edit" />
             </Button>
             <Button style={{height: '30px', display: 'flex', alignItems: 'center'}} variant="danger" onClick={handleDelete}>
               <Icon icon="ph:trash" />

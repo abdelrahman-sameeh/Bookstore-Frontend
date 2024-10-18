@@ -1,10 +1,10 @@
 import Icon from "./Icon";
-import { Accordion } from "react-bootstrap";
+import { Accordion, Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import LoadingButton from "./LoadingButton";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { Book } from "../../interfaces/interfaces";
-import DeleteBookDialog from "../dashboard/owner/DeleteBookDialog";
+import DeleteBookDialog from "../dashboard/owner/book/DeleteBookDialog";
 import { useState } from "react";
 import authAxios from "../../api/authAxios";
 import { ApiEndpoints } from "../../api/ApiEndpoints";
@@ -43,11 +43,10 @@ const BookCartComp = ({
     setLoading(false);
 
     if (response.status === 200) {
-      notify(t("approveDialog.approvedSuccessfully")); 
+      notify(t("approveDialog.approvedSuccessfully"));
     } else {
       notify(t("approveDialog.somethingWentWrong"), "error");
     }
-
   };
 
   const handleDeny = () => {
@@ -86,30 +85,29 @@ const BookCartComp = ({
       ) : null}
 
       {user.role === "owner" && showControls ? (
-        <div style={{ top: 0 }} className="d-flex w-100 bg-light p-1">
-          <button
-            onClick={() => {
-              setShowDeleteDialog(true);
-            }}
-            title={"Delete Book"}
-            className="border-0 bg-light"
-          >
-            <Icon
-              className="fs-4 text-danger"
-              icon="material-symbols:delete-outline"
-            />
-          </button>
-          <button
-            onClick={() => {
-              setShowCreateUpdateDialog(true);
-              setCreateUpdateDialogMethod("update");
-              setTargetBook(book);
-            }}
-            title={"Update Book"}
-            className="border-0 bg-light"
-          >
-            <Icon className="fs-4" icon="carbon:ibm-data-product-exchange" />
-          </button>
+        <div style={{ top: 0 }} className="d-flex w-100 bg-light p-1 main-theme">
+          <div className="d-flex gap-1">
+            <Button
+              onClick={() => {
+                setShowCreateUpdateDialog(true);
+                setCreateUpdateDialogMethod("update");
+                setTargetBook(book);
+              }}
+              variant="outline-primary"
+              title={t("exploreBooks.updateBook")}
+            >
+              <Icon icon="tabler:edit" />
+            </Button>
+            <Button
+              title={t("exploreBooks.deleteBook")}
+              variant="outline-danger"
+              onClick={() => {
+                setShowDeleteDialog(true);
+              }}
+            >
+              <Icon icon="ph:trash" />
+            </Button>
+          </div>
         </div>
       ) : null}
 
@@ -127,10 +125,10 @@ const BookCartComp = ({
         </LoadingButton>
       ) : null}
 
-      <Accordion defaultActiveKey={book._id}>
+      <Accordion defaultActiveKey={book._id} >
         <Accordion.Item eventKey="0" className="rounded-0">
-          <Accordion.Header>{book.title}</Accordion.Header>
-          <Accordion.Body>
+          <Accordion.Header >{book.title}</Accordion.Header>
+          <Accordion.Body className="main-theme">
             <p className="text-capitalize">
               <span className="fw-bold">{t("exploreBooks.author")}:</span>{" "}
               {book.author}

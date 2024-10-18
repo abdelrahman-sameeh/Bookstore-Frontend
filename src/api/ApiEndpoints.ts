@@ -18,5 +18,10 @@ export const ApiEndpoints = {
   listCreateCategory: `${mainPath}/category`,
   getUpdateDeleteCategory: (id: string) => `${mainPath}/category/${id}`,
   reviewBook: (id: string) => `${mainPath}/books/${id}/reviewBook`,
+  listCreateCoupon: (queryString: string='') => `${mainPath}/coupons${queryString}`,
+  retrieveUpdateDeleteCoupon: (couponId: string) => `${mainPath}/coupon/${couponId}`,
   
+
+
+
 }

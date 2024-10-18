@@ -43,3 +43,10 @@ export interface UserInterface {
   stripeAccountId?: any;
   completedBoarding?: any;
 }
+
+export interface Coupon{
+  _id?: string;
+  code?: string;
+  discount?: string;
+  expiryDate?: string;
+}

@@ -74,6 +74,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "owner/books",
       icon: "bi:book",
     },
+    {
+      title: t("dashboard.owner.links.coupons"),
+      to: "owner/coupons",
+      icon: "mdi:coupon",
+    },
   ],
   delivery: [
     {

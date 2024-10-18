@@ -2,11 +2,8 @@ import { useEffect, useState } from "react";
 import LoadingButton from "../../../components/utils/LoadingButton";
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import {
-  categoriesState,
-  categoryState,
-} from "../../../recoil/categories.atom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { categoriesState, categoryState } from "../../../recoil/categoriesAtom";
 import { Spinner, Card, Button, Row, Col } from "react-bootstrap"; // استيراد مكونات React Bootstrap
 import { Category } from "../../../interfaces/interfaces";
 import Icon from "../../../components/utils/Icon";
@@ -31,7 +28,7 @@ const Categories = () => {
         setCategories(res?.data?.data?.categories);
         setLoading(false); // عند جلب البيانات بنجاح
       })
-      .catch((err) => {
+      .catch(() => {
         setError("failed to load categories");
         setLoading(false); // عند حدوث خطأ
       });
@@ -84,28 +81,25 @@ const Categories = () => {
               <Col key={category._id}>
                 <Card className="main-bg main-text">
                   <Card.Title>
-                    <div className="controls border-bottom d-flex gap-1 bg-light rounded-top p-1">
+                    <div className=" border-bottom d-flex gap-1 rounded-top p-1">
                       <Button
+                        variant="outline-primary"
                         onClick={() => {
                           setShowCreateUpdateDialog(true);
-                          setMethod('update')
+                          setMethod("update");
                           setCategory(category);
                         }}
-                        className="bg-light border-0"
                       >
-                        <Icon
-                          className="text-dark"
-                          icon="heroicons-outline:pencil-alt"
-                        />
+                        <Icon icon="tabler:edit" />
                       </Button>
                       <Button
+                        variant="outline-danger"
                         onClick={() => {
                           setShowDeleteDialog(true);
                           setCategory(category);
                         }}
-                        className="bg-light border-0"
                       >
-                        <Icon className="text-danger" icon="ph:trash" />
+                        <Icon icon="ph:trash" />
                       </Button>
                     </div>
                   </Card.Title>

@@ -17,6 +17,7 @@ import ExploreBooks from "./pages/MainLayout/ExploreBooks";
 import OwnerBooks from "./pages/DashboardLayout/Owner/OwnerBooks";
 import Categories from "./pages/DashboardLayout/Admin/Categories";
 import AdminBooks from "./pages/DashboardLayout/Admin/AdminBooks";
+import OwnerCoupons from "./pages/DashboardLayout/Owner/OwnerCoupons";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -56,6 +57,7 @@ const App: React.FC = () => {
             >
               <Route path="onboarding" element={<Onboarding />} />
               <Route path="books" element={<OwnerBooks />} />
+              <Route path="coupons" element={<OwnerCoupons />} />
             </Route>
             {/* user routes */}
             <Route
