@@ -228,7 +228,8 @@
     "itemsPerPage": "عدد العناصر في الصفحة",
     "previous": "السابق",
     "next": "التالي",
-    "addCoupon": "انشاء كوبون جديد"
+    "addCoupon": "انشاء كوبون جديد",
+    "noCoupons": "لا يوجد كوبونات"
   },
 
   "couponComp": {
@@ -261,6 +262,15 @@
     "updateSuccess": "تم تحديث الكوبون بنجاح",
     "alreadyExist": "الكوبون بهذا الاسم موجودة بالفعل",
     "genericError": "حدث خطأ ما"
+  },
+
+  "deleteCouponDialog": {
+    "title": "حذف القسيمة",
+    "confirm": "هل أنت متأكد أنك تريد حذف القسيمة التي تحمل الكود {{code}}؟",
+    "close": "إلغاء",
+    "delete": "حذف",
+    "success": "تم حذف القسيمة بنجاح",
+    "error": "حدث خطأ ما أثناء حذف القسيمة"
   },
 
   "___dashboard links": "_____",

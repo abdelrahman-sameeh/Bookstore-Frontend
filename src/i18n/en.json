@@ -228,15 +228,17 @@
     "itemsPerPage": "Items per Page",
     "previous": "Previous",
     "next": "Next",
-    "addCoupon": "create new coupon"
+    "addCoupon": "create new coupon",
+    "noCoupons": "No coupons available."
   },
 
-  "couponMessages": {
-    "createSuccess": "Coupon created successfully",
-    "updateSuccess": "Coupon updated successfully",
-    "alreadyExist": "Coupon with this name already exists",
-    "genericError": "Something went wrong"
+
+  "couponComp": {
+    "code": "Code",
+    "discount": "Discount",
+    "expiryDate": "Expiry Date"
   },
+
 
   "createUpdateCouponDialog": {
     "createTitle": "Create Coupon",
@@ -257,10 +259,21 @@
     "expiryDatePast": "expiry date cannot be in the past"
   },
 
-  "couponComp": {
-    "code": "Code",
-    "discount": "Discount",
-    "expiryDate": "Expiry Date"
+
+  "couponMessages": {
+    "createSuccess": "Coupon created successfully",
+    "updateSuccess": "Coupon updated successfully",
+    "alreadyExist": "Coupon with this name already exists",
+    "genericError": "Something went wrong"
+  },
+
+  "deleteCouponDialog": {
+    "title": "Delete Coupon",
+    "confirm": "Are you sure you want to delete the coupon with code {{code}}?",
+    "close": "Cancel",
+    "delete": "Delete",
+    "success": "Coupon deleted successfully",
+    "error": "Something went wrong while deleting the coupon"
   },
 
   "___dashboard links": "_____",

@@ -9,6 +9,7 @@ import useDebounce from "../../../hooks/useDebounce";
 import CouponComp from "../../../components/dashboard/owner/coupon/CouponComp";
 import LoadingButton from "../../../components/utils/LoadingButton";
 import CreateUpdateCouponDialog from "../../../components/dashboard/owner/coupon/CreateUpdateCouponDialog";
+import DeleteCouponDialog from "./DeleteCouponDialog";
 
 // Helper function to construct query parameters
 function getQuery(
@@ -20,7 +21,7 @@ function getQuery(
   let query = `?page=${page}`;
   if (limit) query += `&limit=${limit}`;
   if (search) query += `&search=${search}`;
-  if(available)query += `&available=${available==='available'}`;
+  if (available) query += `&available=${available === "available"}`;
   return query;
 }
 
@@ -29,12 +30,13 @@ const OwnerCoupons = () => {
   const [coupons, setCoupons] = useRecoilState(couponsState);
   const [search, setSearch] = useState<string>("");
   const debouncedSearchTerm = useDebounce(search, 300);
-  const [available, setAvailable] = useState<string>('');
+  const [available, setAvailable] = useState<string>("");
   const [page, setPage] = useState<number>(1);
   const [limit, setLimit] = useState<number>(5);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [isUpdate, setIsUpdate] = useState(false);
   const [showCreateUpdateDialog, setShowCreateUpdateDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   useEffect(() => {
     const query = getQuery(available, limit, page, debouncedSearchTerm);
@@ -60,11 +62,18 @@ const OwnerCoupons = () => {
         </LoadingButton>
       </div>
 
+      {/* create update coupon modal */}
       <CreateUpdateCouponDialog
         show={showCreateUpdateDialog}
         setShow={setShowCreateUpdateDialog}
         isUpdate={isUpdate}
         setIsUpdate={setIsUpdate}
+      />
+
+      {/* delete coupon modal */}
+      <DeleteCouponDialog
+        show={showDeleteDialog}
+        setShow={setShowDeleteDialog}
       />
 
       <Row className="mb-3">
@@ -121,15 +130,22 @@ const OwnerCoupons = () => {
 
       {/* Coupon List */}
       <Row>
-        {coupons.map((coupon) => (
-          <Col md={4} className="mb-3" key={coupon._id}>
-            <CouponComp
-              coupon={coupon}
-              setIsUpdate={setIsUpdate}
-              setShowCreateUpdateDialog={setShowCreateUpdateDialog}
-            />
+        {coupons.length > 0 ? (
+          coupons.map((coupon) => (
+            <Col md={4} className="mb-3" key={coupon._id}>
+              <CouponComp
+                coupon={coupon}
+                setIsUpdate={setIsUpdate}
+                setShowCreateUpdateDialog={setShowCreateUpdateDialog}
+                setShowDeleteDialog={setShowDeleteDialog}
+              />
+            </Col>
+          ))
+        ) : (
+          <Col>
+            <h2 className="text-center">{t("ownerCoupons.noCoupons")}</h2>
           </Col>
-        ))}
+        )}
       </Row>
 
       {/* Pagination */}
