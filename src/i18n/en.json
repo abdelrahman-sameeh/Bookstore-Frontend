@@ -259,7 +259,6 @@
     "expiryDatePast": "expiry date cannot be in the past"
   },
 
-
   "couponMessages": {
     "createSuccess": "Coupon created successfully",
     "updateSuccess": "Coupon updated successfully",
@@ -276,12 +275,62 @@
     "error": "Something went wrong while deleting the coupon"
   },
 
+  "userAddress":{
+    "yourAddresses": "your addresses",
+    "addAddress": "add new addresses",
+    "noAddresses": "No addresses available"
+  },
+
+
+  "createUpdateAddressDialog": {
+    "createTitle": "Create Address",
+    "updateTitle": "Update Address",
+    "country": "Country",
+    "city": "City",
+    "address": "Address",
+    "phone": "Phone",
+    "required": "This field is required",
+    "close": "Close",
+    "create": "Create",
+    "update": "Update",
+    "createSuccess": "Address created successfully!",
+    "createError": "Failed to create address. Please try again.",
+    "updateSuccess": "Address updated successfully!",
+    "updateError": "Failed to update address. Please try again.",
+    "noChanges": "No changes detected.",
+    "invalidPhone": "invalid phone number"
+  },
+
+  "addressComp": {
+    "title": "Address",
+    "country": "Country",
+    "city": "City",
+    "address": "Address",
+    "phone": "Phone",
+    "notAvailable": "N/A"
+  },
+
+
+  "deleteAddressDialog": {
+    "title": "Delete address",
+    "confirm": "Are you sure you want to delete the address \"{{address}}\"?",
+    "close": "Cancel",
+    "delete": "Delete",
+    "success": "Address deleted successfully",
+    "error": "Something went wrong while deleting the address"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
       "links": {
         "home": "home",
         "changePassword": "change password"
+      }
+    },
+    "user": {
+      "links": {
+        "addresses": "addresses"
       }
     },
     "owner": {

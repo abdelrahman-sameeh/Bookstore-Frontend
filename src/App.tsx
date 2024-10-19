@@ -18,6 +18,7 @@ import OwnerBooks from "./pages/DashboardLayout/Owner/OwnerBooks";
 import Categories from "./pages/DashboardLayout/Admin/Categories";
 import AdminBooks from "./pages/DashboardLayout/Admin/AdminBooks";
 import OwnerCoupons from "./pages/DashboardLayout/Owner/OwnerCoupons";
+import UserAddresses from "./pages/DashboardLayout/User/UserAddresses";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -60,10 +61,9 @@ const App: React.FC = () => {
               <Route path="coupons" element={<OwnerCoupons />} />
             </Route>
             {/* user routes */}
-            <Route
-              path="user"
-              element={<ProtectedRoutes allowto={["user"]} />}
-            ></Route>
+            <Route path="user" element={<ProtectedRoutes allowto={["user"]} />}>
+              <Route path="addresses" element={<UserAddresses />} />
+            </Route>
           </Route>
         </Route>
       </Routes>

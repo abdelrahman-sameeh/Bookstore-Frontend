@@ -52,6 +52,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "change-password",
       icon: "solar:password-outline",
     },
+    {
+      title: t("dashboard.user.links.addresses"),
+      to: "user/addresses",
+      icon: "tabler:location",
+    },
   ],
   owner: [
     {

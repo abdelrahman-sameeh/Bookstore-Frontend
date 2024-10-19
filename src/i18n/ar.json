@@ -273,12 +273,60 @@
     "error": "حدث خطأ ما أثناء حذف القسيمة"
   },
 
+  "userAddress": {
+    "yourAddresses": "عناوينك",
+    "addAddress": "اضافة عنوان جديد",
+    "noAddresses": "لا يوجد عناوين متاحة"
+  },
+
+  "createUpdateAddressDialog": {
+    "createTitle": "إنشاء عنوان",
+    "updateTitle": "تحديث العنوان",
+    "country": "البلد",
+    "city": "المدينة",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "required": "هذا الحقل مطلوب",
+    "close": "إغلاق",
+    "create": "إنشاء",
+    "update": "تحديث",
+    "createSuccess": "تم إنشاء العنوان بنجاح!",
+    "createError": "فشل اثناء إنشاء العنوان. حاول مرة أخرى.",
+    "updateSuccess": "تم تعديل العنوان بنجاح!",
+    "updateError": "فشل اثناء تعديل العنوان. حاول مرة أخرى.",
+    "noChanges": "لم يتم اكتشاف تغييرات.",
+    "invalidPhone": "رقم غير صحيح"
+  },
+
+  "addressComp": {
+    "title": "العنوان",
+    "country": "البلد",
+    "city": "المدينة",
+    "address": "العنوان",
+    "phone": "الهاتف",
+    "notAvailable": "غير متوفر"
+  },
+
+"deleteAddressDialog": {
+  "title": "حذف العنوان",
+  "confirm": "هل أنت متأكد أنك تريد حذف العنوان \"{{address}}\"؟",
+  "close": "إلغاء",
+  "delete": "حذف",
+  "success": "تم حذف العنوان بنجاح",
+  "error": "حدث خطأ أثناء حذف العنوان"
+},
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
       "links": {
         "home": "صفحة البداية",
         "changePassword": "تغير كلمة المرور"
+      }
+    },
+    "user": {
+      "links": {
+        "addresses": "العناويين"
       }
     },
     "owner": {

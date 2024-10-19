@@ -9,7 +9,7 @@ import useDebounce from "../../../hooks/useDebounce";
 import CouponComp from "../../../components/dashboard/owner/coupon/CouponComp";
 import LoadingButton from "../../../components/utils/LoadingButton";
 import CreateUpdateCouponDialog from "../../../components/dashboard/owner/coupon/CreateUpdateCouponDialog";
-import DeleteCouponDialog from "./DeleteCouponDialog";
+import DeleteCouponDialog from "../../../components/dashboard/owner/coupon/DeleteCouponDialog";
 
 // Helper function to construct query parameters
 function getQuery(

@@ -50,3 +50,11 @@ export interface Coupon{
   discount?: string;
   expiryDate?: string;
 }
+
+export interface Address {
+  _id?: string;
+  country?: string;
+  city?: string;
+  address?: string;
+  phone?: string;
+}

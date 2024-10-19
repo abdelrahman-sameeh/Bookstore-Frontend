@@ -1,28 +1,28 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { couponsState, targetCouponState } from "../../../recoil/couponAtom";
-import LoadingButton from "../../../components/utils/LoadingButton";
 import { useTranslation } from "react-i18next";
+import { addressesState, targetAddressState } from "../../../recoil/addressesAtom";
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import notify from "../../../components/utils/Notify";
+import notify from "../../utils/Notify";
+import LoadingButton from "../../utils/LoadingButton";
 
-type DeleteCouponProps = {
+type DeleteAddressProps = {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
 };
 
-const DeleteCouponDialog = ({ show, setShow }: DeleteCouponProps) => {
-  const setCoupons = useSetRecoilState(couponsState)
-  const [targetCoupon, setTargetCoupon] = useRecoilState(targetCouponState);
+const DeleteAddressDialog = ({ show, setShow }: DeleteAddressProps) => {
+  const setAddresses = useSetRecoilState(addressesState)
+  const [targetAddress, setTargetAddress] = useRecoilState(targetAddressState);
   const [loading, setLoading] = useState(false);
 
   const { t } = useTranslation();
 
   const handleClose = () => {
     setShow(false);
-    setTargetCoupon({});
+    setTargetAddress({});
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -31,36 +31,36 @@ const DeleteCouponDialog = ({ show, setShow }: DeleteCouponProps) => {
     setLoading(true);
     const response = await authAxios(
       true,
-      ApiEndpoints.retrieveUpdateDeleteCoupon(targetCoupon._id as string),
+      ApiEndpoints.retrieveUpdateDeleteAddress(targetAddress._id as string),
       "DELETE"
     );
     setLoading(false);
 
     if (response.status === 204) {
-      notify(t("deleteCouponDialog.success")); // Success message from i18next
-      setCoupons((prev) => prev.filter((coupon) => coupon._id !== targetCoupon._id)); // Update the coupon list
+      notify(t("deleteAddressDialog.success")); // Success message from i18next
+      setAddresses((prev) => prev.filter((address) => address._id !== targetAddress._id)); // Update the coupon list
       handleClose();
     } else {
-      notify(t("deleteCouponDialog.error"), "error"); // Error message from i18next
+      notify(t("deleteAddressDialog.error"), "error"); // Error message from i18next
     }
   };
 
   return (
     <Modal className="custom-dialog" show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>{t("deleteCouponDialog.title")}</Modal.Title>
+        <Modal.Title>{t("deleteAddressDialog.title")}</Modal.Title>
       </Modal.Header>
 
       <Form onSubmit={handleSubmit}>
         <Modal.Body>
-          <p>{t("deleteCouponDialog.confirm", { code: targetCoupon.code })}</p> {/* Confirmation message */}
+          <p>{t("deleteAddressDialog.confirm", {address: targetAddress.address})}</p> {/* Confirmation message */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            {t("deleteCouponDialog.close")}
+            {t("deleteAddressDialog.close")}
           </Button>
           <LoadingButton variant="error" loading={loading}>
-            {t("deleteCouponDialog.delete")}
+            {t("deleteAddressDialog.delete")}
           </LoadingButton>
         </Modal.Footer>
       </Form>
@@ -68,4 +68,4 @@ const DeleteCouponDialog = ({ show, setShow }: DeleteCouponProps) => {
   );
 };
 
-export default DeleteCouponDialog;
+export default DeleteAddressDialog;

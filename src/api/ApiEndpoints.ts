@@ -20,6 +20,8 @@ export const ApiEndpoints = {
   reviewBook: (id: string) => `${mainPath}/books/${id}/reviewBook`,
   listCreateCoupon: (queryString: string='') => `${mainPath}/coupons${queryString}`,
   retrieveUpdateDeleteCoupon: (couponId: string) => `${mainPath}/coupon/${couponId}`,
+  listCreateAddresses: `${mainPath}/addresses`,
+  retrieveUpdateDeleteAddress: (addressId: string) => `${mainPath}/address/${addressId}`,
   
 
 

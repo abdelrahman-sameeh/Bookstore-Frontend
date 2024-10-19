@@ -142,6 +142,7 @@ const ExploreBooks = () => {
             style={{
               top: "40px",
               right: "0",
+              zIndex: '5'
             }}
             className={`filters ${
               showFilters ? "active" : ""
