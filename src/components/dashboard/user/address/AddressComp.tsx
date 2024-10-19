@@ -1,10 +1,10 @@
 import { Card, Button } from "react-bootstrap";
-import { Address } from "../../../interfaces/interfaces";
+import { Address } from "../../../../interfaces/interfaces";
 import { useTranslation } from "react-i18next";
-import Icon from "../../utils/Icon";
+import Icon from "../../../utils/Icon";
 import { Dispatch, SetStateAction } from "react";
 import { useSetRecoilState } from "recoil";
-import { targetAddressState } from "../../../recoil/addressesAtom";
+import { targetAddressState } from "../../../../recoil/addressesAtom";
 
 type AddressCompProps = {
   address: Address;
@@ -27,6 +27,7 @@ const AddressComp = ({
       <Card.Header>
         <div className="d-flex gap-1">
           <Button
+            title={'update address'}
             variant="outline-primary"
             onClick={() => {
               setShowCreateUpdateDialog(true);
@@ -37,6 +38,7 @@ const AddressComp = ({
             <Icon icon="tabler:edit" />
           </Button>
           <Button
+            title={'delete address'}
             variant="outline-danger"
             onClick={() => {
               setTargetAddress(address);

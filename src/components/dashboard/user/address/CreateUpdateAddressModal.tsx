@@ -7,15 +7,15 @@ import {
 } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import LoadingButton from "../../utils/LoadingButton";
+import LoadingButton from "../../../utils/LoadingButton";
 import { useRecoilState } from "recoil";
 import {
   addressesState,
   targetAddressState,
-} from "../../../recoil/addressesAtom";
-import authAxios from "../../../api/authAxios";
-import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import notify from "../../utils/Notify";
+} from "../../../../recoil/addressesAtom";
+import authAxios from "../../../../api/authAxios";
+import { ApiEndpoints } from "../../../../api/ApiEndpoints";
+import notify from "../../../utils/Notify";
 
 type CreateUpdateProps = {
   show: boolean;

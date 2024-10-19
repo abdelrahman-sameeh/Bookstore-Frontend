@@ -2,11 +2,14 @@ import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { useTranslation } from "react-i18next";
-import { addressesState, targetAddressState } from "../../../recoil/addressesAtom";
-import authAxios from "../../../api/authAxios";
-import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import notify from "../../utils/Notify";
-import LoadingButton from "../../utils/LoadingButton";
+import {
+  addressesState,
+  targetAddressState,
+} from "../../../../recoil/addressesAtom";
+import authAxios from "../../../../api/authAxios";
+import { ApiEndpoints } from "../../../../api/ApiEndpoints";
+import notify from "../../../utils/Notify";
+import LoadingButton from "../../../utils/LoadingButton";
 
 type DeleteAddressProps = {
   show: boolean;
@@ -14,7 +17,7 @@ type DeleteAddressProps = {
 };
 
 const DeleteAddressDialog = ({ show, setShow }: DeleteAddressProps) => {
-  const setAddresses = useSetRecoilState(addressesState)
+  const setAddresses = useSetRecoilState(addressesState);
   const [targetAddress, setTargetAddress] = useRecoilState(targetAddressState);
   const [loading, setLoading] = useState(false);
 
@@ -38,7 +41,9 @@ const DeleteAddressDialog = ({ show, setShow }: DeleteAddressProps) => {
 
     if (response.status === 204) {
       notify(t("deleteAddressDialog.success")); // Success message from i18next
-      setAddresses((prev) => prev.filter((address) => address._id !== targetAddress._id)); // Update the coupon list
+      setAddresses((prev) =>
+        prev.filter((address) => address._id !== targetAddress._id)
+      ); // Update the coupon list
       handleClose();
     } else {
       notify(t("deleteAddressDialog.error"), "error"); // Error message from i18next
@@ -53,7 +58,12 @@ const DeleteAddressDialog = ({ show, setShow }: DeleteAddressProps) => {
 
       <Form onSubmit={handleSubmit}>
         <Modal.Body>
-          <p>{t("deleteAddressDialog.confirm", {address: targetAddress.address})}</p> {/* Confirmation message */}
+          <p>
+            {t("deleteAddressDialog.confirm", {
+              address: targetAddress.address,
+            })}
+          </p>{" "}
+          {/* Confirmation message */}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

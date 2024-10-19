@@ -5,10 +5,10 @@ import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import { useRecoilState } from "recoil";
 import { Col, Row, Container } from "react-bootstrap";
 import LoadingButton from "../../../components/utils/LoadingButton";
-import CreateUpdateAddressModal from "../../../components/dashboard/user/CreateUpdateAddressModal";
-import AddressComp from "../../../components/dashboard/user/AddressComp";
+import CreateUpdateAddressModal from "../../../components/dashboard/user/address/CreateUpdateAddressModal";
+import AddressComp from "../../../components/dashboard/user/address/AddressComp";
 import { addressesState } from "../../../recoil/addressesAtom";
-import DeleteAddressDialog from "../../../components/dashboard/user/DeleteCouponDialog";
+import DeleteAddressDialog from "../../../components/dashboard/user/address/DeleteCouponDialog";
 
 const UserAddresses = () => {
   const { t } = useTranslation(); // i18next hook for translations
