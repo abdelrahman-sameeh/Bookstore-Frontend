@@ -307,14 +307,41 @@
     "notAvailable": "غير متوفر"
   },
 
-"deleteAddressDialog": {
-  "title": "حذف العنوان",
-  "confirm": "هل أنت متأكد أنك تريد حذف العنوان \"{{address}}\"؟",
-  "close": "إلغاء",
-  "delete": "حذف",
-  "success": "تم حذف العنوان بنجاح",
-  "error": "حدث خطأ أثناء حذف العنوان"
-},
+  "deleteAddressDialog": {
+    "title": "حذف العنوان",
+    "confirm": "هل أنت متأكد أنك تريد حذف العنوان \"{{address}}\"؟",
+    "close": "إلغاء",
+    "delete": "حذف",
+    "success": "تم حذف العنوان بنجاح",
+    "error": "حدث خطأ أثناء حذف العنوان"
+  },
+
+  "deleteCartDialog": {
+    "title": "حذف السلة",
+    "confirm": "هل أنت متأكد أنك تريد حذف هذه السلة؟",
+    "close": "إغلاق",
+    "delete": "حذف",
+    "success": "تم حذف السلة بنجاح!",
+    "error": "فشل في حذف السلة. يرجى المحاولة مرة أخرى."
+  },
+
+  "userCart": {
+    "title": "السلة",
+    "emptyCart": "لا توجد عناصر في سلتك.",
+    "totalPrice": "إجمالي السعر: {{price}}",
+    "createOrder": "إنشاء طلب",
+    "deleteCart": "حذف السلة",
+    "deleteOneSuccess": "تم حذف كتاب واحد بنجاح",
+    "deleteCartSuccess": "تم حذف السلة بنجاح",
+    "somethingWentWrong": "حدث خطأ ما",
+    "proceedCheckout": "التوجه إلى الدفع...",
+    "author": "المؤلف",
+    "category": "الفئة",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "total": "الإجمالي",
+    "removeCount": "عدد الكتب المراد حذفها"
+  },
 
   "___dashboard links": "_____",
   "dashboard": {
@@ -326,7 +353,8 @@
     },
     "user": {
       "links": {
-        "addresses": "العناويين"
+        "addresses": "العناويين",
+        "cart": "عربة التسوق"
       }
     },
     "owner": {

@@ -58,3 +58,20 @@ export interface Address {
   address?: string;
   phone?: string;
 }
+
+export interface CartBook {
+  book: Book;
+  count: number;
+  _id?: string;
+}
+
+export interface Cart {
+  _id?: string;
+  user?: string;
+  books?: CartBook[];
+  totalItems?: number;
+  totalPrice?: number;
+  ownerId?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}

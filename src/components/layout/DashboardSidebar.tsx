@@ -57,6 +57,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "user/addresses",
       icon: "tabler:location",
     },
+    {
+      title: t("dashboard.user.links.cart"),
+      to: "user/cart",
+      icon: "mdi-light:cart",
+    },
   ],
   owner: [
     {

@@ -320,6 +320,33 @@
     "error": "Something went wrong while deleting the address"
   },
 
+  "deleteCartDialog": {
+    "title": "Delete Cart",
+    "confirm": "Are you sure you want to delete this cart?",
+    "close": "Close",
+    "delete": "Delete",
+    "success": "Cart deleted successfully!",
+    "error": "Failed to delete the cart. Please try again."
+  },
+
+  "userCart": {
+    "title": "Your Carts",
+    "emptyCart": "No items in your cart.",
+    "totalPrice": "Total Price: {{price}}",
+    "createOrder": "Create Order",
+    "deleteCart": "Delete Cart",
+    "deleteOneSuccess": "Deleted one book successfully",
+    "deleteCartSuccess": "Deleted cart successfully",
+    "somethingWentWrong": "Something went wrong",
+    "proceedCheckout": "Proceeding to checkout...",
+    "author": "Author",
+    "category": "Category",
+    "price": "Price",
+    "quantity": "Quantity",
+    "total": "Total",
+    "removeCount": "number of books want to remove"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
@@ -330,7 +357,8 @@
     },
     "user": {
       "links": {
-        "addresses": "addresses"
+        "addresses": "addresses",
+        "cart": "cart"
       }
     },
     "owner": {

@@ -142,6 +142,12 @@ body a {
   margin-top: calc(71px + 30px);
 }
 
+.accordion-header > button{
+  background-color: var(--alt-bg);
+  color: var(--main-text);
+  box-shadow: none !important;
+}
+
 input,
 select,
 textarea {
