@@ -89,17 +89,21 @@
     "leastSold": "Least Sold",
     "booksPerPage": "Books Per Page",
     "categories": "Categories",
-    "sold": "number of sold",
+    "sold": "sold",
     "noBooksMatchFilter": "No Books Match This Filter",
     "books": "Books",
     "addToCart": "Add to cart",
+    "paymentMethod": "payment method",
     "seller": "seller",
     "category": "category",
     "author": "author",
     "yourBooks": "Your books",
     "addBook": "Add book",
     "deleteBook": "delete book",
-    "updateBook": "update book"
+    "updateBook": "update book",
+    "addToCartSuccessfully": "added to cart successfully",
+    "addToCartFailed": "failed to add to cart",
+    "addToCartFailedOutOfRange": "The book cannot be added to the cart because the requested quantity is not available."
   },
   "deleteBookDialog": {
     "title": "Delete Book",
@@ -343,8 +347,15 @@
     "category": "Category",
     "price": "Price",
     "quantity": "Quantity",
+    "numberOfAvailableBooks": "Number of available books",
     "total": "Total",
-    "removeCount": "number of books want to remove"
+    "removeCount": "Number of books want to remove",
+    "addCount": "Number of books want to add",
+    "lastBook": "These last {{booksCount}} book",
+    "bookStatus": "Book status",
+    "addBookSuccessfully": "Book added to cart successfully",
+    "controls": "controls",
+    "notAvailable": "Book not available"
   },
 
   "___dashboard links": "_____",

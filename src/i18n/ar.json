@@ -90,6 +90,7 @@
     "categories": "الفئات",
     "sold": "عدد المبيعات",
     "books": "كتب",
+    "paymentMethod": "طرية البيع",
     "noBooksMatchFilter": "لا توجد كتب تطابق هذا الفلتر",
     "addToCart": "اضف الى السلة",
     "seller": "البائع",
@@ -98,7 +99,11 @@
     "yourBooks": "كُتُبك",
     "addBook": "اضافة كتاب",
     "deleteBook": "حذف الكتاب",
-    "updateBook": "تعديل الكتاب"
+    "updateBook": "تعديل الكتاب",
+    "addToCartSuccessfully": "تمت الاضافة للسلة بنجاح",
+    "addToCartFailed": "حدث خطأ اثناء الاضافة للسلة",
+    "addToCartFailedOutOfRange": "لا يمكن إضافة الكتاب إلى السلة، لأن العدد المطلوب غير متوفر."
+
   },
 
   "deleteBookDialog": {
@@ -339,8 +344,15 @@
     "category": "الفئة",
     "price": "السعر",
     "quantity": "الكمية",
+    "numberOfAvailableBooks": "عدد الكتب المتوفرة",
     "total": "الإجمالي",
-    "removeCount": "عدد الكتب المراد حذفها"
+    "removeCount": "عدد الكتب المراد حذفها",
+    "addCount": "عدد الكتب المراد اضافتها",
+    "lastBook": "اخر {{booksCount}} كتب الحق اطلب الان",
+    "bookStatus": "حالة الكتاب",
+    "addBookSuccessfully": "تم اضافة الكتاب الى السلة بنجاح",
+    "controls": "التحكم",
+    "notAvailable": "الكتاب غير متوفر"
   },
 
   "___dashboard links": "_____",

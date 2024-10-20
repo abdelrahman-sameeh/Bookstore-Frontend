@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { cartsState } from "../../../recoil/cartsAtom";
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
@@ -11,13 +11,18 @@ import DeleteCartDialog from "../../../components/dashboard/user/cart/DeleteCart
 import { useTranslation } from "react-i18next";
 import Icon from "../../../components/utils/Icon";
 
+type LoadingState = {
+  [key: string]: boolean;
+};
+
 const UserCart = () => {
   const { t } = useTranslation(); // Use translation hook
   const [carts, setCarts] = useRecoilState(cartsState);
-  const [loading, setLoading] = useState<string[]>([]);
+  const [loading, setLoading] = useState<LoadingState>({});
   const [showDeleteCartDialog, setShowDeleteCartDialog] = useState(false);
   const [targetCart, setTargetCart] = useState<Cart>({});
-  const [counts, setCounts] = useState<CartBook[]>([]);
+  const [decreaseCounts, setDecreaseCounts] = useState<CartBook[]>([]);
+  const [increaseCounts, setIncreaseCounts] = useState<CartBook[]>([]);
 
   useEffect(() => {
     const fetchCarts = async () => {
@@ -27,9 +32,83 @@ const UserCart = () => {
     fetchCarts();
   }, [setCarts]);
 
-  const handleRemoveOne = async (cart: Cart, cartBook: CartBook) => {
-    setLoading((prev) => [...prev, cartBook._id as string]);
-    const count = counts.find((cBooks) => cBooks._id === cartBook._id)?.count;
+  // Utility function to handle count updates
+  const updateCounts = (
+    e: ChangeEvent<HTMLInputElement>,
+    cartBook: CartBook,
+    currentCounts: any[],
+    setCounts: (counts: any[]) => void,
+    maxCount: number
+  ) => {
+    const count =
+      +e.target.value <= 0
+        ? 1
+        : +e.target.value > maxCount
+        ? maxCount
+        : +e.target.value;
+
+    const existBook = currentCounts.some((item) => item._id === cartBook._id);
+
+    if (!existBook) {
+      // Update the count array directly
+      const newCounts = [
+        ...currentCounts,
+        {
+          count,
+          _id: cartBook._id,
+        },
+      ];
+      setCounts(newCounts);
+    } else {
+      const updatedCount = currentCounts.map((item) =>
+        item._id === cartBook._id
+          ? {
+              count,
+              _id: cartBook._id,
+            }
+          : item
+      );
+      setCounts(updatedCount);
+    }
+  };
+
+  // Handler for decreasing count
+  const handleChangeDecreaseInput = (
+    e: ChangeEvent<HTMLInputElement>,
+    cartBook: CartBook
+  ) => {
+    updateCounts(
+      e,
+      cartBook,
+      decreaseCounts,
+      setDecreaseCounts,
+      cartBook.count
+    );
+  };
+
+  // Handler for increasing count
+  const handleChangeIncreaseInput = (
+    e: ChangeEvent<HTMLInputElement>,
+    cartBook: CartBook
+  ) => {
+    const bookCount = cartBook?.book?.count || 0;
+    updateCounts(
+      e,
+      cartBook,
+      increaseCounts,
+      setIncreaseCounts,
+      bookCount - cartBook.count
+    );
+  };
+
+  const handleRemove = async (cart: Cart, cartBook: CartBook) => {
+    setLoading((prev) => ({
+      ...prev,
+      [(cartBook._id as string) + "decrease"]: true,
+    }));
+    const count = decreaseCounts.find(
+      (cBooks) => cBooks._id === cartBook._id
+    )?.count;
 
     const response = await authAxios(
       true,
@@ -40,7 +119,13 @@ const UserCart = () => {
         cartId: cart?._id,
       }
     );
-    setLoading((prev) => prev.filter((item) => item !== cartBook._id));
+    setLoading((prevLoading) => {
+      const newLoading = { ...prevLoading };
+      if (newLoading[(cartBook._id as string) + "decrease"]) {
+        delete newLoading[(cartBook._id as string) + "decrease"];
+      }
+      return newLoading;
+    });
 
     if (response.status === 200) {
       notify(t("userCart.deleteOneSuccess")); // Use translation key
@@ -53,6 +138,48 @@ const UserCart = () => {
       setCarts((prev) => prev.filter((item) => item._id !== cart._id));
     } else {
       notify(t("userCart.somethingWentWrong"), "error"); // Use translation key
+    }
+  };
+
+  const handleAdd = async (cart: Cart, cartBook: CartBook) => {
+    const count =
+      increaseCounts.find((book) => book._id === cartBook._id)?.count || 1;
+
+    setLoading((prev) => ({
+      ...prev,
+      [(cartBook._id as string) + "increase"]: true,
+    }));
+
+    const response = await authAxios(
+      true,
+      ApiEndpoints.listCreateCart,
+      "POST",
+      {
+        book: cartBook.book._id,
+        count,
+      }
+    );
+    setLoading((prevLoading) => {
+      const newLoading = { ...prevLoading };
+      if (newLoading[(cartBook._id as string) + "increase"]) {
+        delete newLoading[(cartBook._id as string) + "increase"];
+      }
+      return newLoading;
+    });
+
+    if (response?.status === 200) {
+      notify(t("userCart.addBookSuccessfully"));
+      // update increase count
+      const updatedIncreaseCount = increaseCounts.map((item) => {
+        return item?._id === cartBook?._id ? { ...item, count: 1 } : item;
+      });
+      setIncreaseCounts(updatedIncreaseCount);
+      // update carts
+      const updatedCarts = carts.map((c) => {
+        return c._id === cart._id ? response?.data?.data?.cart : c;
+      });
+      setCarts(updatedCarts);
+    } else {
     }
   };
 
@@ -83,7 +210,7 @@ const UserCart = () => {
               {/* Use translation key */}
             </Accordion.Header>
             <Accordion.Body>
-              <div className="d-flex mb-3 gap-1">
+              <div className="d-flex mb-3 gap-1 flex-wrap">
                 <LoadingButton
                   onClick={() => alert(t("userCart.proceedCheckout"))} // Use translation key
                 >
@@ -129,83 +256,130 @@ const UserCart = () => {
                           {cartBook?.book?.price?.toFixed(2)}
                           <br />
                           <strong>{t("userCart.quantity")}:</strong>{" "}
-                          {cartBook?.count}
+                          <span className="fs-5 text-success fw-bold text-decoration-underline">
+                            {cartBook?.count}
+                          </span>
                           <br />
                           <strong>{t("userCart.total")}:</strong> $
                           {(
                             (cartBook?.book?.price as number) * cartBook?.count
                           ).toFixed(2)}
+                          <br />
+                          <strong className="text-success">
+                            {t("userCart.numberOfAvailableBooks")}:
+                            <span className="text-decoration-underline fs-5 mx-1">
+                              {cartBook?.book?.count}
+                            </span>
+                          </strong>{" "}
+                          <br />
+                          <strong>
+                            {t("userCart.bookStatus")}:
+                            <span className="text-success text-decoration-underline fs-5 mx-1">
+                              {cartBook?.book?.status}
+                            </span>
+                          </strong>{" "}
                         </Card.Text>
-                        <form
-                          onSubmit={(e: FormEvent) => {
-                            e.preventDefault();
-                            handleRemoveOne(cart, cartBook);
-                          }}
-                        >
-                          <label htmlFor="bookCount" className="fw-bold mb-1">
-                            {t("userCart.removeCount")}
-                          </label>
-                          <div className="d-flex align-items-center gap-1">
-                            <input
-                              id={"bookCount"}
-                              onChange={(e) => {
-                                const existBook = counts.some(
-                                  (item) => item._id === cartBook._id
-                                );
-                                if (!existBook) {
-                                  setCounts(
-                                    (prev) =>
-                                      [
-                                        ...prev,
-                                        {
-                                          count:
-                                            +e.target.value <= 0
-                                              ? 1
-                                              : +e.target.value > cartBook.count
-                                              ? cartBook.count
-                                              : e.target.value,
-                                          _id: cartBook._id,
-                                        },
-                                      ] as any
-                                  );
-                                } else {
-                                  const updatedCount = counts.map((item) => {
-                                    if (item._id == cartBook._id) {
-                                      return {
-                                        count:
-                                          +e.target.value <= 0
-                                            ? 1
-                                            : +e.target.value > cartBook.count
-                                            ? cartBook.count
-                                            : e.target.value,
-                                        _id: cartBook._id,
-                                      };
-                                    } else {
-                                      return item;
+
+                        <Accordion>
+                          <Accordion.Item eventKey="0">
+                            <Accordion.Header>
+                              {t("userCart.controls")}
+                            </Accordion.Header>
+                            <Accordion.Body className="main-theme">
+                            <form
+                                onSubmit={(e: FormEvent) => {
+                                  e.preventDefault();
+                                  handleRemove(cart, cartBook);
+                                }}
+                              >
+                                <label
+                                  htmlFor="removeCount"
+                                  className="fw-bold mb-1"
+                                >
+                                  {t("userCart.removeCount")}
+                                </label>
+                                <div className="d-flex align-items-center gap-1">
+                                  <input
+                                    id="removeCount"
+                                    onChange={(e) =>
+                                      handleChangeDecreaseInput(e, cartBook)
                                     }
-                                  });
-                                  setCounts(updatedCount as any);
-                                }
-                              }}
-                              type="number"
-                              value={
-                                counts.find((item) => item._id == cartBook._id)
-                                  ?.count || 1
-                              }
-                              className="form-control"
-                            />
-                            <LoadingButton
-                              type={"submit"}
-                              variant="error"
-                              style={{width: 'fit-content'}}
-                              loading={loading.includes(
-                                cartBook?._id as string
+                                    type="number"
+                                    value={
+                                      decreaseCounts.find(
+                                        (item) => item._id === cartBook._id
+                                      )?.count || 1
+                                    }
+                                    className="form-control"
+                                  />
+                                  <LoadingButton
+                                    type="submit"
+                                    variant="error"
+                                    style={{ width: "fit-content" }}
+                                    loading={
+                                      loading[
+                                        (cartBook?._id as string) + "decrease"
+                                      ]
+                                    }
+                                  >
+                                    <Icon icon={"ph:trash"} />
+                                  </LoadingButton>
+                                </div>
+                              </form>
+                              
+                              {cartBook.book.status === "offline" &&
+                              (cartBook?.book?.count as number) !==
+                                cartBook.count ? (
+                                <form
+                                  className="mt-2"
+                                  onSubmit={(e: FormEvent) => {
+                                    e.preventDefault();
+                                    handleAdd(cart, cartBook);
+                                  }}
+                                >
+                                  <label
+                                    htmlFor="bookCount"
+                                    className="fw-bold mb-1"
+                                  >
+                                    {t("userCart.addCount")}
+                                  </label>
+                                  <div className="d-flex align-items-center gap-1">
+                                    <input
+                                      id="bookCount"
+                                      type="number"
+                                      onChange={(e) =>
+                                        handleChangeIncreaseInput(e, cartBook)
+                                      }
+                                      value={
+                                        increaseCounts.find(
+                                          (item) => item._id === cartBook._id
+                                        )?.count || 1
+                                      }
+                                      className="form-control"
+                                    />
+                                    <LoadingButton
+                                      type="submit"
+                                      style={{ width: "fit-content" }}
+                                      loading={
+                                        loading[
+                                          (cartBook?._id as any) + "increase"
+                                        ]
+                                      }
+                                    >
+                                      <Icon icon={"ph:plus"} />
+                                    </LoadingButton>
+                                  </div>
+                                </form>
+                              ) : (
+                                <div className="pt-2 fw-bold text-warning">
+                                  {t("userCart.lastBook", {
+                                    booksCount: cartBook.count,
+                                  })}
+                                </div>
                               )}
-                            >
-                              <Icon icon={"ph:trash"} />
-                            </LoadingButton>
-                          </div>
-                        </form>
+                            </Accordion.Body>
+                          </Accordion.Item>
+                        </Accordion>
                       </Card.Body>
                     </Col>
                   </Row>

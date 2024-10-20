@@ -29,18 +29,19 @@ const BookCartComp = ({
   const { t } = useTranslation();
   const { user } = useLoggedInUser();
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loadings, setLoadings] = useState<string[]>([]);
   const [showDenyDialog, setShowDenyDialog] = useState(false);
 
+  // admin role
   const handleApprovedBook = async () => {
-    setLoading(true);
+    setLoadings((prev) => [...prev, book._id as string]);
     const response = await authAxios(
       true,
       ApiEndpoints.reviewBook(book._id as string),
       "PATCH",
       { reviewStatus: "approved" }
     );
-    setLoading(false);
+    setLoadings((prev) => prev.filter((item) => item != (book._id as string)));
 
     if (response.status === 200) {
       notify(t("approveDialog.approvedSuccessfully"));
@@ -53,13 +54,34 @@ const BookCartComp = ({
     setShowDenyDialog(true);
   };
 
+  const handleAddBookToCart = async () => {
+    setLoadings((prev) => [...prev, book._id as string]);
+    const response = await authAxios(
+      true,
+      ApiEndpoints.listCreateCart,
+      "POST",
+      {
+        book: book._id,
+        count: 1,
+      }
+    );
+    setLoadings((prev) => prev.filter((item) => item != (book._id as string)));
+    if (response?.status == 200) {
+      notify(t("exploreBooks.addToCartSuccessfully"));
+    } else if (response?.data?.message === "book count is not available") {
+      notify(t("exploreBooks.addToCartFailedOutOfRange"), "error");
+    } else {
+      notify(t("exploreBooks.addToCartFailed"), "error");
+    }
+  };
+
   return (
     <div className="book-card position-relative border">
       {user.role === "admin" ? (
         <>
           <div className="d-flex w-100 bg-light p-1 gap-1">
             <LoadingButton
-              loading={loading}
+              loading={loadings.includes(book._id as string)}
               onClick={handleApprovedBook}
               title={"approve"}
               className="border-0 bg-success w-fit"
@@ -68,7 +90,7 @@ const BookCartComp = ({
             </LoadingButton>
             <LoadingButton
               onClick={handleDeny}
-              disabled={loading}
+              disabled={loadings.includes(book._id as string)}
               title={"deny"}
               className="border-0 bg-danger w-fit"
             >
@@ -85,7 +107,10 @@ const BookCartComp = ({
       ) : null}
 
       {user.role === "owner" && showControls ? (
-        <div style={{ top: 0 }} className="d-flex w-100 bg-light p-1 main-theme">
+        <div
+          style={{ top: 0 }}
+          className="d-flex w-100 bg-light p-1 main-theme"
+        >
           <div className="d-flex gap-1">
             <Button
               onClick={() => {
@@ -119,15 +144,19 @@ const BookCartComp = ({
       />
 
       {user?.role == "user" ? (
-        <LoadingButton className="w-100">
+        <LoadingButton
+          loading={loadings.includes(book._id as string)}
+          onClick={handleAddBookToCart}
+          className="w-100"
+        >
           {t("exploreBooks.addToCart")}
           <Icon className="fs-4" icon="mdi:cart" />
         </LoadingButton>
       ) : null}
 
-      <Accordion defaultActiveKey={book._id} >
+      <Accordion defaultActiveKey={book._id}>
         <Accordion.Item eventKey="0" className="rounded-0">
-          <Accordion.Header >{book.title}</Accordion.Header>
+          <Accordion.Header>{book.title}</Accordion.Header>
           <Accordion.Body className="main-theme">
             <p className="text-capitalize">
               <span className="fw-bold">{t("exploreBooks.author")}:</span>{" "}
@@ -140,6 +169,12 @@ const BookCartComp = ({
             <p className="text-capitalize">
               <span className="fw-bold">{t("exploreBooks.sold")}:</span>{" "}
               {book.sales}
+            </p>
+            <p className="text-capitalize">
+              <span className="fw-bold">
+                {t("exploreBooks.paymentMethod")}:
+              </span>{" "}
+              {book.status}
             </p>
             <p className="text-capitalize">
               <span className="fw-bold">{t("exploreBooks.category")}:</span>{" "}

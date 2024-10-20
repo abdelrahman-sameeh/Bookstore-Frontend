@@ -161,7 +161,7 @@ const DashboardSidebar = () => {
       <span ref={iconRef} onClick={handleClick} className="arrow w-fit alt-btn">
         <Icon icon={iconName}></Icon>
       </span>
-      <Col lg={3} className={`alt-bg p-3 sidebar ${isShowClass ? "show" : ""}`}>
+      <Col lg={3} className={`position-fixed alt-bg p-3 sidebar ${isShowClass ? "show" : ""}`}>
         <h4>Sidebar</h4>
         {renderUserLinks()}
       </Col>

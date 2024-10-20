@@ -32,15 +32,15 @@ body.dark-mode {
   box-shadow: none !important;
 }
 
-.main-border{
-  border: 1px  solid var(--main-text);
+.main-border {
+  border: 1px solid var(--main-text);
 }
 
-.rounded{
+.rounded {
   border-radius: 3px !important;
 }
 
-.flex-1{
+.flex-1 {
   flex: 1;
 }
 
@@ -78,7 +78,6 @@ body.dark-mode {
   background-color: #9b2631;
 }
 
-
 .main-bg {
   background-color: var(--main-bg) !important;
 }
@@ -86,12 +85,12 @@ body.dark-mode {
   color: var(--main-text) !important;
 }
 
-.main-theme{
+.main-theme {
   background-color: var(--main-bg) !important;
   color: var(--main-text) !important;
 }
 
-.main-theme::placeholder{
+.main-theme::placeholder {
   color: var(--main-text) !important;
 }
 
@@ -102,19 +101,18 @@ body.dark-mode {
   color: var(--alt-text) !important;
 }
 
-.alt-theme{
+.alt-theme {
   color: var(--alt-text) !important;
   background-color: var(--alt-bg) !important;
 }
-.alt-theme::placeholder{
+.alt-theme::placeholder {
   color: var(--alt-text) !important;
 }
 
-.main-theme .card-body{
+.main-theme .card-body {
   background-color: var(--alt-bg);
   border-radius: 0 0 6px 6px;
 }
-
 
 .pointer {
   cursor: pointer;
@@ -135,17 +133,36 @@ body a {
   min-width: fit-content !important;
 }
 
-
-
 /* reset */
+
+.light-mode .text-warning {
+  color: #c59400 !important;
+}
+
+.dark-mode .text-success {
+  color: #22ba74 !important;
+}
+
 .page {
   margin-top: calc(71px + 30px);
 }
 
-.accordion-header > button{
+.accordion,
+.accordion-header,
+.accordion-item {
+  border-radius: 0 !important;
+}
+
+.accordion-header > button {
   background-color: var(--alt-bg);
   color: var(--main-text);
   box-shadow: none !important;
+  border-radius: 0 !important;
+  justify-content: space-between;
+}
+.accordion-header > button::after {
+  margin: 0 !important;
+  color: var(--main-text);
 }
 
 input,
@@ -170,21 +187,20 @@ form.auth-form button {
 }
 
 /* pagination */
-.dark-mode .pagination .page-item .page-link{
+.dark-mode .pagination .page-item .page-link {
   color: black !important;
 }
-.pagination .page-item .page-link{
+.pagination .page-item .page-link {
   border: none !important;
   outline: none !important;
   border-radius: 0 !important;
   background-color: #eee;
 }
 
-.pagination .page-item.active .page-link{
+.pagination .page-item.active .page-link {
   background-color: var(--main-btn-bg) !important;
   color: white !important;
 }
-
 
 /* navbar */
 .logo {
@@ -411,43 +427,39 @@ section.home .hero .btn::before {
   gap: 27px !important;
 }
 
-.explore-books .accordion-button:focus{
+.explore-books .accordion-button:focus {
   box-shadow: none !important;
 }
 
-
 /* dialog */
-.dark-mode .custom-dialog{
+.dark-mode .custom-dialog {
   color: var(--main-text) !important;
 }
 
-.dark-mode .custom-dialog .modal-dialog .modal-content{
+.dark-mode .custom-dialog .modal-dialog .modal-content {
   background-color: var(--alt-bg) !important;
 }
 .light-mode .custom-dialog .modal-dialog .modal-content input,
-.light-mode .custom-dialog .modal-dialog .modal-content select
-{
+.light-mode .custom-dialog .modal-dialog .modal-content select {
   background-color: #eee;
 }
 
 .dark-mode .custom-dialog .modal-dialog .modal-content input,
-.dark-mode .custom-dialog .modal-dialog .modal-content select{
+.dark-mode .custom-dialog .modal-dialog .modal-content select {
   background-color: var(--main-bg);
   color: white;
 }
-.dark-mode .custom-dialog .modal-dialog .modal-content input::placeholder{
+.dark-mode .custom-dialog .modal-dialog .modal-content input::placeholder {
   color: rgb(146, 146, 146);
 }
 
-.custom-dialog .modal-header{
+.custom-dialog .modal-header {
   justify-content: space-between;
 }
 
-.custom-dialog .modal-header button{
+.custom-dialog .modal-header button {
   margin: 0 !important;
 }
-
-
 
 /* media query */
 /* Extra Large Devices (Desktops, 1200px and above) */
