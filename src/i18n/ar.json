@@ -103,7 +103,6 @@
     "addToCartSuccessfully": "تمت الاضافة للسلة بنجاح",
     "addToCartFailed": "حدث خطأ اثناء الاضافة للسلة",
     "addToCartFailedOutOfRange": "لا يمكن إضافة الكتاب إلى السلة، لأن العدد المطلوب غير متوفر."
-
   },
 
   "deleteBookDialog": {
@@ -355,6 +354,26 @@
     "notAvailable": "الكتاب غير متوفر"
   },
 
+  "createOrderDialog": {
+    "title": "إنشاء طلب جديد",
+    "selectAddress": "اختر العنوان",
+    "selectAddressPlaceholder": "اختر عنوان التسليم",
+    "paymentMethod": "طريقة الدفع",
+    "onlinePayment": "الدفع عبر الإنترنت",
+    "offlinePayment": "الدفع عند الاستلام",
+    "close": "إغلاق",
+    "create": "إنشاء الطلب",
+    "addNewAddress": "اضافة عنوان جديد",
+    "selectAddressRequired": "الحقل مطلوب",
+    "notify": {
+      "completeOrderAgain": "يرجى إكمال طلبك مرة أخرى.",
+      "orderCreatedSuccess": "تم إنشاء الطلب بنجاح!",
+      "redirectToPaymentPage": "يتم التوجيه إلى صفحة الدفع...",
+      "booksNotAvailable": "بعض الكتب غير متاحة. قم بتحديث العربة للمتابعة.",
+      "somethingWentWrong": "حدث خطأ ما."
+    }
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
@@ -366,7 +385,8 @@
     "user": {
       "links": {
         "addresses": "العناويين",
-        "cart": "عربة التسوق"
+        "cart": "عربة التسوق",
+        "orders": "الطلبات"
       }
     },
     "owner": {

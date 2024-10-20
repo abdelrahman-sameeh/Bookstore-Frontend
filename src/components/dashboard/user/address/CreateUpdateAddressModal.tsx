@@ -20,8 +20,7 @@ import notify from "../../../utils/Notify";
 type CreateUpdateProps = {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
-  isUpdate: boolean;
-  setIsUpdate: Dispatch<SetStateAction<boolean>>;
+  isUpdate?: boolean;
 };
 
 const validateForm = (
@@ -49,7 +48,6 @@ const CreateUpdateAddressModal = ({
   show,
   setShow,
   isUpdate,
-  setIsUpdate,
 }: CreateUpdateProps) => {
   const { t } = useTranslation();
   const [addresses, setAddresses] = useRecoilState(addressesState);
@@ -63,7 +61,6 @@ const CreateUpdateAddressModal = ({
 
   const handleClose = () => {
     setTargetAddress({});
-    setIsUpdate(false);
     setShow(false);
     setCountry("");
     setCity("");
@@ -167,7 +164,7 @@ const CreateUpdateAddressModal = ({
               onChange={(e) => setCountry(e.target.value)}
               isInvalid={!!errors.country}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" className="text-danger fw-bold">
               {errors.country}
             </Form.Control.Feedback>
           </Form.Group>
@@ -181,7 +178,7 @@ const CreateUpdateAddressModal = ({
               onChange={(e) => setCity(e.target.value)}
               isInvalid={!!errors.city}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" className="text-danger fw-bold">
               {errors.city}
             </Form.Control.Feedback>
           </Form.Group>
@@ -195,7 +192,7 @@ const CreateUpdateAddressModal = ({
               onChange={(e) => setAddress(e.target.value)}
               isInvalid={!!errors.address}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" className="text-danger fw-bold">
               {errors.address}
             </Form.Control.Feedback>
           </Form.Group>
@@ -209,21 +206,21 @@ const CreateUpdateAddressModal = ({
               onChange={(e) => setPhone(e.target.value)}
               isInvalid={!!errors.phone}
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" className="text-danger fw-bold">
               {errors.phone}
             </Form.Control.Feedback>
           </Form.Group>
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            {t("createUpdateAddressDialog.close")}
-          </Button>
           <LoadingButton loading={loading} type="submit">
             {isUpdate
               ? t("createUpdateAddressDialog.update")
               : t("createUpdateAddressDialog.create")}
           </LoadingButton>
+          <Button variant="secondary" onClick={handleClose}>
+            {t("createUpdateAddressDialog.close")}
+          </Button>
         </Modal.Footer>
       </Form>
     </Modal>

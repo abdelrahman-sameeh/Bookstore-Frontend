@@ -5,3 +5,8 @@ export const cartsState = atom<Cart[]>({
   key: "loggedUserCarts",
   default: []
 })
+
+export const targetCartState = atom<Cart>({
+  key: "targetCartState",
+  default: {}
+})

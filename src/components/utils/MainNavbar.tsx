@@ -6,16 +6,17 @@ import LanguageSwitcher from "./LanguageSwitcher";
 import logo from "../../static/images/logo.png";
 import { useTranslation } from "react-i18next";
 import Icon from "./Icon";
-import { Link } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { Link, useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import { isLoginPageAtom } from "../../recoil/utils";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { Dropdown } from "react-bootstrap";
 
 function MainNavbarApp() {
   const { t } = useTranslation();
-  const [, setIsLoginPage] = useRecoilState(isLoginPageAtom);
+  const setIsLoginPage = useSetRecoilState(isLoginPageAtom);
   const { user } = useLoggedInUser();
+  const navigate = useNavigate();
 
   return (
     <Navbar style={{ zIndex: 10 }} expand="md" className="bg-body-tertiary">
@@ -59,18 +60,19 @@ function MainNavbarApp() {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <Link className="w-100 d-block" to={"/"}>
-                      Home{" "}
-                    </Link>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/");
+                    }}
+                  >
+                    Home{" "}
                   </Dropdown.Item>
-                  <Dropdown.Item>
-                    <Link
-                      className="w-100 d-block"
-                      to={"/dashboard/change-password"}
-                    >
-                      Dashboard{" "}
-                    </Link>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/dashboard/change-password");
+                    }}
+                  >
+                    Dashboard{" "}
                   </Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item
@@ -80,9 +82,7 @@ function MainNavbarApp() {
                       window.location.href = "/";
                     }}
                   >
-                    <Link to={"/"} className="w-100 d-block">
-                      Logout
-                    </Link>
+                    Logout
                   </Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>

@@ -62,6 +62,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "user/cart",
       icon: "mdi-light:cart",
     },
+    {
+      title: t("dashboard.user.links.orders"),
+      to: "user/orders",
+      icon: "icon-park-solid:transaction-order",
+    },
   ],
   owner: [
     {

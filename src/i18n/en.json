@@ -358,6 +358,26 @@
     "notAvailable": "Book not available"
   },
 
+  "createOrderDialog": {
+    "title": "Create New Order",
+    "selectAddress": "Select Address",
+    "selectAddressPlaceholder": "Choose your delivery address",
+    "paymentMethod": "Payment Method",
+    "onlinePayment": "Online Payment",
+    "offlinePayment": "Offline Payment (Cash on Delivery)",
+    "close": "Close",
+    "create": "Create Order",
+    "addNewAddress": "add new address",
+    "selectAddressRequired": "select address required",
+    "notify": {
+      "completeOrderAgain": "Please complete your order again.",
+      "orderCreatedSuccess": "Order created successfully!",
+      "redirectToPaymentPage": "Redirecting to payment page...",
+      "booksNotAvailable": "Some books are not available. Update the cart to proceed.",
+      "somethingWentWrong": "Something went wrong."
+    }
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
@@ -369,7 +389,8 @@
     "user": {
       "links": {
         "addresses": "addresses",
-        "cart": "cart"
+        "cart": "cart",
+        "orders": "orders"
       }
     },
     "owner": {

@@ -40,7 +40,6 @@ const UserAddresses = () => {
       {/* create update address modal */}
       <CreateUpdateAddressModal
         isUpdate={isUpdate}
-        setIsUpdate={setIsUpdate}
         setShow={setShowCreateUpdateDialog}
         show={showCreateUpdateDialog}
       />

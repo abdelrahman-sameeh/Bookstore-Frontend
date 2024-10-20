@@ -1,26 +1,22 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { useTranslation } from "react-i18next";
 import authAxios from "../../../../api/authAxios";
 import { ApiEndpoints } from "../../../../api/ApiEndpoints";
 import notify from "../../../utils/Notify";
 import LoadingButton from "../../../utils/LoadingButton";
-import { cartsState } from "../../../../recoil/cartsAtom";
-import { Cart } from "../../../../interfaces/interfaces";
+import { cartsState, targetCartState } from "../../../../recoil/cartsAtom";
 
 type DeleteCartProps = {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
-  cart: Cart
-  setCart: any
 };
 
-const DeleteCartDialog = ({ show, setShow, cart, setCart }: DeleteCartProps) => {
+const DeleteCartDialog = ({ show, setShow }: DeleteCartProps) => {
   const setCarts = useSetRecoilState(cartsState);
   const [loading, setLoading] = useState(false);
-
-
+  const [cart, setCart] = useRecoilState(targetCartState)
   const { t } = useTranslation();
 
   const handleClose = () => {
@@ -67,12 +63,12 @@ const DeleteCartDialog = ({ show, setShow, cart, setCart }: DeleteCartProps) => 
           {/* Confirmation message */}
         </Modal.Body>
         <Modal.Footer>
+          <LoadingButton type={'submit'} variant="error" loading={loading}>
+            {t("deleteCartDialog.delete")}
+          </LoadingButton>
           <Button variant="secondary" onClick={handleClose}>
             {t("deleteCartDialog.close")}
           </Button>
-          <LoadingButton variant="error" loading={loading}>
-            {t("deleteCartDialog.delete")}
-          </LoadingButton>
         </Modal.Footer>
       </Form>
     </Modal>

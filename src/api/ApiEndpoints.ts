@@ -23,8 +23,9 @@ export const ApiEndpoints = {
   listCreateAddresses: `${mainPath}/addresses`,
   retrieveUpdateDeleteAddress: (addressId: string) => `${mainPath}/address/${addressId}`,
   listCreateCart: `${mainPath}/cart`,
-  deleteBookFromCart: (cartId: string)=> `${mainPath}/cart/book/${cartId}`,
+  deleteBookFromCart: (bookId: string)=> `${mainPath}/cart/book/${bookId}`,
   deleteCart: `${mainPath}/cart`,
+  completeOrder: `${mainPath}/purchase`,
   
 
 

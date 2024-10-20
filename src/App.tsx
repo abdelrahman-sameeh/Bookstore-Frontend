@@ -20,6 +20,7 @@ import AdminBooks from "./pages/DashboardLayout/Admin/AdminBooks";
 import OwnerCoupons from "./pages/DashboardLayout/Owner/OwnerCoupons";
 import UserAddresses from "./pages/DashboardLayout/User/UserAddresses";
 import UserCart from "./pages/DashboardLayout/User/UserCart";
+import UserOrders from "./pages/DashboardLayout/User/UserOrders";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -65,6 +66,7 @@ const App: React.FC = () => {
             <Route path="user" element={<ProtectedRoutes allowto={["user"]} />}>
               <Route path="addresses" element={<UserAddresses />} />
               <Route path="cart" element={<UserCart />} />
+              <Route path="orders" element={<UserOrders />} />
             </Route>
           </Route>
         </Route>

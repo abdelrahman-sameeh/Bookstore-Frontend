@@ -1,5 +1,5 @@
-import { useRecoilState } from "recoil";
-import { cartsState } from "../../../recoil/cartsAtom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { cartsState, targetCartState } from "../../../recoil/cartsAtom";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
@@ -10,6 +10,7 @@ import notify from "../../../components/utils/Notify";
 import DeleteCartDialog from "../../../components/dashboard/user/cart/DeleteCartDialog";
 import { useTranslation } from "react-i18next";
 import Icon from "../../../components/utils/Icon";
+import CreateOrderDialog from "../../../components/dashboard/user/cart/CreateOrderDialog";
 
 type LoadingState = {
   [key: string]: boolean;
@@ -20,9 +21,10 @@ const UserCart = () => {
   const [carts, setCarts] = useRecoilState(cartsState);
   const [loading, setLoading] = useState<LoadingState>({});
   const [showDeleteCartDialog, setShowDeleteCartDialog] = useState(false);
-  const [targetCart, setTargetCart] = useState<Cart>({});
+  const setTargetCart = useSetRecoilState(targetCartState);
   const [decreaseCounts, setDecreaseCounts] = useState<CartBook[]>([]);
   const [increaseCounts, setIncreaseCounts] = useState<CartBook[]>([]);
+  const [showCreateOrderDialog, setShowCreateOrderDialog] = useState(false);
 
   useEffect(() => {
     const fetchCarts = async () => {
@@ -193,8 +195,10 @@ const UserCart = () => {
       <DeleteCartDialog
         show={showDeleteCartDialog}
         setShow={setShowDeleteCartDialog}
-        cart={targetCart}
-        setCart={setTargetCart}
+      />
+      <CreateOrderDialog
+        show={showCreateOrderDialog}
+        setShow={setShowCreateOrderDialog}
       />
       <Accordion defaultActiveKey="0">
         {carts.map((cart, index) => (
@@ -204,15 +208,20 @@ const UserCart = () => {
             key={cart._id}
           >
             <Accordion.Header>
+              <div className="d-flex align-items-center gap-1">
+              <span>#{index+1} -</span>
               {t("userCart.totalPrice", {
                 price: cart?.totalPrice?.toFixed(2),
               })}{" "}
-              {/* Use translation key */}
+              </div>
             </Accordion.Header>
             <Accordion.Body>
               <div className="d-flex mb-3 gap-1 flex-wrap">
                 <LoadingButton
-                  onClick={() => alert(t("userCart.proceedCheckout"))} // Use translation key
+                  onClick={() => {
+                    setTargetCart(cart);
+                    setShowCreateOrderDialog(true);
+                  }}
                 >
                   {t("userCart.createOrder")}
                 </LoadingButton>
@@ -286,7 +295,7 @@ const UserCart = () => {
                               {t("userCart.controls")}
                             </Accordion.Header>
                             <Accordion.Body className="main-theme">
-                            <form
+                              <form
                                 onSubmit={(e: FormEvent) => {
                                   e.preventDefault();
                                   handleRemove(cart, cartBook);
@@ -326,7 +335,7 @@ const UserCart = () => {
                                   </LoadingButton>
                                 </div>
                               </form>
-                              
+
                               {cartBook.book.status === "offline" &&
                               (cartBook?.book?.count as number) !==
                                 cartBook.count ? (

@@ -135,12 +135,25 @@ body a {
 
 /* reset */
 
+.modal .modal-footer{
+  justify-content: start;
+}
+
+.rtl input[type=radio] + label, 
+.rtl input[type=checkbox] + label{
+  margin-right: 23px;
+}
+
 .light-mode .text-warning {
   color: #c59400 !important;
 }
 
 .dark-mode .text-success {
   color: #22ba74 !important;
+}
+
+.dark-mode .text-danger {
+  color: #ff6791 !important;
 }
 
 .page {
@@ -421,10 +434,6 @@ section.home .hero .btn::before {
 .explore-books .filters.active {
   border-bottom: 5px solid var(--main-bg);
   height: 250px;
-}
-
-.rtl .explore-books .filters .form-check {
-  gap: 27px !important;
 }
 
 .explore-books .accordion-button:focus {
