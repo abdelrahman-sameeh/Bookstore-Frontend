@@ -219,8 +219,6 @@
     "somethingWentWrong": "Something went wrong"
   },
 
-
-
   "ownerCoupons": {
     "availableCoupons": "Available Coupons",
     "searchCoupons": "Search Coupons",
@@ -236,13 +234,11 @@
     "noCoupons": "No coupons available."
   },
 
-
   "couponComp": {
     "code": "Code",
     "discount": "Discount",
     "expiryDate": "Expiry Date"
   },
-
 
   "createUpdateCouponDialog": {
     "createTitle": "Create Coupon",
@@ -279,12 +275,11 @@
     "error": "Something went wrong while deleting the coupon"
   },
 
-  "userAddress":{
+  "userAddress": {
     "yourAddresses": "your addresses",
     "addAddress": "add new addresses",
     "noAddresses": "No addresses available"
   },
-
 
   "createUpdateAddressDialog": {
     "createTitle": "Create Address",
@@ -313,7 +308,6 @@
     "phone": "Phone",
     "notAvailable": "N/A"
   },
-
 
   "deleteAddressDialog": {
     "title": "Delete address",
@@ -369,13 +363,60 @@
     "create": "Create Order",
     "addNewAddress": "add new address",
     "selectAddressRequired": "select address required",
+    "updateCart": "update cart",
+    "couponPlaceholder": "Enter your coupon",
+    "couponLabel": "has coupon",
     "notify": {
       "completeOrderAgain": "Please complete your order again.",
       "orderCreatedSuccess": "Order created successfully!",
       "redirectToPaymentPage": "Redirecting to payment page...",
       "booksNotAvailable": "Some books are not available. Update the cart to proceed.",
-      "somethingWentWrong": "Something went wrong."
+      "somethingWentWrong": "Something went wrong.",
+      "invalidCoupon": "invalid coupon code"
     }
+  },
+
+  "userOrder": {
+    "title": "Your Orders",
+    "emptyOrders": "You have no orders.",
+    "noOrdersForStatus": "No orders for this status",
+    "selectAll": "Select cancelled orders",
+    "deselectAll": "Deselect cancelled orders",
+    "deleteAll": "delete cancelled"
+  },
+
+  "orderComp": {
+    "totalPrice": "Total Price",
+    "finalTotal": "Final Price: {{price}}",
+    "author": "Author",
+    "category": "Category",
+    "price": "Price",
+    "quantity": "Quantity",
+    "bookStatus": "Book Status",
+    "pending": "Pending",
+    "inProgress": "In Progress",
+    "inDelivery": "In Delivery",
+    "completed": "Completed",
+    "cancelled": "Cancelled",
+    "discount": "Discount",
+    "finalPrice": "Final Price",
+    "paymentType": "Payment Type",
+    "paymentStatus": "Payment Status",
+    "tax": "tax",
+    "paid": "paid",
+    "unpaid": "un paid",
+    "online": "online",
+    "offline": "offline",
+    "all": "All"
+  },
+
+  "deleteCancelledOrderDialog": {
+    "title": "Delete Cancelled Orders",
+    "confirm": "Are you sure you want to delete these orders?",
+    "close": "Close",
+    "delete": "Delete",
+    "success": "Orders deleted successfully!",
+    "error": "Failed to delete the orders. Please try again."
   },
 
   "___dashboard links": "_____",

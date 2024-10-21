@@ -5,7 +5,7 @@ import authAxios from "../../../api/authAxios";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
 import { Container, Row, Col, Card, Accordion } from "react-bootstrap";
 import LoadingButton from "../../../components/utils/LoadingButton";
-import { Cart, CartBook } from "../../../interfaces/interfaces";
+import { Cart, BookItem } from "../../../interfaces/interfaces";
 import notify from "../../../components/utils/Notify";
 import DeleteCartDialog from "../../../components/dashboard/user/cart/DeleteCartDialog";
 import { useTranslation } from "react-i18next";
@@ -22,8 +22,8 @@ const UserCart = () => {
   const [loading, setLoading] = useState<LoadingState>({});
   const [showDeleteCartDialog, setShowDeleteCartDialog] = useState(false);
   const setTargetCart = useSetRecoilState(targetCartState);
-  const [decreaseCounts, setDecreaseCounts] = useState<CartBook[]>([]);
-  const [increaseCounts, setIncreaseCounts] = useState<CartBook[]>([]);
+  const [decreaseCounts, setDecreaseCounts] = useState<BookItem[]>([]);
+  const [increaseCounts, setIncreaseCounts] = useState<BookItem[]>([]);
   const [showCreateOrderDialog, setShowCreateOrderDialog] = useState(false);
 
   useEffect(() => {
@@ -37,7 +37,7 @@ const UserCart = () => {
   // Utility function to handle count updates
   const updateCounts = (
     e: ChangeEvent<HTMLInputElement>,
-    cartBook: CartBook,
+    cartBook: BookItem,
     currentCounts: any[],
     setCounts: (counts: any[]) => void,
     maxCount: number
@@ -77,7 +77,7 @@ const UserCart = () => {
   // Handler for decreasing count
   const handleChangeDecreaseInput = (
     e: ChangeEvent<HTMLInputElement>,
-    cartBook: CartBook
+    cartBook: BookItem
   ) => {
     updateCounts(
       e,
@@ -91,7 +91,7 @@ const UserCart = () => {
   // Handler for increasing count
   const handleChangeIncreaseInput = (
     e: ChangeEvent<HTMLInputElement>,
-    cartBook: CartBook
+    cartBook: BookItem
   ) => {
     const bookCount = cartBook?.book?.count || 0;
     updateCounts(
@@ -103,7 +103,7 @@ const UserCart = () => {
     );
   };
 
-  const handleRemove = async (cart: Cart, cartBook: CartBook) => {
+  const handleRemove = async (cart: Cart, cartBook: BookItem) => {
     setLoading((prev) => ({
       ...prev,
       [(cartBook._id as string) + "decrease"]: true,
@@ -143,7 +143,7 @@ const UserCart = () => {
     }
   };
 
-  const handleAdd = async (cart: Cart, cartBook: CartBook) => {
+  const handleAdd = async (cart: Cart, cartBook: BookItem) => {
     const count =
       increaseCounts.find((book) => book._id === cartBook._id)?.count || 1;
 
@@ -209,10 +209,10 @@ const UserCart = () => {
           >
             <Accordion.Header>
               <div className="d-flex align-items-center gap-1">
-              <span>#{index+1} -</span>
-              {t("userCart.totalPrice", {
-                price: cart?.totalPrice?.toFixed(2),
-              })}{" "}
+                <span>#{index + 1} -</span>
+                {t("userCart.totalPrice", {
+                  price: cart?.totalPrice?.toFixed(2),
+                })}{" "}
               </div>
             </Accordion.Header>
             <Accordion.Body>

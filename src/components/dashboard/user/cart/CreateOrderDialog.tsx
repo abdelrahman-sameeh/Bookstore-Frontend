@@ -30,6 +30,8 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
   const [errors, setErrors] = useState<{ [key: string]: boolean }>({});
   const [hasOfflineBook, setHasOfflineBook] = useState(true);
   const [invalidBooks, setInvalidBooks] = useState<any>([]);
+  const [coupon, setCoupon] = useState("");
+  const [hasCoupon, setHasCoupon] = useState<"true" | "false">("false");
 
   useEffect(() => {
     const hasOfflineBook = cart?.books?.some(
@@ -53,7 +55,6 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
     setInvalidBooks([]);
   };
 
-
   const handleUpdateCart = async () => {
     for (const bookItem of invalidBooks) {
       if (bookItem?.count > bookItem?.book?.count) {
@@ -66,7 +67,7 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
             cartId: cart._id,
           }
         );
-  
+
         if (response.status === 200) {
           const updateCarts = carts.map((c) =>
             c._id === cart._id ? response?.data?.data?.cart : c
@@ -77,12 +78,11 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
         }
       }
     }
-  
+
     setInvalidBooks([]);
     notify(t("createOrderDialog.notify.completeOrderAgain"));
   };
-  
-  
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setErrors({});
@@ -93,20 +93,25 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
     if (!cart) {
       handleClose();
     }
-  
+
     const data: {
       paymentType: string;
       cartId: string;
       addressId?: string;
+      couponCode?: string;
     } = {
       paymentType: paymentMethod,
       cartId: cart._id as string,
     };
-  
+
     if (hasOfflineBook) {
       data.addressId = selectedAddress;
     }
-  
+
+    if (hasCoupon === "true" && coupon) {
+      data.couponCode = coupon;
+    }
+
     setLoading(true);
     const response = await authAxios(
       true,
@@ -115,29 +120,31 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
       data
     );
     setLoading(false);
-  
+
     if (response.status === 201) {
       notify(t("createOrderDialog.notify.orderCreatedSuccess"), "success");
       setShowCreateAddressDialog(false);
       setCarts((prev) => prev.filter((c) => c._id !== cart._id));
       setCart({});
     } else if (response.status === 200) {
-      notify(t("createOrderDialog.notify.redirectToPaymentPage"), "success", 2000);
+      notify(
+        t("createOrderDialog.notify.redirectToPaymentPage"),
+        "success",
+        2000
+      );
       setTimeout(() => {
         window.location.href = response?.data?.url;
       }, 2000);
     } else if (response?.data?.message == "these books not available") {
-      notify(
-        t("createOrderDialog.notify.booksNotAvailable"),
-        "error",
-        6000
-      );
+      notify(t("createOrderDialog.notify.booksNotAvailable"), "error", 6000);
       setInvalidBooks(response?.data?.books);
+    } else if (response?.data?.message == "invalid coupon code") {
+      notify(t("createOrderDialog.notify.invalidCoupon"), "error");
+      setErrors({ coupon: true });
     } else {
       notify(t("createOrderDialog.notify.somethingWentWrong"), "error");
     }
   };
-  
 
   return (
     <>
@@ -214,17 +221,51 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
                     {t("createOrderDialog.selectAddressRequired")}
                   </Form.Control.Feedback>
                 </Form.Group>
-
-                <LoadingButton
-                  onClick={() => {
-                    setShowCreateAddressDialog(true);
-                  }}
-                  title={t("createOrderDialog.addNewAddress")}
-                  className="w-fit mt-1"
-                >
-                  {t('createOrderDialog.addNewAddress')}
-                </LoadingButton>
               </>
+            ) : null}
+
+            <LoadingButton
+              onClick={() => {
+                setShowCreateAddressDialog(true);
+              }}
+              type={"button"}
+              title={t("createOrderDialog.addNewAddress")}
+              className="w-fit mt-1"
+            >
+              {t("createOrderDialog.addNewAddress")}
+            </LoadingButton>
+
+            <Form.Check
+              className="d-flex justify-content-start align-items-center gap-1 mt-1 "
+              id="coupon"
+              label={t("createOrderDialog.couponLabel")}
+              name="hasCoupon"
+              checked={hasCoupon === "true"}
+              onChange={() => {
+                setHasCoupon((prev) => (prev === "true" ? "false" : "true"));
+              }}
+            />
+
+            {hasCoupon === "true" ? (
+              <Form.Group>
+                <Form.Control
+                  type={"text"}
+                  className="w-100 mt-1"
+                  placeholder={t("createOrderDialog.couponPlaceholder")}
+                  value={coupon}
+                  onChange={(e) => {
+                    setCoupon(e.target.value);
+                    errors["coupon"] && delete errors["coupon"];
+                  }}
+                  isInvalid={errors?.coupon}
+                />
+                <Form.Control.Feedback
+                  className="fw-bold text-danger"
+                  type="invalid"
+                >
+                  {t("createOrderDialog.notify.invalidCoupon")}
+                </Form.Control.Feedback>
+              </Form.Group>
             ) : null}
           </Modal.Body>
           <Modal.Footer>
@@ -237,11 +278,10 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
           </Modal.Footer>
         </Form>
         {invalidBooks.length ? (
-          <>
-            <LoadingButton onClick={handleUpdateCart}>
-              update cart
-            </LoadingButton>
-          </>
+          <LoadingButton onClick={handleUpdateCart}>
+            {" "}
+            {t("createOrderDialog.updateCart")}
+          </LoadingButton>
         ) : null}
       </Modal>
 

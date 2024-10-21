@@ -59,7 +59,7 @@ export interface Address {
   phone?: string;
 }
 
-export interface CartBook {
+export interface BookItem {
   book: Book;
   count: number;
   _id?: string;
@@ -68,10 +68,25 @@ export interface CartBook {
 export interface Cart {
   _id?: string;
   user?: string;
-  books?: CartBook[];
+  books?: BookItem[];
   totalItems?: number;
   totalPrice?: number;
   ownerId?: string;
   createdAt?: string;
   updatedAt?: string;
+}
+
+export interface Order {
+  _id?: string;
+  user?: string;
+  address?: string;
+  books?: BookItem[];
+  totalItems?: number;
+  totalPrice?: number;
+  discount?: number;
+  finalPrice?: number;
+  status?: string;
+  paymentType?: string;
+  paymentStatus?: string;
+  qrcode?: string;
 }

@@ -26,7 +26,8 @@ export const ApiEndpoints = {
   deleteBookFromCart: (bookId: string)=> `${mainPath}/cart/book/${bookId}`,
   deleteCart: `${mainPath}/cart`,
   completeOrder: `${mainPath}/purchase`,
-  
+  getDeleteOrders: `${mainPath}/orders`,
+  cancelOrder: (id: string) => `${mainPath}/orders/${id}`,
 
 
 

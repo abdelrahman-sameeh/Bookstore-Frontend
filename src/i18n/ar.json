@@ -365,13 +365,61 @@
     "create": "إنشاء الطلب",
     "addNewAddress": "اضافة عنوان جديد",
     "selectAddressRequired": "الحقل مطلوب",
+    "updateCart": "تحديث السلة",
+    "couponPlaceholder": "ادخل الكوبون",
+    "couponLabel": "كوبون",
     "notify": {
       "completeOrderAgain": "يرجى إكمال طلبك مرة أخرى.",
       "orderCreatedSuccess": "تم إنشاء الطلب بنجاح!",
       "redirectToPaymentPage": "يتم التوجيه إلى صفحة الدفع...",
-      "booksNotAvailable": "بعض الكتب غير متاحة. قم بتحديث العربة للمتابعة.",
-      "somethingWentWrong": "حدث خطأ ما."
+      "booksNotAvailable": "بعض الكتب غير متاحة. قم بتحديث السلة للمتابعة.",
+      "somethingWentWrong": "حدث خطأ ما.",
+      "invalidCoupon": "الكوبون غير صحيحة"
     }
+  },
+
+  "userOrder": {
+    "title": "طلباتك",
+    "emptyOrders": "ليس لديك طلبات.",
+    "noOrdersForStatus": "لا توجد طلبات لهذه الحالة",
+    "selectAll": "تحديد الطلبات الملغيه",
+    "deselectAll": "حذف تحديد الطلبات الملغيه",
+    "deleteAll": "حذف الطلبات الملغيه"
+  },
+
+  "orderComp": {
+    "totalPrice": "السعر الكلي",
+    "finalTotal": "السعر النهائي :{{price}}",
+    "author": "المؤلف",
+    "category": "الفئة",
+    "price": "السعر",
+    "quantity": "الكمية",
+    "bookStatus": "حالة الكتاب",
+    "pending": "معلق",
+    "inProgress": "قيد التنفيذ",
+    "inDelivery": "قيد التوصيل",
+    "completed": "مكتمل",
+    "cancelled": "ملغى",
+    "coupon": "كود القسيمة",
+    "discount": "الخصم",
+    "finalPrice": "السعر النهائي",
+    "paymentType": "نوع الدفع",
+    "paymentStatus": "حالة الدفع",
+    "tax": "الضريبة",
+    "paid": "تم الدفع",
+    "unpaid": "لم يتم الدفع",
+    "online": "الدفع عبر الانترنت",
+    "offline": "الدفع عند الاستلام",
+    "all": "الكل"
+  },
+
+  "deleteCancelledOrderDialog": {
+    "title": "حذف الطلبات الملغاة",
+    "confirm": "هل أنت متأكد أنك تريد حذف هذه الطلبات؟",
+    "close": "إغلاق",
+    "delete": "حذف",
+    "success": "تم حذف الطلبات بنجاح!",
+    "error": "فشل في حذف الطلبات. يرجى المحاولة مرة أخرى."
   },
 
   "___dashboard links": "_____",
