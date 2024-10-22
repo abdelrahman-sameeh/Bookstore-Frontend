@@ -1,4 +1,3 @@
-
 export interface Owner {
   name: string;
 }
@@ -32,7 +31,7 @@ export interface PaginationData {
   total?: number;
 }
 
-export type UserRolesType  = 'owner' | 'user' | 'admin' | 'delivery'
+export type UserRolesType = "owner" | "user" | "admin" | "delivery";
 
 export interface UserInterface {
   _id?: any;
@@ -44,7 +43,7 @@ export interface UserInterface {
   completedBoarding?: any;
 }
 
-export interface Coupon{
+export interface Coupon {
   _id?: string;
   code?: string;
   discount?: string;
@@ -89,4 +88,11 @@ export interface Order {
   paymentType?: string;
   paymentStatus?: string;
   qrcode?: string;
+}
+
+export interface Delivery {
+  _id?: string;
+  user?: UserInterface;
+  pendingOrders?: Order[];
+  deliveredOrders?: Order[];
 }

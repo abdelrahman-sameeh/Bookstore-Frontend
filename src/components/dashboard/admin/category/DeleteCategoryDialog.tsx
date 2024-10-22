@@ -1,13 +1,16 @@
 import { Dispatch, SetStateAction, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import LoadingButton from "../../utils/LoadingButton";
+import LoadingButton from "../../../utils/LoadingButton";
 import { useTranslation } from "react-i18next"; // Importing useTranslation
 import { useRecoilState } from "recoil";
-import { categoriesState, categoryState } from "../../../recoil/categoriesAtom";
-import authAxios from "../../../api/authAxios";
-import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import notify from "../../utils/Notify";
+import {
+  categoriesState,
+  categoryState,
+} from "../../../../recoil/categoriesAtom";
+import authAxios from "../../../../api/authAxios";
+import { ApiEndpoints } from "../../../../api/ApiEndpoints";
+import notify from "../../../utils/Notify";
 
 type DeleteCategoryDialogTypes = {
   showDeleteDialog: boolean;

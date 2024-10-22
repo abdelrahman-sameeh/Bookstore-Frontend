@@ -135,12 +135,26 @@ body a {
 
 /* reset */
 
-.modal .modal-footer{
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
+.light-mode input[type="checkbox"],
+.light-mode input[type="radio"] {
+  border: 2px solid var(--main-text) !important;
+}
+
+.light-mode input[type="radio"]{
+  border-radius: 50% !important;
+}
+
+.modal .modal-footer {
   justify-content: start;
 }
 
-.rtl input[type=radio] + label, 
-.rtl input[type=checkbox] + label{
+.rtl input[type="radio"] + label,
+.rtl input[type="checkbox"] + label {
   margin-right: 23px;
 }
 
@@ -403,6 +417,7 @@ section.home .hero .btn::before {
 }
 
 /* dashboard layout */
+
 .dashboard-layout span.arrow {
   display: none;
 }
@@ -411,11 +426,17 @@ section.home .hero .btn::before {
   height: 87.9vh;
 }
 
-.sidebar .nav-link.active {
-  border-right: 5px solid var(--main-text);
-  border-top: 1px solid var(--main-text);
-  border-bottom: 1px solid var(--main-text);
+.dark-mode .nav-link.active{
+  background: #304451;
+} 
+.light-mode .nav-link.active{
+  background: #e3e3e3;
+}  
+.rtl .sidebar .nav-link.active {
   border-left: 5px solid var(--main-text);
+}
+.ltr .sidebar .nav-link.active {
+  border-right: 5px solid var(--main-text);
 }
 
 /* explore books page */
@@ -490,6 +511,17 @@ section.home .hero .btn::before {
   }
   .dashboard-layout span.arrow.show {
     left: 250px;
+    z-index: 11;
+  }
+
+  .overlay.show {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10;
   }
 
   .dashboard-layout .sidebar {

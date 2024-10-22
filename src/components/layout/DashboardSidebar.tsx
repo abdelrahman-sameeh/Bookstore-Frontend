@@ -40,6 +40,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "admin/books",
       icon: "bi:book",
     },
+    {
+      title: t("dashboard.admin.links.manageOrders"),
+      to: "admin/orders",
+      icon: "icon-park-solid:transaction-order",
+    },
   ],
   user: [
     {
@@ -114,6 +119,8 @@ const DashboardSidebar = () => {
     "mdi:arrow-right" | "mdi:arrow-left"
   >("mdi:arrow-right");
   const iconRef = useRef<HTMLSpanElement>(null);
+  const sidebarRef = useRef<HTMLElement>(null);
+  const overlayRef = useRef<HTMLElement>(null);
   const lang = useRecoilValue(languageState);
   const { user } = useLoggedInUser();
 
@@ -127,11 +134,20 @@ const DashboardSidebar = () => {
     const userLinks = getUserLinks(t)[user.role as Role];
 
     return (
-      <ul className="nav flex-column">
+      <ul className="nav flex-column p-0">
         {userLinks.map((link, index) => (
           <NavLink
             className="nav-link text-capitalize d-flex gap-1 align-items-center"
             to={link.to}
+            onClick={() => {
+              iconRef.current?.classList.remove("show");
+              sidebarRef.current?.classList.remove("show");
+              setIconName((prevIcon: string) =>
+                prevIcon === "mdi:arrow-right"
+                  ? "mdi:arrow-left"
+                  : "mdi:arrow-right"
+              );
+            }}
             key={link.title + link.to + index}
           >
             <Icon className="fs-4" icon={link.icon} />
@@ -148,25 +164,44 @@ const DashboardSidebar = () => {
     } else {
       setIconName("mdi:arrow-right");
     }
+    iconRef.current?.classList.remove("show");
+    sidebarRef.current?.classList.remove("show");
   }, [lang]);
 
   const handleClick = () => {
     iconRef.current?.classList.toggle("show");
+    sidebarRef.current?.classList.toggle("show");
     setIconName((prevIcon: string) =>
       prevIcon === "mdi:arrow-right" ? "mdi:arrow-left" : "mdi:arrow-right"
     );
   };
 
-  const isShowClass =
-    (lang === "ar" && iconName === "mdi:arrow-right") ||
-    (lang === "en" && iconName === "mdi:arrow-left");
-
   return (
     <>
+      {sidebarRef.current?.classList.contains("show") && (
+        <div
+          onClick={() => {
+            overlayRef.current?.classList.remove("show");
+            iconRef.current?.classList.remove("show");
+            sidebarRef.current?.classList.remove("show");
+            setIconName((prevIcon: string) =>
+              prevIcon === "mdi:arrow-right"
+                ? "mdi:arrow-left"
+                : "mdi:arrow-right"
+            );
+          }}
+          className="overlay show"
+        ></div>
+      )}
+
       <span ref={iconRef} onClick={handleClick} className="arrow w-fit alt-btn">
         <Icon icon={iconName}></Icon>
       </span>
-      <Col lg={3} className={`position-fixed alt-bg p-3 sidebar ${isShowClass ? "show" : ""}`}>
+      <Col
+        ref={sidebarRef}
+        lg={3}
+        className={`position-fixed alt-bg p-3 sidebar`}
+      >
         <h4>Sidebar</h4>
         {renderUserLinks()}
       </Col>

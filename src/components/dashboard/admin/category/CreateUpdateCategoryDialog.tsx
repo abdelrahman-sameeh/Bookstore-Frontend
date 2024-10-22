@@ -6,14 +6,17 @@ import {
   useState,
 } from "react";
 import { Button, Modal } from "react-bootstrap";
-import LoadingButton from "../../utils/LoadingButton";
+import LoadingButton from "../../../utils/LoadingButton";
 import { useTranslation } from "react-i18next";
-import authAxios from "../../../api/authAxios";
-import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import notify from "../../utils/Notify";
-import InputError from "../../utils/InputError";
+import authAxios from "../../../../api/authAxios";
+import { ApiEndpoints } from "../../../../api/ApiEndpoints";
+import notify from "../../../utils/Notify";
+import InputError from "../../../utils/InputError";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { categoriesState, categoryState } from "../../../recoil/categoriesAtom";
+import {
+  categoriesState,
+  categoryState,
+} from "../../../../recoil/categoriesAtom";
 
 type CreateUpdateCategoryDialogProps = {
   showCreateUpdateDialog: boolean;

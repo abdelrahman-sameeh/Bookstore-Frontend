@@ -7,8 +7,8 @@ import { categoriesState, categoryState } from "../../../recoil/categoriesAtom";
 import { Spinner, Card, Button, Row, Col } from "react-bootstrap"; // استيراد مكونات React Bootstrap
 import { Category } from "../../../interfaces/interfaces";
 import Icon from "../../../components/utils/Icon";
-import DeleteCategoryDialog from "../../../components/dashboard/admin/DeleteCategoryDialog";
-import CreateUpdateCategoryDialog from "../../../components/dashboard/admin/CreateUpdateCategoryDialog";
+import DeleteCategoryDialog from "../../../components/dashboard/admin/category/DeleteCategoryDialog";
+import CreateUpdateCategoryDialog from "../../../components/dashboard/admin/category/CreateUpdateCategoryDialog";
 import { useTranslation } from "react-i18next";
 
 const Categories = () => {

@@ -40,23 +40,23 @@ function MainNavbarApp() {
         </Navbar.Toggle>
 
         <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-          <Nav>
+          <Nav className="border-top border-start border-bottom">
             <ThemeToggle />
             <LanguageSwitcher />
             {user && user?._id ? (
               <Dropdown>
                 <Dropdown.Toggle
                   id="user-menu"
-                  className="d-flex btn main-btn w-100 justify-content-center align-items-center border"
+                  className="border-0 d-flex border-end w-100 justify-content-center align-items-center border"
                 >
                   <div
-                    className="user-avatar rounded-circle d-flex align-items-center justify-content-center me-2"
-                    style={{ width: "40px", height: "40px" }}
+                    className="user-avatar main-text d-flex align-items-center justify-content-center me-2"
+                    style={{ width: "30px", height: "30px", fontSize: "14px" }}
                   >
                     {user?.name[0]}
                     {user?.name?.split(" ")[1]?.[0]}
                   </div>
-                  <span>{user?.name?.split(" ")[0]}</span>
+                  <span className="main-text">{user?.name?.split(" ")[0]}</span>
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>

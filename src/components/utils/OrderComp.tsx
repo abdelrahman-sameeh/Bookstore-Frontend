@@ -169,7 +169,7 @@ const OrderComp = ({ order, index }: { order: Order; index: number}) => {
                     {orderBook?.book?.author}
                     <br />
                     <strong>{t("orderComp.category")}:</strong>{" "}
-                    {orderBook?.book?.category.name}
+                    {orderBook?.book?.category?.name}
                     <br />
                     <strong>{t("orderComp.price")}:</strong>{" "}
                     {orderBook?.book?.price?.toFixed(2)} $

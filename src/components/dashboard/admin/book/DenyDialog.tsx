@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction, useState, FormEvent } from "react";
 import { Button, Modal } from "react-bootstrap";
-import { Book } from "../../../interfaces/interfaces";
-import LoadingButton from "../../utils/LoadingButton";
-import InputError from "../../utils/InputError";
-import authAxios from "../../../api/authAxios";
-import { ApiEndpoints } from "../../../api/ApiEndpoints";
-import notify from "../../utils/Notify";
 import { useTranslation } from "react-i18next";
+import { Book } from "../../../../interfaces/interfaces";
+import authAxios from "../../../../api/authAxios";
+import { ApiEndpoints } from "../../../../api/ApiEndpoints";
+import notify from "../../../utils/Notify";
+import InputError from "../../../utils/InputError";
+import LoadingButton from "../../../utils/LoadingButton";
 
 const DenyDialog = ({
   showDenyDialog,

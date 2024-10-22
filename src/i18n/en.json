@@ -103,7 +103,8 @@
     "updateBook": "update book",
     "addToCartSuccessfully": "added to cart successfully",
     "addToCartFailed": "failed to add to cart",
-    "addToCartFailedOutOfRange": "The book cannot be added to the cart because the requested quantity is not available."
+    "addToCartFailedOutOfRange": "The book cannot be added to the cart because the requested quantity is not available.",
+    "alreadyHaveBook": "can't add this book, you already have this book in your library"
   },
   "deleteBookDialog": {
     "title": "Delete Book",
@@ -380,9 +381,11 @@
     "title": "Your Orders",
     "emptyOrders": "You have no orders.",
     "noOrdersForStatus": "No orders for this status",
-    "selectAll": "Select cancelled orders",
-    "deselectAll": "Deselect cancelled orders",
-    "deleteAll": "delete cancelled"
+    "selectAll": "Select cancelled or completed orders",
+    "deselectAll": "Deselect cancelled or completed orders",
+    "deleteAll": "delete",
+    "selectCancelled": "Select Cancelled Orders",
+    "selectCompleted": "Select Completed Orders"
   },
 
   "orderComp": {
@@ -410,13 +413,31 @@
     "all": "All"
   },
 
+  "adminOrder": {
+    "noOrdersForStatus": "No orders found for this status.",
+    "resultsPerPage": "Results per page",
+    "selectAllInProgress": "Select all in progress",
+    "deselectAllInProgress": "Deselect all in progress",
+    "makeOrdersInDelivery": "Make orders in delivery status"
+  },
+
   "deleteCancelledOrderDialog": {
-    "title": "Delete Cancelled Orders",
+    "title": "Delete Cancelled or completed Orders",
     "confirm": "Are you sure you want to delete these orders?",
     "close": "Close",
     "delete": "Delete",
     "success": "Orders deleted successfully!",
     "error": "Failed to delete the orders. Please try again."
+  },
+
+  "makeOrdersInDelivery": {
+    "title": "Make orders in delivery status",
+    "submit": "Submit",
+    "close": "Close",
+    "selectDeliveryOption": "Select delivery person",
+    "selectDeliveryError": "Please select a delivery option.",
+        "updateSuccess": "The status has been updated successfully.",
+    "errorOccurred": "An error occurred."
   },
 
   "___dashboard links": "_____",
@@ -444,7 +465,8 @@
     "admin": {
       "links": {
         "categories": "categories",
-        "manageBooks": "manage books"
+        "manageBooks": "manage books",
+        "manageOrders": "manage orders"
       }
     }
   }

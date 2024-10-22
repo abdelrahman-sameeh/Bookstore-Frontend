@@ -1,6 +1,6 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { useRecoilState} from "recoil";
+import { useRecoilState } from "recoil";
 import { useTranslation } from "react-i18next";
 import authAxios from "../../../../api/authAxios";
 import { ApiEndpoints } from "../../../../api/ApiEndpoints";
@@ -34,18 +34,20 @@ const DeleteCancelledOrders = ({
     setLoading(true);
     const response = await authAxios(
       true,
-      ApiEndpoints.getDeleteOrders,
+      ApiEndpoints.getDeleteUserOrders,
       "DELETE",
       {
-        orders: cancelledOrders
+        orders: cancelledOrders,
       }
     );
     setLoading(false);
     if (response.status === 200) {
       notify(t("deleteCancelledOrderDialog.success"));
-      const updateOrders = orders.filter(or=>!cancelledOrders.includes(or._id))
-      setOrders(updateOrders)
-      setCancelledOrders([])
+      const updateOrders = orders.filter(
+        (or) => !cancelledOrders.includes(or._id)
+      );
+      setOrders(updateOrders);
+      setCancelledOrders([]);
       handleClose();
     } else {
       notify(t("deleteCancelledOrderDialog.error"), "error");

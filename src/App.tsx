@@ -21,6 +21,7 @@ import OwnerCoupons from "./pages/DashboardLayout/Owner/OwnerCoupons";
 import UserAddresses from "./pages/DashboardLayout/User/UserAddresses";
 import UserCart from "./pages/DashboardLayout/User/UserCart";
 import UserOrders from "./pages/DashboardLayout/User/UserOrders";
+import AdminOrders from "./pages/DashboardLayout/Admin/AdminOrders";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -52,6 +53,7 @@ const App: React.FC = () => {
             >
               <Route path="categories" element={<Categories />} />
               <Route path="books" element={<AdminBooks />} />
+              <Route path="orders" element={<AdminOrders />} />
             </Route>
             {/* owner routes */}
             <Route

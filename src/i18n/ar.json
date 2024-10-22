@@ -102,7 +102,8 @@
     "updateBook": "تعديل الكتاب",
     "addToCartSuccessfully": "تمت الاضافة للسلة بنجاح",
     "addToCartFailed": "حدث خطأ اثناء الاضافة للسلة",
-    "addToCartFailedOutOfRange": "لا يمكن إضافة الكتاب إلى السلة، لأن العدد المطلوب غير متوفر."
+    "addToCartFailedOutOfRange": "لا يمكن إضافة الكتاب إلى السلة، لأن العدد المطلوب غير متوفر.",
+    "alreadyHaveBook": "لا يمكن إضافة هذا الكتاب، لديك هذا الكتاب بالفعل في مكتبتك"
   },
 
   "deleteBookDialog": {
@@ -382,9 +383,11 @@
     "title": "طلباتك",
     "emptyOrders": "ليس لديك طلبات.",
     "noOrdersForStatus": "لا توجد طلبات لهذه الحالة",
-    "selectAll": "تحديد الطلبات الملغيه",
-    "deselectAll": "حذف تحديد الطلبات الملغيه",
-    "deleteAll": "حذف الطلبات الملغيه"
+    "selectAll": "تحديد الطلبات المكتملة والملغية",
+    "deselectAll": "حذف تحديد الطلبات المكتملة والملغيه",
+    "deleteAll": "حذف الطلبات المكتملة والملغيه",
+    "selectCancelled": "تحديد الطلبات الملغاة",
+    "selectCompleted": "تحديد الطلبات المكتملة"
   },
 
   "orderComp": {
@@ -422,6 +425,24 @@
     "error": "فشل في حذف الطلبات. يرجى المحاولة مرة أخرى."
   },
 
+  "adminOrder": {
+    "noOrdersForStatus": "لا توجد طلبات لهذه الحالة.",
+    "resultsPerPage": "النتائج في الصفحة",
+    "selectAllInProgress": "تحديد كل الطلبات الجارية",
+    "deselectAllInProgress": "الغاء تحديد كل الطلبات الجارية",
+    "makeOrdersInDelivery": "تغيير حالة الطلبات إلى جاري التوصيل"
+  },
+
+  "makeOrdersInDelivery": {
+    "title": "تغيير حالة الطلبات إلى قيد التوصيل",
+    "submit": "ارسال",
+    "close": "إغلاق",
+    "selectDeliveryOption": "اختر رجل التوصيل",
+    "selectDeliveryError": "يرجى اختيار خيار التوصيل.",
+        "updateSuccess": "تم تحديث الحالة بنجاح.",
+    "errorOccurred": "حدث خطأ."
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "shared": {
@@ -447,7 +468,8 @@
     "admin": {
       "links": {
         "categories": "الفئات",
-        "manageBooks": "ادارة الكتب"
+        "manageBooks": "ادارة الكتب",
+        "manageOrders": "ادارة الطلبات"
       }
     }
   }

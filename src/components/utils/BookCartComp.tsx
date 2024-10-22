@@ -9,7 +9,7 @@ import { useState } from "react";
 import authAxios from "../../api/authAxios";
 import { ApiEndpoints } from "../../api/ApiEndpoints";
 import notify from "./Notify";
-import DenyDialog from "../dashboard/admin/DenyDialog";
+import DenyDialog from "../dashboard/admin/book/DenyDialog";
 
 type BookCartType = {
   book: Book;
@@ -70,6 +70,8 @@ const BookCartComp = ({
       notify(t("exploreBooks.addToCartSuccessfully"));
     } else if (response?.data?.message === "book count is not available") {
       notify(t("exploreBooks.addToCartFailedOutOfRange"), "error");
+    } else if (response?.data?.message === "you already have this book in your library") {
+      notify(t("exploreBooks.alreadyHaveBook"), 'warn');
     } else {
       notify(t("exploreBooks.addToCartFailed"), "error");
     }
@@ -79,7 +81,7 @@ const BookCartComp = ({
     <div className="book-card position-relative border">
       {user.role === "admin" ? (
         <>
-          <div className="d-flex w-100 bg-light p-1 gap-1">
+          <div className="d-flex w-100 main-bg p-1 gap-1">
             <LoadingButton
               loading={loadings.includes(book._id as string)}
               onClick={handleApprovedBook}

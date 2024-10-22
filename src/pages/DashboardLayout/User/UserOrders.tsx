@@ -17,7 +17,7 @@ import OrderComp from "../../../components/utils/OrderComp";
 import Icon from "../../../components/utils/Icon";
 import DeleteCancelledOrders from "../../../components/dashboard/user/orders/DeleteCancelledOrders";
 
-const statuses = [
+export const statuses = [
   "all",
   "pending",
   "inProgress",
@@ -37,7 +37,7 @@ const UserOrders = () => {
 
   useEffect(() => {
     const fetchOrders = async () => {
-      const response = await authAxios(true, ApiEndpoints.getDeleteOrders);
+      const response = await authAxios(true, ApiEndpoints.getDeleteUserOrders);
       setOrders(response?.data?.data?.orders || []); // Handle empty data
     };
     fetchOrders();
@@ -51,11 +51,10 @@ const UserOrders = () => {
 
   // Handle selection of cancelled orders
   const handleCheck = (orderId: any) => {
-    setCheckedOrders(
-      (prevCheckedOrders: any) =>
-        prevCheckedOrders.includes(orderId)
-          ? prevCheckedOrders.filter((id: any) => id !== orderId) // Remove order if unchecked
-          : [...prevCheckedOrders, orderId] 
+    setCheckedOrders((prevCheckedOrders: any) =>
+      prevCheckedOrders.includes(orderId)
+        ? prevCheckedOrders.filter((id: any) => id !== orderId) // Remove order if unchecked
+        : [...prevCheckedOrders, orderId]
     );
   };
 
@@ -64,7 +63,9 @@ const UserOrders = () => {
     setSelectAll((prevSelectAll) => !prevSelectAll);
     if (!selectAll) {
       const allCancelledOrders = filteredOrders
-        .filter((order) => order.status === "cancelled")
+        .filter((order) =>
+          ["cancelled", "completed"].includes(order.status as string)
+        )
         .map((order) => order._id);
       setCheckedOrders(allCancelledOrders);
     } else {
@@ -114,9 +115,9 @@ const UserOrders = () => {
           <Col xs={1} sm={1} lg={1} className="p-0 w-fit">
             <Form.Check
               className="mt-2"
-              style={{
-                visibility: order.status === "cancelled" ? "visible" : "hidden",
-              }}
+              disabled={
+                !["cancelled", "completed"].includes(order.status as string)
+              }
               type="checkbox"
               onChange={() => handleCheck(order._id)}
               checked={checkedOrders.includes(order._id)}
@@ -132,40 +133,80 @@ const UserOrders = () => {
 
   return (
     <Container className="mt-3">
-      <h2 className="text-center mb-3">{t("userOrder.title")}</h2>
+      <div className="d-flex gap-5">
+        <h2 className="text-center mb-3">{t("userOrder.title")}</h2>
+        <div>
+          {(() => {
+            // Check if there is at least one cancelled or completed order
+            const hasOneCancelledOrCompletedOrder = orders.some((or) =>
+              ["cancelled", "completed"].includes(or.status as string)
+            );
 
-      {/* its good or not and if have another solution good modified it */}
-      {(() => {
-        const hasOneCancelledOrder = orders.some(
-          (or) => or.status === "cancelled"
-        );
-        return (
-          <>
-            {hasOneCancelledOrder && (
-              <Button
-                variant="outline-warning"
-                className="mb-3"
-                onClick={handleSelectAll}
-              >
-                {selectAll && checkedOrders.length
-                  ? t("userOrder.deselectAll")
-                  : t("userOrder.selectAll")}
-              </Button>
-            )}
-          </>
-        );
-      })()}
+            // Check if there is at least one cancelled order
+            const hasOneCancelledOrder = orders.some(
+              (or) => or.status === "cancelled"
+            );
 
-      {checkedOrders.length > 0 && (
-        <Button
-          variant="outline-danger"
-          className="mb-3"
-          onClick={handleDeleteChecked}
-          title={t("userOrder.deleteAll")}
-        >
-          <Icon className="fs-5" icon="ph:trash" />
-        </Button>
-      )}
+            // Check if there is at least one completed order
+            const hasOneCompletedOrder = orders.some(
+              (or) => or.status === "completed"
+            );
+
+            return (
+              <>
+                {/* Show the button based on the filteredStatus */}
+                {filteredStatus === "all" &&
+                  hasOneCancelledOrCompletedOrder && (
+                    <Button
+                      variant="outline-warning"
+                      className="mb-3"
+                      onClick={handleSelectAll}
+                    >
+                      {selectAll && checkedOrders.length
+                        ? t("userOrder.deselectAll")
+                        : t("userOrder.selectAll")}
+                    </Button>
+                  )}
+
+                {/* Additional conditions for specific status */}
+                {filteredStatus === "cancelled" && hasOneCancelledOrder && (
+                  <Button
+                    variant="outline-warning"
+                    className="mb-3"
+                    onClick={handleSelectAll}
+                  >
+                    {selectAll && checkedOrders.length
+                      ? t("userOrder.deselectAll")
+                      : t("userOrder.selectCancelled")}
+                  </Button>
+                )}
+
+                {filteredStatus === "completed" && hasOneCompletedOrder && (
+                  <Button
+                    variant="outline-warning"
+                    className="mb-3"
+                    onClick={handleSelectAll}
+                  >
+                    {selectAll && checkedOrders.length
+                      ? t("userOrder.deselectAll")
+                      : t("userOrder.selectCompleted")}
+                  </Button>
+                )}
+              </>
+            );
+          })()}
+          {checkedOrders.length > 0 && (
+            <Button
+              variant="outline-danger"
+              className="mb-3"
+              onClick={handleDeleteChecked}
+              title={t("userOrder.deleteAll")}
+            >
+              <Icon className="fs-5" icon="ph:trash" />
+            </Button>
+          )}
+        </div>
+      </div>
 
       {checkedOrders.length > 0 && (
         <DeleteCancelledOrders
