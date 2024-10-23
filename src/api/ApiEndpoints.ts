@@ -31,5 +31,7 @@ export const ApiEndpoints = {
   getDeleteAdminOrders: (queryString: string = '') => `${mainPath}/admin/orders${queryString}`,
   getDeliveries: `${mainPath}/deliveries`,
   makeOrdersInDelivery: `${mainPath}/updateOrderStatus`,
+  makeOrdersCompleted: `${mainPath}/makeOrdersCompleted`,
+  getDeliveryOrders: (queryString: string = '') =>`${mainPath}/delivery/orders${queryString}`
 
 }

@@ -15,6 +15,7 @@ import { ApiEndpoints } from "../../../../api/ApiEndpoints";
 import { addressesState } from "../../../../recoil/addressesAtom";
 import CreateUpdateAddressModal from "../address/CreateUpdateAddressModal";
 import notify from "../../../utils/Notify";
+import InputError from "../../../utils/InputError";
 
 type CompProps = { show: boolean; setShow: Dispatch<SetStateAction<boolean>> };
 
@@ -92,6 +93,11 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
     }
     if (!cart) {
       handleClose();
+    }
+
+    if (hasCoupon == "true" && !coupon) {
+      setErrors((prev) => ({ ...prev, coupon: true }));
+      return;
     }
 
     const data: {
@@ -259,12 +265,11 @@ const CreateOrderDialog = ({ show, setShow }: CompProps) => {
                   }}
                   isInvalid={errors?.coupon}
                 />
-                <Form.Control.Feedback
-                  className="fw-bold text-danger"
-                  type="invalid"
-                >
-                  {t("createOrderDialog.notify.invalidCoupon")}
-                </Form.Control.Feedback>
+                {errors?.coupon ? (
+                  <InputError
+                    message={t("createOrderDialog.notify.invalidCoupon")}
+                  />
+                ) : null}
               </Form.Group>
             ) : null}
           </Modal.Body>

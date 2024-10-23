@@ -92,7 +92,8 @@ function MainNavbarApp() {
                   onClick={() => {
                     setIsLoginPage(false);
                   }}
-                  className="main-text text-center mx-2 text-capitalize"
+                  style={{ lineHeight: "38px" }}
+                  className="main-text  h-100 border-start border-end px-2  text-center text-capitalize alt-bg"
                   to="/auth?signup=true"
                 >
                   {t("register")}
@@ -101,7 +102,8 @@ function MainNavbarApp() {
                   onClick={() => {
                     setIsLoginPage(true);
                   }}
-                  className="main-text text-center mx-1 text-capitalize"
+                  style={{ lineHeight: "38px" }}
+                  className="main-text h-100 text-center mx-0 px-2 text-capitalize alt-bg"
                   to="/auth?login=true"
                 >
                   {t("login")}

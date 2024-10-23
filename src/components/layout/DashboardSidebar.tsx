@@ -111,6 +111,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "change-password",
       icon: "solar:password-outline",
     },
+    {
+      title: t("dashboard.delivery.links.orders"),
+      to: "delivery/orders",
+      icon: "solar:password-outline",
+    },
   ],
 });
 
@@ -139,6 +144,10 @@ const DashboardSidebar = () => {
           <NavLink
             className="nav-link text-capitalize d-flex gap-1 align-items-center"
             to={link.to}
+            style={{
+              width: "100%",
+              wordBreak: "break-all",
+            }}
             onClick={() => {
               iconRef.current?.classList.remove("show");
               sidebarRef.current?.classList.remove("show");
@@ -168,6 +177,7 @@ const DashboardSidebar = () => {
     sidebarRef.current?.classList.remove("show");
   }, [lang]);
 
+  
   const handleClick = () => {
     iconRef.current?.classList.toggle("show");
     sidebarRef.current?.classList.toggle("show");
@@ -202,7 +212,7 @@ const DashboardSidebar = () => {
         lg={3}
         className={`position-fixed alt-bg p-3 sidebar`}
       >
-        <h4>Sidebar</h4>
+        <h4 className="fw-bold"> {t('dashboard.dashboard')} </h4>
         {renderUserLinks()}
       </Col>
     </>

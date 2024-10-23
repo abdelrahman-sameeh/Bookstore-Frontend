@@ -22,6 +22,7 @@ import UserAddresses from "./pages/DashboardLayout/User/UserAddresses";
 import UserCart from "./pages/DashboardLayout/User/UserCart";
 import UserOrders from "./pages/DashboardLayout/User/UserOrders";
 import AdminOrders from "./pages/DashboardLayout/Admin/AdminOrders";
+import DeliveryOrders from "./pages/DashboardLayout/Delivery/DeliveryOrders";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -69,6 +70,10 @@ const App: React.FC = () => {
               <Route path="addresses" element={<UserAddresses />} />
               <Route path="cart" element={<UserCart />} />
               <Route path="orders" element={<UserOrders />} />
+            </Route>
+            {/* delivery routes */}
+            <Route path="delivery" element={<ProtectedRoutes allowto={["delivery"]} />}>
+              <Route path="orders" element={<DeliveryOrders />} />
             </Route>
           </Route>
         </Route>

@@ -413,7 +413,16 @@
     "unpaid": "لم يتم الدفع",
     "online": "الدفع عبر الانترنت",
     "offline": "الدفع عند الاستلام",
-    "all": "الكل"
+    "all": "الكل",
+    "cancelOrder": "الغاء الطلب",
+    "addressDetails": "تفاصيل العنوان",
+    "country": "الدولة",
+    "city": "المدينة",
+    "address": "العنوان",
+    "phone": "رقم الهاتف",
+    "notProvided": "غير متوفر",
+    "orderDetails": "تفاصيل الطلب",
+    "qrcode": "رمز الاستجابة السريعة"
   },
 
   "deleteCancelledOrderDialog": {
@@ -439,12 +448,33 @@
     "close": "إغلاق",
     "selectDeliveryOption": "اختر رجل التوصيل",
     "selectDeliveryError": "يرجى اختيار خيار التوصيل.",
-        "updateSuccess": "تم تحديث الحالة بنجاح.",
+    "updateSuccess": "تم تحديث الحالة بنجاح.",
     "errorOccurred": "حدث خطأ."
+  },
+
+  "deliveryOrder": {
+    "title": "الطلبات",
+    "noOrdersForStatus": "لا توجد طلبات لهذه الحالة",
+    "selectAll": "تحديد جميع الطلبات قيد التوصيل",
+    "deselectAll": "إلغاء تحديد جميع الطلبات قيد التوصيل",
+    "In Delivery": "قيد التوصيل",
+    "Delivered": "تم التوصيل",
+    "makeOrdersDelivered": "نقل الطلبات الى حالة التوصيل"
+  },
+
+  "makeOrdersCompleted": {
+    "title": "إتمام الطلبات",
+    "body": "اكمال الطلبات",
+    "submit": "اكمال",
+    "updateSuccess": "تم التحديث بنجاح",
+    "errorOccurred": "حدث خطأ ما",
+    "close": "إغلاق",
+    "notFoundOrders": "بعض الطلبات لم تُعثر عليها"
   },
 
   "___dashboard links": "_____",
   "dashboard": {
+    "dashboard": "لوحة التحكم",
     "shared": {
       "links": {
         "home": "صفحة البداية",
@@ -470,6 +500,11 @@
         "categories": "الفئات",
         "manageBooks": "ادارة الكتب",
         "manageOrders": "ادارة الطلبات"
+      }
+    },
+    "delivery": {
+      "links": {
+        "orders": "الطلبات"
       }
     }
   }

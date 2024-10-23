@@ -1,14 +1,130 @@
 import { Accordion, Badge, Card, Col, Row } from "react-bootstrap";
-import { Order } from "../../interfaces/interfaces";
+import { Address, Order } from "../../interfaces/interfaces";
 import { useTranslation } from "react-i18next";
 import LoadingButton from "./LoadingButton";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
 import authAxios from "../../api/authAxios";
 import { ApiEndpoints } from "../../api/ApiEndpoints";
-import {  useState } from "react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
 import { ordersState } from "../../recoil/ordersAtom";
 import notify from "./Notify";
+
+const renderOrderDetailsAccordion = (order: Order, t: any) => {
+  return (
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="">
+        <Accordion.Header>{t("orderComp.orderDetails")}</Accordion.Header>
+        <Accordion.Body className="main-theme">
+          <Card>
+            <Card.Body>
+              {order.totalPrice !== order.finalPrice ? (
+                <div className="main-text">
+                  <strong>{t("orderComp.totalPrice")}: </strong>
+                  <span>{order.totalPrice} $</span>
+                </div>
+              ) : null}
+              {order.discount ? (
+                <div className="main-text">
+                  <strong>{t("orderComp.discount")}: </strong>
+                  <span>{order.discount} %</span>
+                </div>
+              ) : null}
+              <div className="main-text">
+                <strong>{t("orderComp.finalPrice")}: </strong>
+                <span>{order.finalPrice} $</span>
+              </div>
+
+              {(() => {
+                let tax = 0;
+                if (order.discount && order.totalPrice && order.finalPrice) {
+                  const discountAmount =
+                    (+order.totalPrice * order.discount) / 100;
+                  tax = order.finalPrice - discountAmount;
+                }
+                if (!order.discount && order.totalPrice && order.finalPrice) {
+                  tax = order.finalPrice - order.totalPrice;
+                }
+                return tax > 0 ? (
+                  <div className="main-text">
+                    <strong className="text-capitalize">
+                      {t("orderComp.tax")}:{" "}
+                    </strong>
+                    <span>{tax.toFixed(2)} $</span>
+                  </div>
+                ) : null;
+              })()}
+
+              <div className="main-text">
+                <strong>{t("orderComp.paymentType")}: </strong>
+                <Badge bg="secondary">
+                  {t(`orderComp.${order.paymentType}`)}
+                </Badge>
+              </div>
+              <div className="main-text">
+                <strong>{t("orderComp.paymentStatus")}: </strong>
+                <Badge
+                  bg={order.paymentStatus === "paid" ? "success" : "danger"}
+                >
+                  {t(`orderComp.${order.paymentStatus}`)}
+                </Badge>
+              </div>
+            </Card.Body>
+          </Card>
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  );
+};
+
+const renderAddress = (address: Address, t: any) => {
+  const { country, city, address: addr, phone } = address;
+
+  return (
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="">
+        <Accordion.Header>{t("orderComp.addressDetails")}</Accordion.Header>
+        <Accordion.Body className="main-theme">
+          <Card>
+            <Card.Body>
+              <p className="main-text mb-1">
+                <strong>{t("orderComp.country")}: </strong>{" "}
+                {country || t("orderComp.notProvided")}
+              </p>
+              <p className="main-text mb-1">
+                <strong>{t("orderComp.city")}: </strong>{" "}
+                {city || t("orderComp.notProvided")}
+              </p>
+              <p className="main-text mb-1">
+                <strong>{t("orderComp.address")}: </strong>{" "}
+                {addr || t("orderComp.notProvided")}
+              </p>
+              <p className="main-text mb-1">
+                <strong>{t("orderComp.phone")}: </strong>{" "}
+                {phone || t("orderComp.notProvided")}
+              </p>
+            </Card.Body>
+          </Card>
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  );
+};
+
+const renderQrcode = (qrcode: string, t: any) => {
+  return (
+    <Accordion defaultActiveKey="0">
+      <Accordion.Item eventKey="">
+        <Accordion.Header>{t("orderComp.qrcode")}</Accordion.Header>
+        <Accordion.Body className="main-theme">
+          <Card>
+            <img src={qrcode} alt="" />
+          </Card>
+        </Accordion.Body>
+      </Accordion.Item>
+    </Accordion>
+  );
+};
 
 const _getStatusColor = (status: string) => {
   switch (status) {
@@ -27,7 +143,7 @@ const _getStatusColor = (status: string) => {
   }
 };
 
-const OrderComp = ({ order, index }: { order: Order; index: number}) => {
+const OrderComp = ({ order, index }: { order: Order; index: number }) => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const { user } = useLoggedInUser();
@@ -53,7 +169,6 @@ const OrderComp = ({ order, index }: { order: Order; index: number}) => {
     } else {
       notify("something went wrong", "error");
     }
-    console.log(response);
   };
 
   return (
@@ -61,7 +176,6 @@ const OrderComp = ({ order, index }: { order: Order; index: number}) => {
       eventKey={index.toString()}
       className="alt-bg"
       key={order._id}
-      
     >
       <Accordion.Header>
         <div className="d-flex align-items-center gap-2">
@@ -88,64 +202,26 @@ const OrderComp = ({ order, index }: { order: Order; index: number}) => {
             variant="error"
             className="mb-3"
           >
-            cancel order
+            {t("orderComp.cancelOrder")}
           </LoadingButton>
         ) : null}
 
-        <div className="d-flex flex-wrap column-gap-4 mb-3 main-text">
-          {order.totalPrice != order.finalPrice ? (
-            <div>
-              <strong>{t("orderComp.totalPrice")}: </strong>
-              <span className="fw-bold">{order.totalPrice} $</span>
-            </div>
+        <Row>
+          <Col className="mb-3" sm={12} md={6} lg={4}>
+            {renderOrderDetailsAccordion(order, t)}
+          </Col>
+          {order.address && (
+            <Col className="mb-3" sm={12} md={6} lg={4}>
+              {renderAddress(order.address, t)}
+            </Col>
+          )}
+          {order.qrcode && user.role === "delivery" ? (
+            <Col className="mb-3" sm={12} md={6} lg={4}>
+              {renderQrcode(order.qrcode, t)}{" "}
+            </Col>
           ) : null}
-          {order.discount ? (
-            <div>
-              <strong>{t("orderComp.discount")}: </strong>
-              <span className="fw-bold">{order.discount} %</span>
-            </div>
-          ) : null}
-          <div>
-            <strong>{t("orderComp.finalPrice")}: </strong>
-            <span className="fw-bold">{order.finalPrice} $</span>
-          </div>
+        </Row>
 
-          {(() => {
-            let tax = 0;
-            if (order.discount && order.totalPrice && order.finalPrice) {
-              const discountAmount = (+order.totalPrice * order.discount) / 100;
-              tax = order.finalPrice - discountAmount;
-            }
-            if (!order.discount && order.totalPrice && order.finalPrice) {
-              tax = order.finalPrice - order.totalPrice;
-            }
-            return tax > 0 ? (
-              <div>
-                <strong className=" text-capitalize">
-                  {t("orderComp.tax")}:{" "}
-                </strong>
-                <span className="fw-bold">{tax.toFixed(2)} $</span>
-              </div>
-            ) : null;
-          })()}
-
-          <div>
-            <strong>{t("orderComp.paymentType")}: </strong>
-            <Badge bg="secondary" className="fw-bold">
-            {t(`orderComp.${order.paymentType}`)}
-
-            </Badge>
-          </div>
-          <div>
-            <strong>{t("orderComp.paymentStatus")}: </strong>
-            <Badge
-              bg={order.paymentStatus === "paid" ? "success" : "danger"}
-              className="fw-bold"
-            >
-            {t(`orderComp.${order.paymentStatus}`)}
-            </Badge>
-          </div>
-        </div>
         <Row>
           {order?.books?.map((orderBook) => (
             <Col key={orderBook._id} md={6} className="mb-4">

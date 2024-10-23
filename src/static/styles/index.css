@@ -574,11 +574,21 @@ section.home .hero .btn::before {
 /* Medium Devices (Tablets, 768px and above) */
 @media (max-width: 768px) {
   .navbar .links {
-    margin-top: 10px;
     flex-direction: column;
   }
   section.home h2 {
     text-align: center;
+  }
+  .navbar .links {
+    display: flex;
+    flex-direction: row;
+  }
+  .navbar .links a{
+    width: 100%;
+    border-top: 1px solid ;
+  }
+  .navbar-nav .btn-group{
+    border-top: 1px solid ;
   }
 }
 

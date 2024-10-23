@@ -78,7 +78,7 @@ export interface Cart {
 export interface Order {
   _id?: string;
   user?: string;
-  address?: string;
+  address?: Address;
   books?: BookItem[];
   totalItems?: number;
   totalPrice?: number;
