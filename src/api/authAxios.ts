@@ -1,8 +1,9 @@
 import axios, { AxiosResponse } from 'axios';
+import { baseUrl } from './baseUrl';
 
 // Create an Axios instance with baseURL
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5000', // Your base URL
+  baseURL: baseUrl, // Your base URL
   timeout: 1000 * 60, // 60 seconds timeout
 });
 

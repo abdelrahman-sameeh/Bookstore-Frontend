@@ -4,6 +4,7 @@ import axios from "axios";
 import { Worker, Viewer } from "@react-pdf-viewer/core";
 import "@react-pdf-viewer/core/lib/styles/index.css";
 import { ApiEndpoints } from "../../../api/ApiEndpoints";
+import { baseUrl } from "../../../api/baseUrl";
 
 const OnlineBookViewer = () => {
   const [bookPdf, setBookPdf] = useState("");
@@ -16,7 +17,7 @@ const OnlineBookViewer = () => {
     const fetchBook = async () => {
       setLoading(true);
       const response = await axios.get(
-        `http://localhost:5000${ApiEndpoints.getOnlineBookStream(bookId)}`,
+        `${baseUrl}${ApiEndpoints.getOnlineBookStream(bookId)}`,
         {
           responseType: "blob",
           headers: {
