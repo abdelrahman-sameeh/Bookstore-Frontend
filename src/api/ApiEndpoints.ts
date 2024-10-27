@@ -32,6 +32,8 @@ export const ApiEndpoints = {
   getDeliveries: `${mainPath}/deliveries`,
   makeOrdersInDelivery: `${mainPath}/updateOrderStatus`,
   makeOrdersCompleted: `${mainPath}/makeOrdersCompleted`,
-  getDeliveryOrders: (queryString: string = '') =>`${mainPath}/delivery/orders${queryString}`
+  getDeliveryOrders: (queryString: string = '') =>`${mainPath}/delivery/orders${queryString}`,
+  getUserOnlineBooks: `${mainPath}/user/books`,
+  getOnlineBookStream: (id: any)=> `${mainPath}/user/book/${id}`,
 
 }

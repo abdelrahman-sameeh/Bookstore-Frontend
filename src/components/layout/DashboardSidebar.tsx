@@ -26,11 +26,6 @@ const getUserLinks = (t: any): LinksType => ({
       icon: "iconamoon:home-bold",
     },
     {
-      title: t("dashboard.shared.links.changePassword"),
-      to: "change-password",
-      icon: "solar:password-outline",
-    },
-    {
       title: t("dashboard.admin.links.categories"),
       to: "admin/categories",
       icon: "iconamoon:category",
@@ -45,6 +40,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "admin/orders",
       icon: "icon-park-solid:transaction-order",
     },
+    {
+      title: t("dashboard.shared.links.changePassword"),
+      to: "change-password",
+      icon: "solar:password-outline",
+    },
   ],
   user: [
     {
@@ -53,9 +53,9 @@ const getUserLinks = (t: any): LinksType => ({
       icon: "iconamoon:home-bold",
     },
     {
-      title: t("dashboard.shared.links.changePassword"),
-      to: "change-password",
-      icon: "solar:password-outline",
+      title: t("dashboard.user.links.yourOnlineBooks"),
+      to: "user/books",
+      icon: "noto:books",
     },
     {
       title: t("dashboard.user.links.addresses"),
@@ -72,17 +72,17 @@ const getUserLinks = (t: any): LinksType => ({
       to: "user/orders",
       icon: "icon-park-solid:transaction-order",
     },
+    {
+      title: t("dashboard.shared.links.changePassword"),
+      to: "change-password",
+      icon: "solar:password-outline",
+    },
   ],
   owner: [
     {
       title: t("dashboard.shared.links.home"),
       to: "/",
       icon: "iconamoon:home-bold",
-    },
-    {
-      title: t("dashboard.shared.links.changePassword"),
-      to: "change-password",
-      icon: "solar:password-outline",
     },
     {
       title: t("dashboard.owner.links.stripe"),
@@ -99,6 +99,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "owner/coupons",
       icon: "mdi:coupon",
     },
+    {
+      title: t("dashboard.shared.links.changePassword"),
+      to: "change-password",
+      icon: "solar:password-outline",
+    },
   ],
   delivery: [
     {
@@ -107,13 +112,13 @@ const getUserLinks = (t: any): LinksType => ({
       icon: "iconamoon:home-bold",
     },
     {
-      title: t("dashboard.shared.links.changePassword"),
-      to: "change-password",
+      title: t("dashboard.delivery.links.orders"),
+      to: "delivery/orders",
       icon: "solar:password-outline",
     },
     {
-      title: t("dashboard.delivery.links.orders"),
-      to: "delivery/orders",
+      title: t("dashboard.shared.links.changePassword"),
+      to: "change-password",
       icon: "solar:password-outline",
     },
   ],

@@ -23,6 +23,8 @@ import UserCart from "./pages/DashboardLayout/User/UserCart";
 import UserOrders from "./pages/DashboardLayout/User/UserOrders";
 import AdminOrders from "./pages/DashboardLayout/Admin/AdminOrders";
 import DeliveryOrders from "./pages/DashboardLayout/Delivery/DeliveryOrders";
+import UserOnlineBooks from "./pages/DashboardLayout/User/UserOnlineBooks";
+import OnlineBookViewer from "./pages/DashboardLayout/User/OnlineBookViewer";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -70,6 +72,8 @@ const App: React.FC = () => {
               <Route path="addresses" element={<UserAddresses />} />
               <Route path="cart" element={<UserCart />} />
               <Route path="orders" element={<UserOrders />} />
+              <Route path="books" element={<UserOnlineBooks />} />
+              <Route path="books/:bookId" element={<OnlineBookViewer />} />
             </Route>
             {/* delivery routes */}
             <Route path="delivery" element={<ProtectedRoutes allowto={["delivery"]} />}>

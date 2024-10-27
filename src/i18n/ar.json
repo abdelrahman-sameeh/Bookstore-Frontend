@@ -472,6 +472,12 @@
     "notFoundOrders": "بعض الطلبات لم تُعثر عليها"
   },
 
+  "userOnlineBooks": {
+    "title": "كتبك الإلكترونية",
+    "author": "الكاتب: {{name}}",
+    "category": "الفئة: {{name}}"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "dashboard": "لوحة التحكم",
@@ -485,7 +491,8 @@
       "links": {
         "addresses": "العناويين",
         "cart": "عربة التسوق",
-        "orders": "الطلبات"
+        "orders": "الطلبات",
+        "yourOnlineBooks": "كُتُبك الإلكترونية"
       }
     },
     "owner": {

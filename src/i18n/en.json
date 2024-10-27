@@ -469,6 +469,12 @@
     "notFoundOrders": "some orders were not found"
   },
 
+  "userOnlineBooks": {
+    "title": "Your Online Books",
+    "author": "Author: {{name}}",
+    "category": "Category: {{name}}"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "dashboard": "dashboard",
@@ -482,7 +488,8 @@
       "links": {
         "addresses": "addresses",
         "cart": "cart",
-        "orders": "orders"
+        "orders": "orders",
+        "yourOnlineBooks": "Your Online Books"
       }
     },
     "owner": {

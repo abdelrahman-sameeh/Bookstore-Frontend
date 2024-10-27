@@ -12,17 +12,19 @@ export const authAxios = async <T = any>(
   endpoint: string,
   method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH' = 'GET',
   data: any = {},
-  headersType: 'application/json' | 'multipart/form-data' = 'application/json'
+  headersType: 'application/json' | 'multipart/form-data' = 'application/json',
+  responseType: 'json' | 'blob' | 'text' = 'json'
 ): Promise<any> => {
   const token = localStorage.getItem('token'); // Retrieve token from localStorage
   try {
     const response: AxiosResponse<T> = await axiosInstance({
-      url: endpoint, 
+      url: endpoint,
       method: method,
       data,
       headers: {
         'Content-Type': headersType,
-        ...(needAuth && token ? { Authorization: `Bearer ${token}` } : {}), 
+        responseType,
+        ...(needAuth && token ? { Authorization: `Bearer ${token}` } : {}),
       },
     });
     return response; // Return the response data
