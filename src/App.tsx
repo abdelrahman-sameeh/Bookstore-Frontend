@@ -25,6 +25,8 @@ import AdminOrders from "./pages/DashboardLayout/Admin/AdminOrders";
 import DeliveryOrders from "./pages/DashboardLayout/Delivery/DeliveryOrders";
 import UserOnlineBooks from "./pages/DashboardLayout/User/UserOnlineBooks";
 import OnlineBookViewer from "./pages/DashboardLayout/User/OnlineBookViewer";
+import OwnerUserChatting from "./sockets/OwnerUserChatting";
+import ChattingLayout from "./components/layout/ChattingLayout";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -43,6 +45,16 @@ const App: React.FC = () => {
           <Route path="reset-code" element={<ForgetPasswordResetCode />} />
           <Route path="verify-reset-code" element={<VerifyResetCode />} />
           <Route path="books" element={<ExploreBooks />} />
+        </Route>
+
+        <Route element={<IsAuth />}>
+          <Route element={<ChattingLayout />}>
+            {/* chat owner with users */}
+            <Route element={<ProtectedRoutes allowto={["user", "owner"]} />}>
+              <Route path="/chat/:id" element={<OwnerUserChatting />} />
+            </Route>
+
+          </Route>
         </Route>
 
         <Route element={<IsAuth />}>
@@ -76,7 +88,10 @@ const App: React.FC = () => {
               <Route path="books/:bookId" element={<OnlineBookViewer />} />
             </Route>
             {/* delivery routes */}
-            <Route path="delivery" element={<ProtectedRoutes allowto={["delivery"]} />}>
+            <Route
+              path="delivery"
+              element={<ProtectedRoutes allowto={["delivery"]} />}
+            >
               <Route path="orders" element={<DeliveryOrders />} />
             </Route>
           </Route>
