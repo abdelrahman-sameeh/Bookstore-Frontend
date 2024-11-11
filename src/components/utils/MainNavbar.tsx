@@ -11,6 +11,20 @@ import { useSetRecoilState } from "recoil";
 import { isLoginPageAtom } from "../../recoil/utils";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
 import { Dropdown } from "react-bootstrap";
+import { UserRolesType } from "../../interfaces/interfaces";
+
+const getNavigationPath = (role: UserRolesType) => {
+  switch (role) {
+    case "user":
+      return "/dashboard/user/addresses";
+    case "owner":
+      return "/dashboard/owner/onboarding";
+    case "admin":
+      return "/dashboard/admin/categories";
+    case "delivery":
+      return "/dashboard/delivery/orders";
+  }
+};
 
 function MainNavbarApp() {
   const { t } = useTranslation();
@@ -69,7 +83,7 @@ function MainNavbarApp() {
                   </Dropdown.Item>
                   <Dropdown.Item
                     onClick={() => {
-                      navigate("/dashboard/change-password");
+                      navigate(getNavigationPath(user.role as UserRolesType));
                     }}
                   >
                     Dashboard{" "}
