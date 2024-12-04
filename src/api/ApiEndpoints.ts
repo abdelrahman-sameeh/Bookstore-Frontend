@@ -35,5 +35,9 @@ export const ApiEndpoints = {
   getDeliveryOrders: (queryString: string = '') =>`${mainPath}/delivery/orders${queryString}`,
   getUserOnlineBooks: `${mainPath}/user/books`,
   getOnlineBookStream: (id: any)=> `${mainPath}/user/book/${id}`,
+  updateUserProfile: `${mainPath}/user/profile`,
+
+  // sockets
+  isExistUser: (id: any)=> `${mainPath}/users/${id}`,
 
 }

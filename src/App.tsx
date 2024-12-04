@@ -25,6 +25,10 @@ import AdminOrders from "./pages/DashboardLayout/Admin/AdminOrders";
 import DeliveryOrders from "./pages/DashboardLayout/Delivery/DeliveryOrders";
 import UserOnlineBooks from "./pages/DashboardLayout/User/UserOnlineBooks";
 import OnlineBookViewer from "./pages/DashboardLayout/User/OnlineBookViewer";
+import OwnerUserChatting from "./sockets/OwnerUserChatting";
+import ChattingLayout from "./components/layout/ChattingLayout";
+import Setting from "./pages/DashboardLayout/User/Setting";
+import UserDetails from "./pages/MainLayout/UserDetails";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -46,8 +50,23 @@ const App: React.FC = () => {
         </Route>
 
         <Route element={<IsAuth />}>
+          <Route path="/" element={<MainLayout />}>
+            <Route path="user/:id" element={<UserDetails />} />
+          </Route>
+
+          {/* chatting layout */}
+          <Route element={<ChattingLayout />}>
+            {/* chat owner with users */}
+            <Route element={<ProtectedRoutes allowto={["user", "owner"]} />}>
+              <Route path="/chat/:id" element={<OwnerUserChatting />} />
+            </Route>
+          </Route>
+        </Route>
+
+        <Route element={<IsAuth />}>
           <Route path="/dashboard" element={<DashboardLayout />}>
             <Route path="change-password" element={<ChangePassword />} />
+            <Route path="setting" element={<Setting />} />
 
             {/* admin routes */}
             <Route
@@ -76,7 +95,10 @@ const App: React.FC = () => {
               <Route path="books/:bookId" element={<OnlineBookViewer />} />
             </Route>
             {/* delivery routes */}
-            <Route path="delivery" element={<ProtectedRoutes allowto={["delivery"]} />}>
+            <Route
+              path="delivery"
+              element={<ProtectedRoutes allowto={["delivery"]} />}
+            >
               <Route path="orders" element={<DeliveryOrders />} />
             </Route>
           </Route>

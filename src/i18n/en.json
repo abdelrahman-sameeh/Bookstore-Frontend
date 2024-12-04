@@ -475,13 +475,29 @@
     "category": "Category: {{name}}"
   },
 
+  "setting": {
+    "usernamePlaceholder": "Username",
+    "edit": "Edit",
+    "updatedSuccessfully": "Updated successfully",
+    "somethingWentWrong": "Something went wrong",
+    "noChangesToSave": "No changes to save."
+  },
+
+  "UserDetails": {
+    "invalidPage": "Invalid page",
+    "email": "Email",
+    "startChat": "Start Chat",
+    "chatWithUser": "Chat with user {{name}}"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "dashboard": "dashboard",
     "shared": {
       "links": {
         "home": "home",
-        "changePassword": "change password"
+        "changePassword": "change password",
+        "setting": "account setting"
       }
     },
     "user": {

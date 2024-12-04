@@ -45,6 +45,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "change-password",
       icon: "solar:password-outline",
     },
+    {
+      title: t("dashboard.shared.links.setting"),
+      to: "setting",
+      icon: "uil-setting",
+    },
   ],
   user: [
     {
@@ -77,6 +82,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "change-password",
       icon: "solar:password-outline",
     },
+    {
+      title: t("dashboard.shared.links.setting"),
+      to: "setting",
+      icon: "uil-setting",
+    },
   ],
   owner: [
     {
@@ -104,6 +114,11 @@ const getUserLinks = (t: any): LinksType => ({
       to: "change-password",
       icon: "solar:password-outline",
     },
+    {
+      title: t("dashboard.shared.links.setting"),
+      to: "setting",
+      icon: "uil-setting",
+    },
   ],
   delivery: [
     {
@@ -120,6 +135,11 @@ const getUserLinks = (t: any): LinksType => ({
       title: t("dashboard.shared.links.changePassword"),
       to: "change-password",
       icon: "solar:password-outline",
+    },
+    {
+      title: t("dashboard.shared.links.setting"),
+      to: "setting",
+      icon: "uil-setting",
     },
   ],
 });
