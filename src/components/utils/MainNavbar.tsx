@@ -16,7 +16,7 @@ import { UserRolesType } from "../../interfaces/interfaces";
 const getNavigationPath = (role: UserRolesType) => {
   switch (role) {
     case "user":
-      return "/dashboard/user/addresses";
+      return "/dashboard/user/books";
     case "owner":
       return "/dashboard/owner/onboarding";
     case "admin":

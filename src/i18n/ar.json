@@ -478,13 +478,29 @@
     "category": "الفئة: {{name}}"
   },
 
+  "setting": {
+    "usernamePlaceholder": "اسم المستخدم",
+    "edit": "تعديل",
+    "updatedSuccessfully": "تم التحديث بنجاح",
+    "somethingWentWrong": "حدث خطأ ما",
+    "noChangesToSave": "لا توجد تغييرات للحفظ."
+  },
+
+  "UserDetails": {
+    "invalidPage": "الصفحة غير صالحة",
+    "email": "البريد الإلكتروني",
+    "startChat": "بدء المحادثة",
+    "chatWithUser": "الدردشة مع المستخدم {{name}}"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "dashboard": "لوحة التحكم",
     "shared": {
       "links": {
         "home": "صفحة البداية",
-        "changePassword": "تغير كلمة المرور"
+        "changePassword": "تغير كلمة المرور",
+        "setting": "اعدادات الحساب"
       }
     },
     "user": {

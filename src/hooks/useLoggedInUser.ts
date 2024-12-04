@@ -56,7 +56,7 @@ const useLoggedInUser = (ignoreCache: boolean = false) => {
     fetchUser();
   }, [ignoreCache]);
 
-  return { user, loading, error };
+  return { user, loading, error, setUser };
 };
 
 export default useLoggedInUser;

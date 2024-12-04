@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { socket } from "./socket.config";
 import { useNavigate, useParams } from "react-router-dom";
@@ -6,16 +6,13 @@ import useLoggedInUser from "../hooks/useLoggedInUser";
 import notify from "../components/utils/Notify";
 import authAxios from "../api/authAxios";
 import { ApiEndpoints } from "../api/ApiEndpoints";
-// 66ca7b145a08477047d66881
 
 const OwnerUserChatting = () => {
   const [message, setMessage] = useState<string>("");
   const [chat, setChat] = useState<string[]>([]);
   const { user: loggedUser } = useLoggedInUser();
-  const { id } = useParams();
+  const { id: receivedUserId } = useParams();
   const navigate = useNavigate();
-
-
 
   useEffect(() => {
     const handleNotValidUser = () => {
@@ -25,25 +22,26 @@ const OwnerUserChatting = () => {
       }, 1500);
       return false;
     };
-  
+
     const checkIdParamsIsValid = async (id: string) => {
       if (id === loggedUser?._id) {
         return handleNotValidUser();
       }
-  
+
       const response = await authAxios(true, ApiEndpoints.isExistUser(id));
       if (response.status === 404) {
         return handleNotValidUser();
       }
     };
 
-    checkIdParamsIsValid(id as string);
-    
-    
-
+    checkIdParamsIsValid(receivedUserId as string);
   }, [loggedUser]);
 
   useEffect(() => {
+    if (loggedUser?._id && receivedUserId) {
+      socket.emit("start_chat", { userId: loggedUser._id, receivedUserId });
+    }
+
     socket.on("message", (receivedMessage) => {
       setChat((prevChat) => [...prevChat, receivedMessage]);
     });
@@ -51,12 +49,12 @@ const OwnerUserChatting = () => {
     return () => {
       socket.off("message");
     };
-  }, []);
+  }, [loggedUser, receivedUserId]);
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
     socket.emit("message", message);
-    setMessage(""); // تفريغ الرسالة بعد إرسالها
+    setMessage(""); 
   };
 
   return (

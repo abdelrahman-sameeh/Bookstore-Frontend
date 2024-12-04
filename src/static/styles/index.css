@@ -27,6 +27,8 @@ body.dark-mode {
 } */
 
 /* frame work */
+
+
 .btn {
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -35,6 +37,7 @@ body.dark-mode {
 .main-border {
   border: 1px solid var(--main-text);
 }
+
 
 .rounded {
   border-radius: 3px !important;
@@ -203,6 +206,14 @@ textarea {
   border-radius: 0 !important;
 }
 
+input::placeholder{
+  color: var(--alt-text) !important;
+}
+
+input{
+  border: 1px solid var(--alt-text) !important;
+}
+
 form.auth-form button {
   width: 60%;
   height: 40px;
@@ -211,6 +222,11 @@ form.auth-form button {
   transition: 0.2s ease-in;
   cursor: pointer;
   color: white !important;
+}
+
+
+.rounded-full{
+  border-radius: 50% !important;
 }
 
 /* pagination */
