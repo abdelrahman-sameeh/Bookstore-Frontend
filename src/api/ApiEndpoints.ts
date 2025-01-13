@@ -39,5 +39,6 @@ export const ApiEndpoints = {
 
   // sockets
   isExistUser: (id: any)=> `${mainPath}/users/${id}`,
+  getChatMessage: (receiverId: string) => `${mainPath}/chat/messages/${receiverId}`
 
 }
