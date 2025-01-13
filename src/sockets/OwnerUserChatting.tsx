@@ -6,10 +6,12 @@ import useLoggedInUser from "../hooks/useLoggedInUser";
 import notify from "../components/utils/Notify";
 import authAxios from "../api/authAxios";
 import { ApiEndpoints } from "../api/ApiEndpoints";
+import { Message, UserInterface } from "../interfaces/interfaces";
 
 const OwnerUserChatting = () => {
-  const [message, setMessage] = useState<string>("");
-  const [chat, setChat] = useState<string[]>([]);
+  const [message, setMessage] = useState<Message>({ content: "", sender: "" });
+  const [chat, setChat] = useState<Message[]>([]);
+  const [receiver, setReceiver] = useState<UserInterface>({});
   const { user: loggedUser } = useLoggedInUser();
   const { id: receivedUserId } = useParams();
   const navigate = useNavigate();
@@ -24,18 +26,28 @@ const OwnerUserChatting = () => {
     };
 
     const checkIdParamsIsValid = async (id: string) => {
-      if (id === loggedUser?._id) {
+      if (id === JSON.parse(sessionStorage.getItem("user") as any)._id) {
         return handleNotValidUser();
       }
 
       const response = await authAxios(true, ApiEndpoints.isExistUser(id));
-      if (response.status === 404) {
+      if (response.status === 200) {
+        setReceiver(response.data.data.user);
+      } else {
         return handleNotValidUser();
       }
     };
-
     checkIdParamsIsValid(receivedUserId as string);
-  }, [loggedUser]);
+    const getChatMessages =async (receivedUserId: string) => {
+      const response = await authAxios(true, ApiEndpoints.getChatMessage(receivedUserId), 'GET')
+      if(response.status===200){
+        setChat(response?.data?.data?.messages)
+      }
+    }
+    getChatMessages(receivedUserId as string)
+
+  }, []);
+
 
   useEffect(() => {
     if (loggedUser?._id && receivedUserId) {
@@ -53,8 +65,12 @@ const OwnerUserChatting = () => {
 
   const handleSendMessage = (e: any) => {
     e.preventDefault();
+    message.sender = loggedUser._id;
     socket.emit("message", message);
-    setMessage(""); 
+    setMessage({
+      content: "",
+      sender: loggedUser?._id,
+    });
   };
 
   return (
@@ -69,16 +85,26 @@ const OwnerUserChatting = () => {
         }}
       >
         {chat.map((msg, index) => (
-          <div key={index}>{msg}</div>
+          <div
+            className={`${
+              msg.sender == loggedUser._id ? "sender" : "receiver"
+            }`}
+            key={index}
+          >
+            {msg.content}
+          </div>
         ))}
       </div>
       <Form onSubmit={handleSendMessage}>
         <Form.Group>
           <Form.Control
+            className="border-none"
             type="text"
             placeholder="Type a message..."
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={message.content}
+            onChange={(e) =>
+              setMessage((prev) => ({ ...prev, content: e.target.value }))
+            }
           />
         </Form.Group>
         <Button type="submit" variant="primary" style={{ marginTop: "10px" }}>

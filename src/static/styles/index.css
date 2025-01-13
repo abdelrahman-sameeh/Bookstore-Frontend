@@ -11,12 +11,12 @@ body.light-mode {
   --alt-text: #6c757d;
 }
 
-body.dark-mode {
+/* body.dark-mode {
   --main-bg: #27374d;
   --alt-bg: #526d82;
   --main-text: #dde6ed;
   --alt-text: #cce1ef;
-}
+} */
 
 /* Dark Mode */
 /* body.dark-mode {
@@ -208,10 +208,6 @@ textarea {
 
 input::placeholder{
   color: var(--alt-text) !important;
-}
-
-input{
-  border: 1px solid var(--alt-text) !important;
 }
 
 form.auth-form button {

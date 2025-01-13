@@ -96,3 +96,9 @@ export interface Delivery {
   pendingOrders?: Order[];
   deliveredOrders?: Order[];
 }
+
+
+export interface Message{
+  sender?: string,
+  content?:string
+}
