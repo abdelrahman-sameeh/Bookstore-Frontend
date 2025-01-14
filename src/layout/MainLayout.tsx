@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import MainNavbarApp from "../components/utils/MainNavbar";
+import MainNavbarApp from "../components/navbar/MainNavbar";
 
 const MainLayout = () => {
   return (

@@ -1,8 +1,14 @@
 {
-  "_navbar": "-------------------",
-  "logo": "iqraa platform",
-  "register": "register",
-  "login": "have an account?",
+  "navbar": {
+    "logo": "iqraa platform",
+    "register": "register",
+    "login": "have an account?",
+    "logout": "Logout",
+    "dashboard": "Dashboard",
+    "home": "Home",
+    "search": "Search for book",
+    "changeLang": "عربى"
+  },
 
   "_home": "----------hero section---------",
   "heroH1": "consume & create",

@@ -1,7 +1,16 @@
 body {
   font-family: "Cairo", sans-serif;
-  --main-btn-bg: #0894e2;
-  --alt-btn-bg: #0dcaf0;
+}
+
+:root {
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --black-color-50: rgba(0, 0, 0, 0.666);
+  --main-color: #c5baff;
+  --main-color-dark: #8a73ff;
+  --alt-color: #cad9f7;
+  --alt-color-dark: #c4d9ff;
+  --gray-color: rgb(230, 230, 230);
 }
 
 body.light-mode {
@@ -28,16 +37,14 @@ body.light-mode {
 
 /* frame work */
 
-
 .btn {
   border-radius: 0 !important;
   box-shadow: none !important;
 }
 
 .main-border {
-  border: 1px solid var(--main-text);
+  border: 1px solid var(--main-color);
 }
-
 
 .rounded {
   border-radius: 3px !important;
@@ -47,16 +54,20 @@ body.light-mode {
   flex: 1;
 }
 
+.no-arrow::after{
+  display: none;
+}
+
 .main-btn {
-  background-color: var(--main-btn-bg);
+  background-color: var(--main-color-dark);
 }
 
 .main-btn.border {
-  border: 1px solid var(--main-text) !important;
+  border: 1px solid var(--main-color-dark) !important;
 }
 
 .main-btn:hover {
-  background-color: #0770a8 !important;
+  background-color: var(--main-color) !important;
   color: white !important;
 }
 
@@ -122,7 +133,6 @@ body.light-mode {
 }
 
 body {
-  background-color: var(--main-bg);
   color: var(--main-text);
 }
 
@@ -148,7 +158,7 @@ input[type="radio"] {
   border: 2px solid var(--main-text) !important;
 }
 
-.light-mode input[type="radio"]{
+.light-mode input[type="radio"] {
   border-radius: 50% !important;
 }
 
@@ -206,7 +216,7 @@ textarea {
   border-radius: 0 !important;
 }
 
-input::placeholder{
+input::placeholder {
   color: var(--alt-text) !important;
 }
 
@@ -220,8 +230,7 @@ form.auth-form button {
   color: white !important;
 }
 
-
-.rounded-full{
+.rounded-full {
   border-radius: 50% !important;
 }
 
@@ -243,9 +252,9 @@ form.auth-form button {
 
 /* navbar */
 .logo {
-  color: var(--text-color) !important;
+  color: var(--white-color) !important;
 }
-body.dark-mode .logo img {
+.logo img {
   filter: invert(1);
 }
 
@@ -268,50 +277,23 @@ body.dark-mode .logo img {
   top: 0;
   width: 100%;
   left: 0;
-  background-color: var(--main-bg) !important;
-  box-shadow: 0 0px 2px var(--alt-text);
+  background-color: var(--main-color-dark);
 }
 
-.navbar .btn {
-  background-color: var(--alt-bg);
-  color: var(--main-text);
+.navbar .navbar-search {
+  padding: 1px;
+  background-color: var(--main-color);
 }
 
-.light-mode .navbar .btn:hover {
-  color: white;
+.navbar .navbar-search input::placeholder {
+  color: var(--black-color-50) !important;
 }
 
-.navbar .navbar-toggler {
-  background-color: var(--alt-bg);
-  outline: none !important;
-  box-shadow: none !important;
-}
-
-.navbar .navbar-toggler svg {
-  font-size: 14px;
-  color: var(--main-text) !important;
-}
-
-.navbar .user-avatar {
-  color: var(--main-text);
-  padding: 10px 13px;
-  border: 1px solid;
+.navbar .profile-picture {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
   border-radius: 50%;
-  margin-inline: 10px;
-  display: block;
-  background: var(--alt-bg);
-  cursor: pointer;
-  text-transform: uppercase;
-}
-
-.dropdown button {
-  color: var(--main-text) !important;
-}
-.dropdown button span {
-  transform: 0.3s;
-}
-.dropdown button:hover span {
-  color: white;
 }
 
 @keyframes typing {
@@ -438,12 +420,12 @@ section.home .hero .btn::before {
   height: 87.9vh;
 }
 
-.dark-mode .nav-link.active{
+.dark-mode .nav-link.active {
   background: #304451;
-} 
-.light-mode .nav-link.active{
+}
+.light-mode .nav-link.active {
   background: #e3e3e3;
-}  
+}
 .rtl .sidebar .nav-link.active {
   border-left: 5px solid var(--main-text);
 }
@@ -585,22 +567,8 @@ section.home .hero .btn::before {
 
 /* Medium Devices (Tablets, 768px and above) */
 @media (max-width: 768px) {
-  .navbar .links {
-    flex-direction: column;
-  }
-  section.home h2 {
-    text-align: center;
-  }
-  .navbar .links {
-    display: flex;
-    flex-direction: row;
-  }
-  .navbar .links a{
-    width: 100%;
-    border-top: 1px solid ;
-  }
-  .navbar-nav .btn-group{
-    border-top: 1px solid ;
+  .navbar .navbar-search{
+    display: none;
   }
 }
 

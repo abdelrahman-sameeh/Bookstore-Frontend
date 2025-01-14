@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { themeState } from "../../recoil/utils";
-import Icon from "./Icon";
+import Icon from "../utils/Icon";
 
 const ThemeToggle: React.FC = () => {
   const [theme, setTheme] = useRecoilState(themeState);
@@ -40,7 +40,7 @@ const ThemeToggle: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="btn main-btn btn-secondary border-end border-0"
+      className="btn text-light border-0"
     >
       {theme === "light" ? (
         <Icon icon="circum:dark" className={"fs-3"} />
