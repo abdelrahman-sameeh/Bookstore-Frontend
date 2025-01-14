@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useRecoilState } from "recoil";
 import { languageState } from "../../recoil/utils";
+import Icon from "../utils/Icon";
 
 const LanguageSwitcher: React.FC = () => {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
   const [lang, setLang] = useRecoilState(languageState); // Get language state from Recoil
 
   useEffect(() => {
@@ -23,20 +24,13 @@ const LanguageSwitcher: React.FC = () => {
   };
 
   return (
-    <div className="btn-group">
-      <button
-        onClick={() => changeLanguage("en")}
-        className="btn btn-secondary main-btn m-0 border-0 border-end"
-      >
-        En
-      </button>
-      <button
-        onClick={() => changeLanguage("ar")}
-        className="btn btn-secondary main-btn m-0 border-0 border-end"
-      >
-        ع
-      </button>
-    </div>
+    <button
+      onClick={() => changeLanguage(lang == "en" ? "ar" : "en")}
+      className="btn text-light border-0 m-0"
+      title={t("navbar.changeLang")}
+    >
+      <Icon icon="ph:translate-fill" className="fs-3" />
+    </button>
   );
 };
 
