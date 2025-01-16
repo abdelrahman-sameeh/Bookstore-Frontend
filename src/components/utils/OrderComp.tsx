@@ -15,9 +15,9 @@ const renderOrderDetailsAccordion = (order: Order, t: any) => {
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="">
         <Accordion.Header>{t("orderComp.orderDetails")}</Accordion.Header>
-        <Accordion.Body className="main-theme">
-          <Card>
-            <Card.Body>
+        <Accordion.Body className="border-0">
+          <Card className="primary-bg main-border" >
+            <Card.Body >
               {order.totalPrice !== order.finalPrice ? (
                 <div className="main-text">
                   <strong>{t("orderComp.totalPrice")}: </strong>
@@ -84,8 +84,8 @@ const renderAddress = (address: Address, t: any) => {
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="">
         <Accordion.Header>{t("orderComp.addressDetails")}</Accordion.Header>
-        <Accordion.Body className="main-theme">
-          <Card>
+        <Accordion.Body >
+          <Card className="primary-bg main-border">
             <Card.Body>
               <p className="main-text mb-1">
                 <strong>{t("orderComp.country")}: </strong>{" "}
@@ -116,8 +116,8 @@ const renderQrcode = (qrcode: string, t: any) => {
     <Accordion defaultActiveKey="0">
       <Accordion.Item eventKey="">
         <Accordion.Header>{t("orderComp.qrcode")}</Accordion.Header>
-        <Accordion.Body className="main-theme">
-          <Card>
+        <Accordion.Body >
+          <Card className="primary-bg main-border">
             <img src={qrcode} alt="" />
           </Card>
         </Accordion.Body>
@@ -225,7 +225,7 @@ const OrderComp = ({ order, index }: { order: Order; index: number }) => {
         <Row>
           {order?.books?.map((orderBook) => (
             <Col key={orderBook._id} md={6} className="mb-4">
-              <Card className="h-100 shadow-sm rounded-0">
+              <Card className="main-border primary-bg main-text h-100 rounded-0">
                 <Card.Img
                   src={orderBook?.book?.imageCover}
                   alt={orderBook?.book?.title}
@@ -236,7 +236,7 @@ const OrderComp = ({ order, index }: { order: Order; index: number }) => {
                     width: "100%",
                   }}
                 />
-                <Card.Body className="main-theme">
+                <Card.Body >
                   <Card.Title className="text-truncate">
                     {orderBook?.book?.title}
                   </Card.Title>

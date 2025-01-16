@@ -3,9 +3,9 @@ import MainNavbarApp from "../components/navbar/MainNavbar";
 
 const MainLayout = () => {
   return (
-    <div className="page">
+    <div>
       <MainNavbarApp />
-      <main>
+      <main className="mt-4">
         <Outlet />
       </main>
     </div>

@@ -489,7 +489,8 @@
     "edit": "تعديل",
     "updatedSuccessfully": "تم التحديث بنجاح",
     "somethingWentWrong": "حدث خطأ ما",
-    "noChangesToSave": "لا توجد تغييرات للحفظ."
+    "noChangesToSave": "لا توجد تغييرات للحفظ.",
+    "username": "اسمك"
   },
 
   "UserDetails": {

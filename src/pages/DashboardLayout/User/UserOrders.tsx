@@ -91,9 +91,9 @@ const UserOrders = () => {
           {statuses.map((status) => (
             <Button
               key={status}
-              variant={
-                filteredStatus === status ? "primary" : "outline-primary"
-              }
+              className={`${
+                filteredStatus === status ? "main-btn" : "outline-main-btn"
+              }`}
               onClick={() => setFilteredStatus(status)}
             >
               {t(`orderComp.${status}`)}
@@ -158,8 +158,7 @@ const UserOrders = () => {
                 {filteredStatus === "all" &&
                   hasOneCancelledOrCompletedOrder && (
                     <Button
-                      variant="outline-warning"
-                      className="mb-3"
+                    className="mb-3 main-btn-dark"
                       onClick={handleSelectAll}
                     >
                       {selectAll && checkedOrders.length
@@ -171,8 +170,7 @@ const UserOrders = () => {
                 {/* Additional conditions for specific status */}
                 {filteredStatus === "cancelled" && hasOneCancelledOrder && (
                   <Button
-                    variant="outline-warning"
-                    className="mb-3"
+                    className="mb-3 main-btn-dark"
                     onClick={handleSelectAll}
                   >
                     {selectAll && checkedOrders.length
@@ -183,8 +181,7 @@ const UserOrders = () => {
 
                 {filteredStatus === "completed" && hasOneCompletedOrder && (
                   <Button
-                    variant="outline-warning"
-                    className="mb-3"
+                    className="mb-3 main-btn-dark"
                     onClick={handleSelectAll}
                   >
                     {selectAll && checkedOrders.length

@@ -79,11 +79,11 @@ const Categories = () => {
             {/* عرض الفئات باستخدام Card */}
             {categories?.map((category: Category) => (
               <Col key={category._id}>
-                <Card className="main-bg main-text">
-                  <Card.Title>
-                    <div className=" border-bottom d-flex gap-1 rounded-top p-1">
+                <Card className="main-border secondary-bg main-text ">
+                  <Card.Title className="main-border-bottom p-1">
+                    <div className=" d-flex gap-1 rounded-top p-1">
                       <Button
-                        variant="outline-primary"
+                        className="outline-main-btn"
                         onClick={() => {
                           setShowCreateUpdateDialog(true);
                           setMethod("update");

@@ -23,12 +23,12 @@ const AddressComp = ({
   const setTargetAddress = useSetRecoilState(targetAddressState);
 
   return (
-    <Card className="main-theme h-100">
-      <Card.Header>
+    <Card className="secondary-bg main-border main-text h-100">
+      <Card.Header className="secondary-bg main-border-bottom">
         <div className="d-flex gap-1">
           <Button
             title={'update address'}
-            variant="outline-primary"
+            className="btn outline-main-btn-dark"
             onClick={() => {
               setShowCreateUpdateDialog(true);
               setIsUpdate(true);

@@ -30,7 +30,7 @@ const UserOnlineBooks = () => {
                   variant="top"
                   src={book.imageCover}
                 />
-                <Card.Body className="main-theme rounded-bottom">
+                <Card.Body className="secondary-bg main-text rounded-bottom">
                   <Card.Title>{book.title}</Card.Title>
                   <Card.Text>
                     <small>

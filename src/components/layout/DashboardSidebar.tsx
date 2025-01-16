@@ -229,15 +229,15 @@ const DashboardSidebar = () => {
         ></div>
       )}
 
-      <span ref={iconRef} onClick={handleClick} className="arrow w-fit alt-btn">
+      <span ref={iconRef} onClick={handleClick} className="arrow w-fit main-btn">
         <Icon icon={iconName}></Icon>
       </span>
       <Col
         ref={sidebarRef}
         lg={3}
-        className={`position-fixed alt-bg p-3 sidebar`}
+        className={`position-fixed alt-bg p-3 sidebar border-top`}
       >
-        <h4 className="fw-bold"> {t('dashboard.dashboard')} </h4>
+        <h4 className="fw-bold text-light text-capitalize"> {t('dashboard.dashboard')} </h4>
         {renderUserLinks()}
       </Col>
     </>

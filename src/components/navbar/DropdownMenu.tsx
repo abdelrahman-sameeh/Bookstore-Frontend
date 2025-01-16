@@ -1,4 +1,3 @@
-import React from "react";
 import { useSetRecoilState } from "recoil";
 import { isLoginPageAtom } from "../../recoil/utils";
 import useLoggedInUser from "../../hooks/useLoggedInUser";
@@ -35,20 +34,20 @@ const DropdownMenu = () => {
             className="no-arrow d-flex w-100 justify-content-center align-items-center border-0 bg-transparent main-text"
           >
             <div
-              className="user-avatar main-text d-flex align-items-center justify-content-center me-2"
+              className="user-avatar border rounded-full text-light  d-flex align-items-center justify-content-center me-2"
               style={{
-                width: "30px",
-                height: "30px",
+                width: "35px",
+                height: "35px",
                 fontSize: "14px",
               }}
             >
               {user.picture ? (
                 <img className="profile-picture" src={user.picture} />
               ) : (
-                <span>
+                <p className="mb-0">
                   {user?.name[0]}
                   {user?.name?.split(" ")[1]?.[0]}
-                </span>
+                </p>
               )}
             </div>
           </Dropdown.Toggle>
@@ -87,7 +86,7 @@ const DropdownMenu = () => {
               setIsLoginPage(false);
             }}
             style={{ lineHeight: "38px" }}
-            className="main-text  h-100 border-start border-end px-2  text-center text-capitalize alt-bg"
+            className="h-100 text-light px-2 text-center text-capitalize"
             to="/auth?signup=true"
           >
             {t("navbar.register")}
@@ -97,7 +96,7 @@ const DropdownMenu = () => {
               setIsLoginPage(true);
             }}
             style={{ lineHeight: "38px" }}
-            className="main-text h-100 text-center mx-0 px-2 text-capitalize alt-bg"
+            className="h-100 text-center mx-0 px-2 text-capitalize text-light"
             to="/auth?login=true"
           >
             {t("navbar.login")}

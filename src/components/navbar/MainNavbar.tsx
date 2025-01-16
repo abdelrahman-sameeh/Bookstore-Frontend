@@ -1,5 +1,4 @@
 import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import ThemeToggle from "./ThemeToggle";
 import LanguageSwitcher from "./LanguageSwitcher";
@@ -14,10 +13,10 @@ function MainNavbarApp() {
   const { t } = useTranslation();
 
   return (
-    <Navbar style={{ zIndex: 10 }} expand="md" className="border-bottom">
+    <Navbar style={{ zIndex: 10 }} expand="md" >
       <Container>
         <Row className="w-100 h-100 mx-0">
-          <Col xs={6} sm={4} md={3}>
+          <Col xs={3}>
             <Navbar.Brand className="logo text-capitalize d-flex align-items-center">
               <Link to={"/"}>
                 <img style={{ width: "80px" }} src={logo} alt="" />
@@ -27,9 +26,7 @@ function MainNavbarApp() {
           </Col>
 
           <Col
-            xs={6}
-            sm={8}
-            md={9}
+            xs={9}
             className="d-flex align-items-center justify-content-end"
           >
             <NavbarSearchInput />

@@ -75,21 +75,24 @@ const Setting = () => {
   return (
     <div>
       <div className="container alt-bg p-4">
-        <Form onSubmit={handleSaveChanges} className="main-bg m-auto p-3 w-100 w-md-50">
+        <Form onSubmit={handleSaveChanges} className="main-border secondary-bg m-auto p-3 w-100 w-md-50">
           <ProfilePictureUploader
             initialImage={originalImage}
             onUpload={handleImageUpload}
             onDelete={handleImageDelete}
           />
 
-          <InputGroup className="mb-3">
+          <Form.Group className="mb-3" controlId="formBasicUsername">
+            <Form.Label className="text-capitalize fw-bold">
+              {t("setting.username")}
+            </Form.Label>
             <Form.Control
-              className="main-bg main-text"
+              className="main-text"
               placeholder={t("setting.usernamePlaceholder")}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </InputGroup>
+          </Form.Group>
 
           <LoadingButton loading={loading}>
             {t("setting.edit")}

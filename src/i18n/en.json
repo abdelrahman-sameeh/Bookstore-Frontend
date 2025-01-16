@@ -486,7 +486,8 @@
     "edit": "Edit",
     "updatedSuccessfully": "Updated successfully",
     "somethingWentWrong": "Something went wrong",
-    "noChangesToSave": "No changes to save."
+    "noChangesToSave": "No changes to save.",
+    "username": "your name"
   },
 
   "UserDetails": {
