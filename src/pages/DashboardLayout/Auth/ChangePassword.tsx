@@ -35,14 +35,13 @@ const ChangePassword = () => {
     <div>
       <div className="container alt-bg py-3">
         <h2 className="fw-bold fs-1 mb-4"> {t('changePassword.changeOldPassword')} </h2>
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className="main-border secondary-bg p-3">
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>{t('changePassword.newPassword')}</Form.Label>
             <Form.Control
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               type="password"
-              className="border"
               placeholder={t('changePassword.enterNewPassword')}
             />
           </Form.Group>

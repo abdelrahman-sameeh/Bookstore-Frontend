@@ -13,12 +13,12 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({
   ...props
 }) => {
   const variantClass =
-    variant === "alt" ? "alt-btn" : variant === "error" ? "btn-danger" : "main-btn";
+    variant === "alt" ? "alt-btn" : variant === "error" ? "btn-danger" : "main-btn-dark";
 
   return (
     <button
       title={title}
-      className={`${className} ${variantClass} btn text-capitalize text-light fw-bold`}
+      className={`${className} ${variantClass} btn text-capitalize fw-bold`}
       style={{ minWidth: "170px" }}
       disabled={loading || props.disabled} // Handle disabled if passed
       {...props} // Spread any other props like onClick, etc.

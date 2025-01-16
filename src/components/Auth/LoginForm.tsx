@@ -130,7 +130,7 @@ const LoginForm = () => {
             setIsLoginPage(true);
             navigate("/auth?login=true");
           }}
-          className="text-capitalize"
+          className="text-capitalize main-text"
         >
           {t("loginLabel")}
         </label>
@@ -197,7 +197,7 @@ const LoginForm = () => {
               loading={loading}
               type="submit"
             />
-            <Link className="text-dark mt-2" to={"/reset-code"}>
+            <Link className="main-text mt-2" to={"/reset-code"}>
               {" "}
               {t("forgetPasswordLink")}{" "}
             </Link>

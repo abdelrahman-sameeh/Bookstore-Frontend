@@ -88,10 +88,10 @@ const App: React.FC = () => {
             </Route>
             {/* user routes */}
             <Route path="user" element={<ProtectedRoutes allowto={["user"]} />}>
+              <Route path="books" element={<UserOnlineBooks />} />
               <Route path="addresses" element={<UserAddresses />} />
               <Route path="cart" element={<UserCart />} />
               <Route path="orders" element={<UserOrders />} />
-              <Route path="books" element={<UserOnlineBooks />} />
               <Route path="books/:bookId" element={<OnlineBookViewer />} />
             </Route>
             {/* delivery routes */}

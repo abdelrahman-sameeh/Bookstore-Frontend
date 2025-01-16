@@ -39,6 +39,10 @@ const OwnerCoupons = () => {
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
 
   useEffect(() => {
+    setPage(1);
+  }, [debouncedSearchTerm, available]);
+
+  useEffect(() => {
     const query = getQuery(available, limit, page, debouncedSearchTerm);
     authAxios(true, ApiEndpoints.listCreateCoupon(query)).then((response) => {
       const { coupons } = response.data.data;
@@ -82,7 +86,6 @@ const OwnerCoupons = () => {
           <Form.Group controlId="searchCoupons">
             <Form.Label>{t("ownerCoupons.searchCoupons")}</Form.Label>
             <Form.Control
-              className="main-theme"
               type="text"
               placeholder={t("ownerCoupons.searchPlaceholder")}
               value={search}
@@ -96,7 +99,6 @@ const OwnerCoupons = () => {
           <Form.Group controlId="availableFilter">
             <Form.Label>{t("ownerCoupons.availability")}</Form.Label>
             <Form.Control
-              className="main-theme"
               as="select"
               value={available}
               onChange={(e) => setAvailable(e.target.value)}

@@ -237,17 +237,15 @@ const UserCart = () => {
               </div>
 
               {cart?.books?.map((cartBook) => (
-                <Card className="mb-3 rounded-0" key={cartBook._id}>
+                <Card className="primary-bg mb-3 rounded-0" key={cartBook._id}>
                   <Row className="g-0 main-bg main-text">
                     <Col md={4}>
                       <Card.Img
                         src={cartBook?.book?.imageCover}
                         alt={cartBook?.book?.title}
+                        className="h-100 w-100 object-fit-cover"
                         style={{
-                          height: "250px",
-                          objectFit: "cover",
                           borderRadius: "0",
-                          width: "100%",
                         }}
                       />
                     </Col>

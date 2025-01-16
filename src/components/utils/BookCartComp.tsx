@@ -78,26 +78,27 @@ const BookCartComp = ({
   };
 
   return (
-    <div className="book-card position-relative border">
+    <div className="position-relative main-border">
       {user.role === "admin" ? (
         <>
-          <div className="d-flex w-100 main-bg p-1 gap-1">
+          <div className="d-flex secondary-bg w-100 p-1 gap-1">
             <LoadingButton
               loading={loadings.includes(book._id as string)}
               onClick={handleApprovedBook}
               title={"approve"}
-              className="border-0 bg-success w-fit"
+              className="outline-main-btn bg-success w-fit"
             >
-              <Icon className="text-light" icon="mdi:success-bold" />
+              <Icon icon="mdi:success-bold" />
             </LoadingButton>
-            <LoadingButton
+            <Button
               onClick={handleDeny}
               disabled={loadings.includes(book._id as string)}
               title={"deny"}
-              className="border-0 bg-danger w-fit"
+              className="w-fit"
+              variant="outline-danger"
             >
-              <Icon className="text-light" icon="akar-icons:cross" />
-            </LoadingButton>
+              <Icon icon="akar-icons:cross" />
+            </Button>
           </div>
 
           <DenyDialog
@@ -111,7 +112,7 @@ const BookCartComp = ({
       {user.role === "owner" && showControls ? (
         <div
           style={{ top: 0 }}
-          className="d-flex w-100 bg-light p-1 main-theme"
+          className="d-flex w-100 p-1 secondary-bg"
         >
           <div className="d-flex gap-1">
             <Button
@@ -120,7 +121,7 @@ const BookCartComp = ({
                 setCreateUpdateDialogMethod("update");
                 setTargetBook(book);
               }}
-              variant="outline-primary"
+              className="outline-main-btn"
               title={t("exploreBooks.updateBook")}
             >
               <Icon icon="tabler:edit" />
@@ -159,7 +160,7 @@ const BookCartComp = ({
       <Accordion defaultActiveKey={book._id}>
         <Accordion.Item eventKey="0" className="rounded-0">
           <Accordion.Header>{book.title}</Accordion.Header>
-          <Accordion.Body className="main-theme">
+          <Accordion.Body className="main-text">
             <p className="text-capitalize">
               <span className="fw-bold">{t("exploreBooks.author")}:</span>{" "}
               {book.author}

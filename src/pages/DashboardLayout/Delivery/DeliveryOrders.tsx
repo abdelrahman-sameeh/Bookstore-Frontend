@@ -72,8 +72,8 @@ const DeliveryOrders = () => {
               {statuses.map((status) => (
                 <Button
                   key={status}
-                  variant={
-                    filteredStatus === status ? "primary" : "outline-primary"
+                  className={
+                    filteredStatus === status ? "main-btn-dark" : "outline-main-btn"
                   }
                   onClick={() => {
                     setFilteredStatus(status);

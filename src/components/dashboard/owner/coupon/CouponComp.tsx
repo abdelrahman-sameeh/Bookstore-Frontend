@@ -23,23 +23,26 @@ const CouponComp = ({
   const setTargetCoupon = useSetRecoilState(targetCouponState);
 
   return (
-    <Card className="main-theme h-100 w-100">
-      <CardHeader>
+    <Card className="secondary-bg main-text main-border h-100 w-100">
+      <CardHeader className="main-border-bottom p-2">
         <div className="d-flex gap-1">
           <Button
-            variant="outline-primary"
+            className="outline-main-btn"
             onClick={() => {
               setTargetCoupon(coupon);
               setShowCreateUpdateDialog(true);
               setIsUpdate(true);
             }}
-            >
+          >
             <Icon icon="tabler:edit" />
           </Button>
-          <Button variant="outline-danger" onClick={() => {
-            setTargetCoupon(coupon);
-            setShowDeleteDialog(true)
-          }}>
+          <Button
+            variant="outline-danger"
+            onClick={() => {
+              setTargetCoupon(coupon);
+              setShowDeleteDialog(true);
+            }}
+          >
             <Icon icon="ph:trash" />
           </Button>
         </div>

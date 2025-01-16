@@ -6,7 +6,6 @@ import ChattingSidebar from "./ChattingSidebar";
 const ChattingLayout = () => {
   return (
     <div
-      style={{ marginTop: "calc(71px + 16px)" }}
       className="dashboard-layout"
     >
       <MainNavbarApp />
