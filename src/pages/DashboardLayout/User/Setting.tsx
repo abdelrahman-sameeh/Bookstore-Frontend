@@ -83,7 +83,7 @@ const Setting = () => {
           />
 
           <Form.Group className="mb-3" controlId="formBasicUsername">
-            <Form.Label className="text-capitalize fw-bold">
+            <Form.Label className="text-capitalize">
               {t("setting.username")}
             </Form.Label>
             <Form.Control

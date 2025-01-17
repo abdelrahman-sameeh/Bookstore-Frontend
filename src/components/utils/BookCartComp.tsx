@@ -10,6 +10,7 @@ import authAxios from "../../api/authAxios";
 import { ApiEndpoints } from "../../api/ApiEndpoints";
 import notify from "./Notify";
 import DenyDialog from "../dashboard/admin/book/DenyDialog";
+import { Link } from "react-router-dom";
 
 type BookCartType = {
   book: Book;
@@ -31,6 +32,8 @@ const BookCartComp = ({
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [loadings, setLoadings] = useState<string[]>([]);
   const [showDenyDialog, setShowDenyDialog] = useState(false);
+
+  console.log(book);
 
   // admin role
   const handleApprovedBook = async () => {
@@ -70,8 +73,10 @@ const BookCartComp = ({
       notify(t("exploreBooks.addToCartSuccessfully"));
     } else if (response?.data?.message === "book count is not available") {
       notify(t("exploreBooks.addToCartFailedOutOfRange"), "error");
-    } else if (response?.data?.message === "you already have this book in your library") {
-      notify(t("exploreBooks.alreadyHaveBook"), 'warn');
+    } else if (
+      response?.data?.message === "you already have this book in your library"
+    ) {
+      notify(t("exploreBooks.alreadyHaveBook"), "warn");
     } else {
       notify(t("exploreBooks.addToCartFailed"), "error");
     }
@@ -110,10 +115,7 @@ const BookCartComp = ({
       ) : null}
 
       {user.role === "owner" && showControls ? (
-        <div
-          style={{ top: 0 }}
-          className="d-flex w-100 p-1 secondary-bg"
-        >
+        <div style={{ top: 0 }} className="d-flex w-100 p-1 secondary-bg">
           <div className="d-flex gap-1">
             <Button
               onClick={() => {
@@ -189,7 +191,9 @@ const BookCartComp = ({
                 <hr />
                 <p className="text-capitalize">
                   <span className="fw-bold">{t("exploreBooks.seller")}:</span>{" "}
-                  {book?.owner?.name}
+                  <Link className="text-decoration-underline" to={`/user/${book?.owner?._id}`}>
+                    {book?.owner?.name}
+                  </Link>
                 </p>
               </>
             ) : null}

@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { Col } from "react-bootstrap";
+import { Button, Col } from "react-bootstrap";
 import Icon from "../utils/Icon";
 import { useRecoilValue } from "recoil";
 import { languageState } from "../../recoil/utils";
 import { useTranslation } from "react-i18next";
-
+import authAxios from "../../api/authAxios";
+import { ApiEndpoints } from "../../api/ApiEndpoints";
+import { useParams } from "react-router-dom";
+import { ChatInterface } from "../../interfaces/interfaces";
+import ChatLink from "../Chat/ChatLink";
 
 const ChattingSidebar = () => {
   const [iconName, setIconName] = useState<
@@ -14,6 +18,9 @@ const ChattingSidebar = () => {
   const sidebarRef = useRef<HTMLElement>(null);
   const overlayRef = useRef<HTMLElement>(null);
   const lang = useRecoilValue(languageState);
+  const [archived, setArchived] = useState(false);
+  const [chats, setChats] = useState<ChatInterface[]>([]);
+  const { id } = useParams();
 
   const { t } = useTranslation();
 
@@ -27,7 +34,16 @@ const ChattingSidebar = () => {
     sidebarRef.current?.classList.remove("show");
   }, [lang]);
 
-  
+  useEffect(() => {
+    authAxios(
+      true,
+      ApiEndpoints.getUserChats(`?archived=${archived}`),
+      "GET"
+    ).then((response) => {
+      setChats(response?.data?.data?.chats);
+    });
+  }, [archived]);
+
   const handleClick = () => {
     iconRef.current?.classList.toggle("show");
     sidebarRef.current?.classList.toggle("show");
@@ -60,12 +76,36 @@ const ChattingSidebar = () => {
       <Col
         ref={sidebarRef}
         lg={3}
-        className={`position-fixed alt-bg p-3 sidebar`}
+        className={`chat-sidebar-content position-fixed overflow-y-auto alt-bg p-3 sidebar border-top`}
       >
-        <h4 className="fw-bold"> users </h4>
+        <div className="controls d-flex gap-2 mb-3">
+          <Button
+            onClick={() => setArchived(false)}
+            className={`bg-transparent border ${
+              archived === false && "main-btn"
+            }`}
+          >
+            {t("chatSidebar.messages")}
+          </Button>
+          <Button
+            onClick={() => setArchived(true)}
+            className={`bg-transparent border ${
+              archived === true && "main-btn"
+            }`}
+          >
+            {t("chatSidebar.archived")}
+          </Button>
+        </div>
 
+        {!chats.length && (
+          <p className="fw-bold fs-3 text-center">
+            {t("chatSidebar.noMessages")}
+          </p>
+        )}
+        {chats?.map((chat) => {
+          return <ChatLink key={chat._id} chat={chat} activeChat={id} />;
+        })}
       
-
       </Col>
     </>
   );

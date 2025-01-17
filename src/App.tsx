@@ -29,6 +29,7 @@ import OwnerUserChatting from "./sockets/OwnerUserChatting";
 import ChattingLayout from "./components/layout/ChattingLayout";
 import Setting from "./pages/DashboardLayout/User/Setting";
 import UserDetails from "./pages/MainLayout/UserDetails";
+import MainChatPage from "./pages/chat-layout/MainChatPage";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -58,6 +59,7 @@ const App: React.FC = () => {
           <Route element={<ChattingLayout />}>
             {/* chat owner with users */}
             <Route element={<ProtectedRoutes allowto={["user", "owner"]} />}>
+              <Route path="/chat" element={<MainChatPage />} />
               <Route path="/chat/:id" element={<OwnerUserChatting />} />
             </Route>
           </Route>
