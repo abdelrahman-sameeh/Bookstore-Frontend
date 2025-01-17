@@ -1,5 +1,7 @@
 export interface Owner {
+  _id?: string;
   name: string;
+  email?:string;
 }
 
 export interface Book {
@@ -97,8 +99,24 @@ export interface Delivery {
   deliveredOrders?: Order[];
 }
 
+export interface Message {
+  _id?: string;
+  sender?: string;
+  content?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  createdAtFormatted?: string;
+}
 
-export interface Message{
-  sender?: string,
-  content?:string
+export interface ChatInterface {
+  _id?: string;
+  users?: UserInterface[];
+  archivedBy?: UserInterface[];
+  blockedBy?: UserInterface[];
+  chat?: {
+    _id?: string;
+    title?: string;
+    picture?: string;
+    lastMessage?: Message;
+  };
 }

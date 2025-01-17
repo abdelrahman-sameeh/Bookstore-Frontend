@@ -18,7 +18,7 @@ const UserDetails = () => {
 
   useEffect(() => {
     const handleNotValidUser = () => {
-      notify(t("UserDetails.invalidPage"), "error", 1500); // استخدام الترجمة
+      notify(t("UserDetails.invalidPage"), "error", 1500);
       setTimeout(() => {
         navigate("/");
       }, 1500);
@@ -43,18 +43,18 @@ const UserDetails = () => {
   }, [loggedUser, id, navigate, t]);
 
   const handleChatClick = () => {
-    console.log(t("UserDetails.chatWithUser", { name: user.name })); // استخدام الترجمة
+    window.location.href = `/chat/${id}`;
   };
 
   const getInitials = (name: string) => {
-    return name && name[0].toUpperCase()
+    return name && name[0].toUpperCase();
   };
 
   return (
     <Container className="py-5">
       <Row className="justify-content-center">
         <Col md={6}>
-          <Card className="shadow-sm alt-bg main-text">
+          <Card className="secondary-bg alt-bg main-text">
             <Card.Body>
               <div className="text-center mb-4">
                 {user.picture ? (
@@ -70,25 +70,26 @@ const UserDetails = () => {
                   />
                 ) : (
                   <div
-                    className="d-flex justify-content-center align-items-center main-bg main-text rounded-circle m-auto"
+                    className="d-flex rounded-full border justify-content-center align-items-center main-bg main-text rounded-circle m-auto"
                     style={{ width: "120px", height: "120px" }}
                   >
-                    <span className="h3">{getInitials(user.name)}</span>
+                    <span className="h1">{getInitials(user.name)}</span>
                   </div>
                 )}
               </div>
               <h3 className="mb-4 text-center">{user.name}</h3>
-              <div className="d-flex justify-content-between mb-3">
+              <div className="d-flex justify-content-center flex-column align-items-center gap-2 mb-3">
                 <div>
                   <strong>{t("UserDetails.email")}:</strong> {user.email}
                 </div>
+                <LoadingButton
+                  onClick={handleChatClick}
+                  className="d-flex align-items-center gap-1 justify-content-center"
+                >
+                  <Icon icon="iconamoon:comment-light" />
+                  {t("UserDetails.startChat")}
+                </LoadingButton>
               </div>
-
-              {/* Chat button */}
-              <LoadingButton onClick={handleChatClick} className="d-flex align-items-center gap-1 justify-content-center">
-                <Icon icon="iconamoon:comment-light" />
-                {t("UserDetails.startChat")}
-              </LoadingButton>
             </Card.Body>
           </Card>
         </Col>

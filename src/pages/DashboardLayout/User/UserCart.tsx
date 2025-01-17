@@ -238,7 +238,7 @@ const UserCart = () => {
 
               {cart?.books?.map((cartBook) => (
                 <Card className="primary-bg mb-3 rounded-0" key={cartBook._id}>
-                  <Row className="g-0 main-bg main-text">
+                  <Row className="g-0 main-text">
                     <Col md={4}>
                       <Card.Img
                         src={cartBook?.book?.imageCover}
@@ -292,7 +292,7 @@ const UserCart = () => {
                             <Accordion.Header>
                               {t("userCart.controls")}
                             </Accordion.Header>
-                            <Accordion.Body className="main-theme">
+                            <Accordion.Body >
                               <form
                                 onSubmit={(e: FormEvent) => {
                                   e.preventDefault();
@@ -301,7 +301,7 @@ const UserCart = () => {
                               >
                                 <label
                                   htmlFor="removeCount"
-                                  className="fw-bold mb-1"
+                                  className="fw-bold main-text mb-1"
                                 >
                                   {t("userCart.removeCount")}
                                 </label>

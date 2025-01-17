@@ -72,7 +72,7 @@ const FileUploader = ({
     }
     if (fileUrl) {
       onFileChange("delete");
-      setSelectedFile('delete');
+      setSelectedFile("delete");
     } else {
       setSelectedFile(null);
       onFileChange(null);
@@ -80,7 +80,6 @@ const FileUploader = ({
     setPreview(null);
     setError(null);
   };
-
 
   const handleDelete = () => {
     resetFile();
@@ -92,8 +91,17 @@ const FileUploader = ({
 
   return (
     <div>
-      <Form.Group className="position-relative" style={{paddingBottom: ((selectedFile && selectedFile!='delete') || preview) ? '30px': '', width: 'fit-content', border: '2px solid var(--main-bg)', minWidth: '200px', borderRadius: '10px'}}>
-        {(!selectedFile || selectedFile=='delete') && !preview && (
+      <Form.Group
+        className="position-relative main-border"
+        style={{
+          paddingBottom:
+            (selectedFile && selectedFile != "delete") || preview ? "30px" : "",
+          width: "fit-content",
+          minWidth: "200px",
+          borderRadius: "10px",
+        }}
+      >
+        {(!selectedFile || selectedFile == "delete") && !preview && (
           <label
             htmlFor={type}
             style={{
@@ -136,24 +144,36 @@ const FileUploader = ({
         {type === "pdf" && preview && (
           <div style={{ textAlign: "center", margin: "20px 0" }}>
             {preview ? <p>{t("fileUploader.pdfExist")}</p> : null}
-            {selectedFile && selectedFile!='delete' ? (
+            {selectedFile && selectedFile != "delete" ? (
               <Alert variant="success">
                 {t("fileUploader.pdfUploadedSuccessfully")}
               </Alert>
             ) : null}
-
           </div>
         )}
 
-        {((selectedFile && selectedFile!='delete') || preview) && (
+        {((selectedFile && selectedFile != "delete") || preview) && (
           <div
-          className="position-absolute"
-            style={{ display: "flex", bottom: '1px', justifyContent: "center", width: '100%' }}
+            className="position-absolute"
+            style={{
+              display: "flex",
+              bottom: "1px",
+              justifyContent: "center",
+              width: "100%",
+            }}
           >
-            <Button style={{height: '30px', display: 'flex', alignItems: 'center'}} variant="warning" onClick={handleUpdate}>
-            <Icon icon="tabler:edit" />
+            <Button
+              style={{ height: "30px", display: "flex", alignItems: "center" }}
+              variant="warning"
+              onClick={handleUpdate}
+            >
+              <Icon icon="tabler:edit" />
             </Button>
-            <Button style={{height: '30px', display: 'flex', alignItems: 'center'}} variant="danger" onClick={handleDelete}>
+            <Button
+              style={{ height: "30px", display: "flex", alignItems: "center" }}
+              variant="danger"
+              onClick={handleDelete}
+            >
               <Icon icon="ph:trash" />
             </Button>
           </div>

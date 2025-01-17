@@ -154,7 +154,7 @@ const OwnerBooks = () => {
 
         <div className="d-flex gap-1 align-items-center position-relative">
           <input
-            className="form-control rounded-0 main-bg"
+            className="form-control rounded-0"
             type="search"
             placeholder={t("exploreBooks.searchBooks")}
             value={searchTerm}
@@ -203,7 +203,7 @@ const OwnerBooks = () => {
                 {priceOrder ? (
                   <button
                     onClick={() => setPriceOrder(null)}
-                    className="btn main-bg main-text mt-1"
+                    className="btn main-text mt-1"
                   >
                     {t("exploreBooks.removeSelected")}
                   </button>
@@ -235,7 +235,7 @@ const OwnerBooks = () => {
                 {salesOrder ? (
                   <button
                     onClick={() => setSalesOrder(null)}
-                    className="btn main-bg main-text mt-1"
+                    className="btn main-text mt-1"
                   >
                     {t("exploreBooks.removeSelected")}
                   </button>
@@ -245,7 +245,7 @@ const OwnerBooks = () => {
               <Col lg={4} xs={12} className="mt-3">
                 <h5>{t("exploreBooks.booksPerPage")}</h5>
                 <Form.Control
-                  className="main-bg main-text rounded-0 pointer"
+                  className="main-text rounded-0 pointer"
                   as="select"
                   value={booksPerPage}
                   onChange={handleBooksPerPageChange}
