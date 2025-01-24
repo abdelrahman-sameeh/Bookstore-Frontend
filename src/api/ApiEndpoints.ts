@@ -36,6 +36,9 @@ export const ApiEndpoints = {
   getUserOnlineBooks: `${mainPath}/user/books`,
   getOnlineBookStream: (id: any)=> `${mainPath}/user/book/${id}`,
   updateUserProfile: `${mainPath}/user/profile`,
+  // archive chat
+  archive: (id: string) => `${mainPath}/chats/${id}/archive`,
+  unarchive: (id: string) =>`${mainPath}/chats/${id}/unarchive`,
 
   // sockets
   isExistUser: (id: any)=> `${mainPath}/users/${id}`,

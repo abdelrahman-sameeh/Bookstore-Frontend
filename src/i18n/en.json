@@ -462,7 +462,8 @@
     "deselectAll": "Deselect In Delivery orders",
     "In Delivery": "In Delivery",
     "Delivered": "Delivered",
-    "makeOrdersDelivered": "make orders delivered"
+    "makeOrdersDelivered": "make orders delivered",
+    "connectWithReceiver": "Contact the receiver directly"
   },
 
   "makeOrdersCompleted": {
@@ -507,7 +508,18 @@
   "chatSidebar": {
     "messages": "Messages",
     "archived": "Archived",
+    "block": "Blocked",
     "noMessages": "No messages yet"
+  },
+
+  "chatBox": {
+    "archive": "Archive",
+    "unarchive": "Unarchive",
+    "block": "Block",
+    "archivedSuccess": "Archived successfully",
+    "unarchivedSuccess": "Unarchived successfully",
+    "error": "Something went wrong"
+
   },
 
   "___dashboard links": "_____",

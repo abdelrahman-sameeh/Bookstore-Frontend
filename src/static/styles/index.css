@@ -214,6 +214,21 @@ form.auth-form button {
   }
 }
 
+.dropdown-menu.show{
+  background-color: var(--main-color-dark);
+  border: 1px solid var(--main-color) ;
+  color: white;
+}
+
+[dir="rtl"] .dropdown-menu .dropdown-item{
+  text-align: start;
+}
+
+.dropdown-menu .dropdown-item:focus,.dropdown-menu .dropdown-item:hover{
+  background-color: var(--main-color);
+  color: black !important;
+}
+
 /* frame work */
 .btn {
   border-radius: 0 !important;
@@ -244,7 +259,7 @@ form.auth-form button {
 
 .main-btn:hover,
 .main-btn:active {
-  background-color: var(--main-color-dark) !important;
+  background-color: #50419c !important;
   color: var(--white-color) !important;
 }
 
@@ -287,6 +302,7 @@ form.auth-form button {
   border: 1px solid var(--main-color) !important;
   background-color: transparent !important;
 }
+
 .dark-mode .outline-main-btn {
   color: var(--main-color) !important;
 }

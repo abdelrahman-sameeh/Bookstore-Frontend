@@ -1,8 +1,8 @@
-import React from "react";
 import { Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { ChatInterface } from "../../interfaces/interfaces";
 import Icon from "../utils/Icon";
+import { useRecoilValue } from "recoil";
+import { archivedAtom, blockedAtom } from "../../recoil/chatAtom";
 
 const ChatLink = ({
   chat,
@@ -11,12 +11,17 @@ const ChatLink = ({
   chat: ChatInterface;
   activeChat: string | undefined;
 }) => {
+  const archived = useRecoilValue(archivedAtom);
+  const blocked = useRecoilValue(blockedAtom);
+
   return (
     <a
       className={`chat-link ${
         activeChat === chat.chat?._id ? "active" : ""
       } d-block py-2`}
-      href={`/chat/${chat?.chat?._id as string}`}
+      href={`/chat/${chat?.chat?._id as string}?archived=${
+        archived ? "true" : "false"
+      }&blocked=${blocked ? "true" : "false"}`}
     >
       <Row className="mx-0 align-items-center">
         <Col xs={2}>

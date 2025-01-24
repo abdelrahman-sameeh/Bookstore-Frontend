@@ -465,7 +465,8 @@
     "deselectAll": "إلغاء تحديد جميع الطلبات قيد التوصيل",
     "In Delivery": "قيد التوصيل",
     "Delivered": "تم التوصيل",
-    "makeOrdersDelivered": "نقل الطلبات الى حالة التوصيل"
+    "makeOrdersDelivered": "نقل الطلبات الى حالة التوصيل",
+    "connectWithReceiver": "تواصل مع المستلم"
   },
 
   "makeOrdersCompleted": {
@@ -510,7 +511,17 @@
   "chatSidebar": {
     "messages": "الرسائل",
     "archived": "الأرشيف",
+    "block": "المحظورين",
     "noMessages": "لا توجد رسائل بعد"
+  },
+
+  "chatBox": {
+    "archive": "أرشفة",
+    "unarchive": "الغاء الأرشفة",
+    "block": "حظر",
+    "archivedSuccess": "تم الأرشفة بنجاح",
+    "unarchivedSuccess": "تم إلغاء الأرشفة بنجاح",
+    "error": "حدث خطأ ما"
   },
 
   "___dashboard links": "_____",

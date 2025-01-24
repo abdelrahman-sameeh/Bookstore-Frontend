@@ -101,20 +101,17 @@ const AdminOrders = () => {
           </Col>
           <Col sm={12} md={9} className="mt-3">
             <ButtonGroup className="mb-3 d-flex justify-content-center flex-wrap">
-              {statuses.map((status) => (
-                <Button
-                  key={status}
-                  variant={
-                    filteredStatus === status ? "primary" : "outline-primary"
-                  }
-                  onClick={() => {
-                    setFilteredStatus(status);
-                    setCurrentPage(1);
-                  }}
-                >
-                  {t(`orderComp.${status}`)}
-                </Button>
-              ))}
+            {statuses.map((status) => (
+            <Button
+              key={status}
+              className={`${
+                filteredStatus === status ? "main-btn" : "outline-main-btn"
+              }`}
+              onClick={() => setFilteredStatus(status)}
+            >
+              {t(`orderComp.${status}`)}
+            </Button>
+          ))}
             </ButtonGroup>
           </Col>
         </Row>

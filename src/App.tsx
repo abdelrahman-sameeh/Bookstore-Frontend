@@ -25,7 +25,7 @@ import AdminOrders from "./pages/DashboardLayout/Admin/AdminOrders";
 import DeliveryOrders from "./pages/DashboardLayout/Delivery/DeliveryOrders";
 import UserOnlineBooks from "./pages/DashboardLayout/User/UserOnlineBooks";
 import OnlineBookViewer from "./pages/DashboardLayout/User/OnlineBookViewer";
-import OwnerUserChatting from "./sockets/OwnerUserChatting";
+import Chatting from "./sockets/Chatting";
 import ChattingLayout from "./components/layout/ChattingLayout";
 import Setting from "./pages/DashboardLayout/User/Setting";
 import UserDetails from "./pages/MainLayout/UserDetails";
@@ -57,11 +57,8 @@ const App: React.FC = () => {
 
           {/* chatting layout */}
           <Route element={<ChattingLayout />}>
-            {/* chat owner with users */}
-            <Route element={<ProtectedRoutes allowto={["user", "owner"]} />}>
-              <Route path="/chat" element={<MainChatPage />} />
-              <Route path="/chat/:id" element={<OwnerUserChatting />} />
-            </Route>
+            <Route path="/chat" element={<MainChatPage />} />
+            <Route path="/chat/:id" element={<Chatting />} />
           </Route>
         </Route>
 

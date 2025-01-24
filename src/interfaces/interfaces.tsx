@@ -1,7 +1,7 @@
 export interface Owner {
   _id?: string;
   name: string;
-  email?:string;
+  email?: string;
 }
 
 export interface Book {
@@ -106,7 +106,15 @@ export interface Message {
   createdAt?: Date;
   updatedAt?: Date;
   createdAtFormatted?: string;
+  receiver?: string;
 }
+
+export type ChatTypes =
+  | "user-admin"
+  | "user-delivery"
+  | "user-owner"
+  | "admin-delivery"
+  | "admin-owner";
 
 export interface ChatInterface {
   _id?: string;
@@ -119,4 +127,5 @@ export interface ChatInterface {
     picture?: string;
     lastMessage?: Message;
   };
+  chatType?: ChatTypes;
 }

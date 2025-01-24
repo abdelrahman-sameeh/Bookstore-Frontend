@@ -14,6 +14,8 @@ import {
 } from "react-bootstrap";
 import OrderComp from "../../../components/utils/OrderComp";
 import MakeOrdersCompleted from "../../../components/dashboard/delivery/MakeOrdersCompleted";
+import { Link } from "react-router-dom";
+import Icon from "../../../components/utils/Icon";
 
 export const statuses = ["In Delivery", "Delivered"];
 
@@ -73,7 +75,9 @@ const DeliveryOrders = () => {
                 <Button
                   key={status}
                   className={
-                    filteredStatus === status ? "main-btn-dark" : "outline-main-btn"
+                    filteredStatus === status
+                      ? "main-btn-dark"
+                      : "outline-main-btn"
                   }
                   onClick={() => {
                     setFilteredStatus(status);
@@ -97,7 +101,7 @@ const DeliveryOrders = () => {
     <Accordion defaultActiveKey="">
       {orders.map((order, index) => (
         <Row key={index}>
-          <Col xs={1} sm={1} lg={1} className="p-0 w-fit">
+          <Col xs={1} className="p-0 w-fit">
             <Form.Check
               className="mt-2"
               disabled={order.status != "inDelivery"}
@@ -106,7 +110,16 @@ const DeliveryOrders = () => {
               checked={checkedOrders.includes(order._id)}
             />
           </Col>
-          <Col xs={11} className="flex-1">
+          <Col xs={1} className="w-fit mt-2">
+            <a
+              href={`/chat/${order?.user}`}
+              className="btn outline-main-btn-dark pt-0"
+              title={t("deliveryOrder.connectWithReceiver")}
+            >
+              <Icon icon="tabler:message" />
+            </a>
+          </Col>
+          <Col xs={10} className="flex-1">
             <OrderComp order={order} index={index} />
           </Col>
         </Row>
