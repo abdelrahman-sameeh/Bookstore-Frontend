@@ -21,9 +21,9 @@ type LinksType = {
 const getUserLinks = (t: any): LinksType => ({
   admin: [
     {
-      title: t("dashboard.shared.links.home"),
-      to: "/",
-      icon: "iconamoon:home-bold",
+      title: t("dashboard.shared.links.messages"),
+      to: "/chat",
+      icon: "basil:chat-outline"
     },
     {
       title: t("dashboard.admin.links.categories"),
@@ -53,9 +53,9 @@ const getUserLinks = (t: any): LinksType => ({
   ],
   user: [
     {
-      title: t("dashboard.shared.links.home"),
-      to: "/",
-      icon: "iconamoon:home-bold",
+      title: t("dashboard.shared.links.messages"),
+      to: "/chat",
+      icon: "basil:chat-outline"
     },
     {
       title: t("dashboard.user.links.yourOnlineBooks"),
@@ -90,9 +90,9 @@ const getUserLinks = (t: any): LinksType => ({
   ],
   owner: [
     {
-      title: t("dashboard.shared.links.home"),
-      to: "/",
-      icon: "iconamoon:home-bold",
+      title: t("dashboard.shared.links.messages"),
+      to: "/chat",
+      icon: "basil:chat-outline"
     },
     {
       title: t("dashboard.owner.links.stripe"),
@@ -122,9 +122,9 @@ const getUserLinks = (t: any): LinksType => ({
   ],
   delivery: [
     {
-      title: t("dashboard.shared.links.home"),
-      to: "/",
-      icon: "iconamoon:home-bold",
+      title: t("dashboard.shared.links.messages"),
+      to: "/chat",
+      icon: "basil:chat-outline"
     },
     {
       title: t("dashboard.delivery.links.orders"),

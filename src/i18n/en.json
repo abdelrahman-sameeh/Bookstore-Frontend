@@ -519,7 +519,24 @@
     "archivedSuccess": "Archived successfully",
     "unarchivedSuccess": "Unarchived successfully",
     "error": "Something went wrong"
+  },
 
+  "footer": {
+    "connectMessage": "Get connected with us on social networks",
+    "supportMessage": "If you have any question or issue:",
+    "contactUs": "Contact Us",
+    "copyright": "All rights reserved",
+    "createdBy": "Created by"
+  },
+
+  "support": {
+    "title": "Support",
+    "description": "If you have any questions or need assistance, feel free to contact us.",
+    "startChatButton": "Chat with support team",
+    "registerToStartChat": "Register or login to start chat",
+    "imageAlt": "Support illustration",
+    "redirectToSupport": "You will be redirected to a support representative",
+    "errorOccurred": "An error occurred, please try again later"
   },
 
   "___dashboard links": "_____",
@@ -527,7 +544,7 @@
     "dashboard": "dashboard",
     "shared": {
       "links": {
-        "home": "home",
+        "messages": "Messages",
         "changePassword": "change password",
         "setting": "account setting"
       }

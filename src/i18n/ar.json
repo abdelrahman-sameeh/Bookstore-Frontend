@@ -524,12 +524,30 @@
     "error": "حدث خطأ ما"
   },
 
+  "footer": {
+    "connectMessage": "تواصل معنا على وسائل التواصل الاجتماعي",
+    "supportMessage": "إذا كان لديك أي سؤال أو مشكلة:",
+    "contactUs": "تواصل معنا",
+    "copyright": "جميع الحقوق محفوظة",
+    "createdBy": "تم الإنشاء بواسطة"
+  },
+
+  "support": {
+    "title": "الدعم",
+    "description": "إذا كان لديك أي أسئلة أو تحتاج إلى مساعدة، لا تتردد في الاتصال بنا.",
+    "startChatButton": "ابدأ الدردشة مع فريق الدعم",
+    "registerToStartChat": "سجّل الدخول أو أنشئ حسابًا لبدء المحادثة",
+    "imageAlt": "رسم توضيحي للدعم",
+    "redirectToSupport": "سيتم تحويلك إلى أحد ممثلي خدمة العملاء",
+    "errorOccurred": "حدث خطأ، حاول مرة أخرى لاحقًا"
+  },
+
   "___dashboard links": "_____",
   "dashboard": {
     "dashboard": "لوحة التحكم",
     "shared": {
       "links": {
-        "home": "صفحة البداية",
+        "messages": "الرسائل",
         "changePassword": "تغير كلمة المرور",
         "setting": "اعدادات الحساب"
       }

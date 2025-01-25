@@ -30,6 +30,7 @@ import ChattingLayout from "./components/layout/ChattingLayout";
 import Setting from "./pages/DashboardLayout/User/Setting";
 import UserDetails from "./pages/MainLayout/UserDetails";
 import MainChatPage from "./pages/chat-layout/MainChatPage";
+import Support from "./pages/MainLayout/Support";
 
 const App: React.FC = () => {
   const theme = useRecoilValue(themeState);
@@ -48,6 +49,7 @@ const App: React.FC = () => {
           <Route path="reset-code" element={<ForgetPasswordResetCode />} />
           <Route path="verify-reset-code" element={<VerifyResetCode />} />
           <Route path="books" element={<ExploreBooks />} />
+          <Route path="support" element={<Support />} />
         </Route>
 
         <Route element={<IsAuth />}>

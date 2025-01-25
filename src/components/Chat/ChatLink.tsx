@@ -16,6 +16,7 @@ const ChatLink = ({
 
   return (
     <a
+      title={chat.chat?.title?.slice(0, 20)}
       className={`chat-link ${
         activeChat === chat.chat?._id ? "active" : ""
       } d-block py-2`}
@@ -29,7 +30,7 @@ const ChatLink = ({
             <img
               className="avatar"
               src={chat.chat?.picture}
-              alt={chat.chat?.title}
+              alt={chat.chat?.title?.slice(0, 10)}
             />
           ) : (
             <div className="avatar d-flex justify-content-center align-items-center fs-5">
@@ -40,7 +41,10 @@ const ChatLink = ({
         <Col xs={10}>
           <div>
             <div className="d-flex justify-content-between text-light">
-              <p className="mb-0 fw-bold name"> {chat.chat?.title} </p>
+              <p className="mb-0 fw-bold name">
+                {" "}
+                {chat.chat?.title?.slice(0, 11)}{" "}
+              </p>
               <p className="mb-0 ">
                 {" "}
                 {chat.chat?.lastMessage?.createdAtFormatted}{" "}

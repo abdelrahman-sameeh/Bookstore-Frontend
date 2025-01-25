@@ -41,7 +41,13 @@ body.dark-mode {
   --alt-text: #c6c6c6;
 }
 
+
 /* reset */
+main{
+  min-height: 64.5vh;
+}
+
+
 input[type="checkbox"],
 input[type="radio"] {
   cursor: pointer;
@@ -425,6 +431,7 @@ section.home .hero .btn::before {
 
 /* (Auth) register login page */
 .register-login .main {
+  box-shadow: 0 0 0px 1px var(--main-color-dark);
   width: 100%;
   max-width: 500px;
   height: 550px;

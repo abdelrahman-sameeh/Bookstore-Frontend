@@ -39,7 +39,9 @@ export const ApiEndpoints = {
   // archive chat
   archive: (id: string) => `${mainPath}/chats/${id}/archive`,
   unarchive: (id: string) =>`${mainPath}/chats/${id}/unarchive`,
-
+  
+  // support
+  chatWithSupport: `${mainPath}/chat/get-support`,
   // sockets
   isExistUser: (id: any)=> `${mainPath}/users/${id}`,
   getChatMessage: (receiverId: string) => `${mainPath}/chat/messages/${receiverId}`,
