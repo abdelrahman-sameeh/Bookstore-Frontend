@@ -516,9 +516,12 @@
     "archive": "Archive",
     "unarchive": "Unarchive",
     "block": "Block",
+    "unblock": "Unblock",
     "archivedSuccess": "Archived successfully",
     "unarchivedSuccess": "Unarchived successfully",
-    "error": "Something went wrong"
+    "error": "Something went wrong",
+    "youBlocked": "You blocked {{title}}",
+    "youHaveBeenBlocked": "You have been blocked by {{title}}"
   },
 
   "footer": {

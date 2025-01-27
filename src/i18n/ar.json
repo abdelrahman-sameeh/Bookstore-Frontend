@@ -519,9 +519,12 @@
     "archive": "أرشفة",
     "unarchive": "الغاء الأرشفة",
     "block": "حظر",
+    "unblock": "الغاء الحظر",
     "archivedSuccess": "تم الأرشفة بنجاح",
     "unarchivedSuccess": "تم إلغاء الأرشفة بنجاح",
-    "error": "حدث خطأ ما"
+    "error": "حدث خطأ ما",
+    "youBlocked": "لقد قمت بحظر {{title}}",
+    "youHaveBeenBlocked": "تم حظرك بواسطة {{title}}"
   },
 
   "footer": {
